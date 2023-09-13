@@ -25,7 +25,11 @@ def events_to_csv(x):
     sn = str(x['season.season_name']).replace('/', '-')
     path = pathOrg+sn+'/'+x['home_team.home_team_gender']+'/"'+x['competition.country_name']+'"/"'+x['competition.competition_name']+'"/"'+x['home_team.home_team_name']+'-'+x['away_team.away_team_name']+'('+x['match_date']+')".csv'
     path = pathOrg+sn+'/'+x['home_team.home_team_gender']+'/'+x['competition.country_name']+'/'+x['competition.competition_name']+'/'+x['home_team.home_team_name']+'-'+x['away_team.away_team_name']+'('+x['match_date']+').csv'
-    eventsDF.to_csv(path, sep='|')
+    try:
+        eventsDF.to_csv(path, sep='|')
+    except:
+        print('There is no match with this id!')
+
 def competitions_json():
     competitionsPath = path + 'competitions.json'
     competitionsFile = open(competitionsPath, 'r')
@@ -67,5 +71,5 @@ def matches_json():
             #eventsDF = pd.json_normalize(json.load(open(eventsPath + e, 'r')))
             #matchesDict.to_csv(path, sep='|')
 
-#competitions_json()
+competitions_json()
 matches_json()
