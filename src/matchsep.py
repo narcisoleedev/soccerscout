@@ -18,8 +18,14 @@ for id in os.listdir(eventsPath):
     matchIds.append(id.partition('.')[0])
 
 matchIds = np.unique(matchIds)
-print(len(matchIds))
-
+   
+def events_to_csv(x):
+    id = x['match_id']
+    eventsDF = pd.json_normalize(json.load(open(eventsPath + str(id) + '.json', 'r')))
+    sn = str(x['season.season_name']).replace('/', '-')
+    path = pathOrg+sn+'/'+x['home_team.home_team_gender']+'/"'+x['competition.country_name']+'"/"'+x['competition.competition_name']+'"/"'+x['home_team.home_team_name']+'-'+x['away_team.away_team_name']+'('+x['match_date']+')".csv'
+    path = pathOrg+sn+'/'+x['home_team.home_team_gender']+'/'+x['competition.country_name']+'/'+x['competition.competition_name']+'/'+x['home_team.home_team_name']+'-'+x['away_team.away_team_name']+'('+x['match_date']+').csv'
+    eventsDF.to_csv(path, sep='|')
 def competitions_json():
     competitionsPath = path + 'competitions.json'
     competitionsFile = open(competitionsPath, 'r')
@@ -52,20 +58,14 @@ def competitions_org(competitions):
                     os.system('mkdir ' + pathOrg + seasonNoSlice + '/"' + g + '"' + '/"' + ct + '"' + '/"' + c + '"')
 
 def matches_json():
-    matchesDict = []
-    i = 0
     for c in os.listdir(matchesPath):
         for f in os.listdir(matchesPath + '/' + c):
             matchesFile = open(matchesPath + c + '/' + f, 'r')
             matchesDict = pd.json_normalize(json.load(matchesFile))
-            matchesDict = pd.DataFrame(matchesDict)
-            try:
-                path = pathOrg+str(matchesDict['season.season_name']).replace('/', '-')+'/'+(matchesDict['home_team.home_team_gender'])+'/"'+matchesDict['competition.country_name']+'"/"'+ matchesDict['competition.competition_name']+'"/'+matchesDict['home_team.home_team_name']+'-'+matchesDict['away_team.away_team_name']+'('+matchesDict['match_date']+')'+'.json'
-                print(path)
-                #matchesDict.to_csv(path, sep='|')
-            except:
-                i = i + 1
-            #print((matchesDict['season.season_name']).astype(str)).replace('/', '-')
-    print(i)
+            matchesDF = pd.DataFrame(matchesDict)
+            matchesDF.apply(events_to_csv, axis=1)
+            #eventsDF = pd.json_normalize(json.load(open(eventsPath + e, 'r')))
+            #matchesDict.to_csv(path, sep='|')
+
 #competitions_json()
 matches_json()
