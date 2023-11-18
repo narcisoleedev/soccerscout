@@ -188,3 +188,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Arquivos pessoais narcisoleedev
+data/open-data
+data/org-data
+data/venv
+bash.sh
+src/erros.txt
+
