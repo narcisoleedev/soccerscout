@@ -15,28 +15,18 @@ def complexFeatures(df):
             'home': [0.0, 34.0],
             'away': [105.0, 34.0],
         }      
-        try:
-            df['startLocAngHome'] = math.atan(abs(goalPos['home'][0]-float(startLoc[0]))/abs(goalPos['home'][1]-float(startLoc[1])))
-            df['startLocAngAway'] = math.atan(abs(goalPos['away'][0]-float(startLoc[0]))/abs(goalPos['away'][1]-float(startLoc[1])))
-            df['startLocDistHome'] = math.sqrt(math.pow((goalPos['home'])[0]-float(startLoc[0]), 2)+math.pow((goalPos['home'])[1]-float(startLoc[1]), 2))
-            df['startLocDistAway'] = math.sqrt(math.pow((goalPos['away'])[0]-float(startLoc[0]), 2)+math.pow((goalPos['away'])[1]-float(startLoc[1]), 2))
-            df['endLocAngHome'] = math.atan(abs(goalPos['home'][0]-float(endLoc[0]))/abs(goalPos['home'][1]-float(endLoc[1])))
-            df['endLocAngAway'] = math.atan(abs(goalPos['away'][0]-float(endLoc[0]))/abs(goalPos['away'][1]-float(endLoc[1])))
-            df['endLocDistHome'] = math.sqrt(math.pow((goalPos['home'])[0]-float(endLoc[0]), 2)+math.pow((goalPos['home'])[1]-float(endLoc[1]), 2))
-            df['endLocDistAway'] = math.sqrt(math.pow((goalPos['away'])[0]-float(endLoc[0]), 2)+math.pow((goalPos['away'])[1]-float(endLoc[1]), 2))
-            df['distCoveredX'] = abs(float(startLoc[0])-float(endLoc[0]))
-            df['distCoveredY'] = abs(float(startLoc[1])-float(endLoc[1]))
-        except ZeroDivisionError:
-            df['startLocAngHome'] = 0
-            df['startLocAngAway'] = 0
-            df['startLocDistHome'] = 0
-            df['startLocDistAway'] = 0
-            df['endLocAngHome'] = 0
-            df['endLocAngAway'] = 0
-            df['endLocDistHome'] = 0
-            df['endLocDistAway'] = 0
-            df['distCoveredX'] = 0
-            df['distCoveredY'] = 0
+       #We're gonna add a little trick to calculate atan of the angle. Since there are only one decimal in the float columns, 
+       #we're gonna add 0.01 to the divisors so there won't be a division by 0 error :)
+        df['startLocAngHome'] = math.atan(abs(goalPos['home'][0]-float(startLoc[0]))/abs(goalPos['home'][1]-float(startLoc[1]))+0.01)
+        df['startLocAngAway'] = math.atan(abs(goalPos['away'][0]-float(startLoc[0]))/abs(goalPos['away'][1]-float(startLoc[1]))+0.01)
+        df['startLocDistHome'] = math.sqrt(math.pow((goalPos['home'])[0]-float(startLoc[0]), 2)+math.pow((goalPos['home'])[1]-float(startLoc[1]), 2))
+        df['startLocDistAway'] = math.sqrt(math.pow((goalPos['away'])[0]-float(startLoc[0]), 2)+math.pow((goalPos['away'])[1]-float(startLoc[1]), 2))
+        df['endLocAngHome'] = math.atan(abs(goalPos['home'][0]-float(endLoc[0]))/abs(goalPos['home'][1]-float(endLoc[1]))+0.01)
+        df['endLocAngAway'] = math.atan(abs(goalPos['away'][0]-float(endLoc[0]))/abs(goalPos['away'][1]-float(endLoc[1]))+0.01)
+        df['endLocDistHome'] = math.sqrt(math.pow((goalPos['home'])[0]-float(endLoc[0]), 2)+math.pow((goalPos['home'])[1]-float(endLoc[1]), 2))
+        df['endLocDistAway'] = math.sqrt(math.pow((goalPos['away'])[0]-float(endLoc[0]), 2)+math.pow((goalPos['away'])[1]-float(endLoc[1]), 2))
+        df['distCoveredX'] = abs(float(startLoc[0])-float(endLoc[0]))
+        df['distCoveredY'] = abs(float(startLoc[1])-float(endLoc[1]))
         return df
 def listProcData(path):
     #List all itens in the proc-data dir
