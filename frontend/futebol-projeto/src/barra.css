@@ -1,9 +1,9 @@
 .Barra{
-    position: absolute;
+    position: fixed;
     /* top: 0; 
     left: 0; */
     width: 20%;
-    height: 95%;
+    height: 100%;
     background-color: #90cf54;
     z-index: index 1;;
     border: 1px solid black;

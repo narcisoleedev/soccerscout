@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './login.css'
 
 function Login(){
@@ -27,7 +28,10 @@ function Login(){
             </div>
             <div className='TextoFinal'>
                 <p>
-                    Ainda não tem cadastro? <span className='Verde'>Cadastre-se Aqui!</span>
+                    Ainda não tem cadastro? 
+                    <Link to={"/cadastro"}>
+                        <span className='Verde'>Cadastre-se Aqui!</span>
+                    </Link>
                 </p> 
                 
                 
