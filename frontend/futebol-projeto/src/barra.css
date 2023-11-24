@@ -1,0 +1,108 @@
+.Barra{
+    position: absolute;
+    /* top: 0; 
+    left: 0; */
+    width: 20%;
+    height: 95%;
+    background-color: #90cf54;
+    z-index: index 1;;
+    border: 1px solid black;
+    padding: 0.5%;
+}
+
+.cima_barra{
+    height: 9%;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #FFFFFF;
+}
+.img_logo{
+    flex: 9;
+}
+img#logo_barra{
+    /* flex:9; */
+    width: 100%;
+}
+.fechar{
+    flex:1;
+    text-align: right;
+    padding-left: 5%;
+}
+#fechar_barra{
+    margin-top: 999px;
+    color: #FFFFFF;
+    font-size: x-large;
+    font-weight: 500;
+    cursor: pointer;
+}
+.meio_barra{
+    height: 35%;
+    border-bottom: 1px solid #FFFFFF;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5%;
+}
+div.meio_texto{
+    color: #FFFFFF;
+    font-size: x-large;
+    height: 16%;
+
+}
+div.meio_texto2{
+    color: #FFFFFF;
+    font-size: x-large;
+    height: 16%;
+    padding-left: 10%;
+
+}
+
+div.meio span{
+    cursor:pointer;
+    font-weight: 800;
+}
+.login_barra{
+    height: 15%;
+    border-bottom: 1px solid #FFFFFF;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5%;
+}
+div.login_texto{
+    color: #FFFFFF;
+    font-size: x-large;
+    height: 50%;
+
+}
+.sair_barra{
+    height: 5%;
+    width: 100%;
+    padding-top: 5%;
+    color: #FFFFFF;
+    font-size: x-large;
+}
+
+.baixo_barra{
+    height: 5%;
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-top: 48%;
+    padding-left: 20%;
+}
+.icons_barra{
+    width: 60%;
+    border: 1px solid black;
+    background-color: #FFFFFF;
+    height: 100%;
+    border-radius: 5%;
+}
+.icons_barra img{
+    margin-top: 2%;
+    width: 15%;
+    margin-right:5% ;
+}
+img#first_img{
+    margin-left: 10%;
+}

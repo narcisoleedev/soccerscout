@@ -1,0 +1,34 @@
+.footer {
+    height: 200px;
+    display: inline-block;
+    background-color: #90cf54;
+    align-items: center;
+    margin: auto;
+    padding-left: 10%;
+    padding-top: 3%;
+}
+
+.caixa-footer {
+    width: 80%;
+    background-color: #ffffff;
+    border: 2px solid black;
+    border-radius: 1.4%;
+    display: flex; 
+    padding-top: 15px;
+    padding-right: 3%;
+    padding-left: 3%;
+    height: 70%;
+}
+.texto{
+    flex: 4;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: xxx-large;
+}
+.icons{
+    flex: 6;
+}
+.icons img{
+    width: 15%;
+    margin-left: 10%;
+}
