@@ -196,4 +196,5 @@ data/proc-data/
 data/venv
 bash.sh
 src/erros.txt
+src/log.txt
 

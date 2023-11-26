@@ -1,7 +1,7 @@
 import os
 import pandas as pd
-from add_features import features
-from add_labels import labels
+import add_features 
+import add_labels
 
 #Path to proc-data
 path = os.path.abspath('../')+'/proc-data'
@@ -17,8 +17,10 @@ def listProcData(path):
         #If it is it will insert the features and the labels
         else:
             df = pd.read_csv(path+'/'+item, sep='|')
-            features(df)
-            labels(df)
+            df = add_features.features(path+'/'+item)
+            df_labels = add_labels.labels(path+'/'+item)
+            df = pd.concat([df, df_labels[['Scores', 'Concedes']]], axis=1)
+            #df = pd.get_dummies(df, columns=df.columns)
             df.to_csv(path+'/'+item, sep='|', index=False)
 
 listProcData(path)

@@ -1,3 +1,4 @@
+
 import os
 import pandas as pd
 import shutil
@@ -35,7 +36,6 @@ def _parse_pass(row):
     elif row[string_outcome] == 'Pass Offside':
         result = 'offside'
     elif row[string_outcome] in ['Injury Clearance', 'Unknown']:
-        
         action = 'non_action'
         result = 'success'
     else:
@@ -101,6 +101,7 @@ def _parse_duel(row):
     if row[string+".type.name"] == 'Tackle':
         action = 'tackle'
         duel_outcome = row[string+".outcome"+".name"]
+        
         if duel_outcome in ['Lost In Play', 'Lost Out']:
             result = 'fail'
         elif duel_outcome in ['Success in Play', 'Won']:
@@ -109,13 +110,15 @@ def _parse_duel(row):
             result = 'success'
 
         body_part = 'foot'
+        return action, result, body_part
 
-    else:
-        action = 'non_action'
-        result = 'success'
-        body_part = 'foot'
+    action = 'non_action'
+    result = 'success'
+    body_part = 'foot'
 
     return action, result, body_part
+
+
 
 def _parse_interception(row):
     action = 'interception'
@@ -181,7 +184,7 @@ def _parse_goalkeeper(row):
     string = 'goalkeeper' + '.type' + '.name'
     if row[string] == 'Shot Saved':
         action = 'keeper_save'
-    elif row[string] in ('Collected', 'Keeper Sweeper'):
+    elif row[string] in ['Collected', 'Keeper Sweeper']:
         action = 'keeper_claim'
     elif row[string] == 'Punch':
         action = 'keeper_punch'
@@ -254,35 +257,120 @@ def _find_loc(linha):
     try:
         return linha[str(linha["type.name"]).lower() +".end_location"]
     except:
-        return None
-
-def _find_end_time(df,indice):
-    try: 
-        return  df.iloc[indice + 1]["timestamp"]
+        return linha["location"]
     
-    except:
-        return None
+def find_seconds(linha):
+    
+    var = 60 * linha["minute"] + linha["second"] - ((linha["period"] > 1) * 45 * 60) - ((linha["period"] > 2) * 45 * 60) - ((linha["period"] > 3) * 15 * 60) - ((linha["period"] > 4) * 15 * 60)
+    
+    return var
+
+def _fix_loc(df):
+    for indice,linha in df.iterrows(): 
+        if linha["Type_name"] == "clearance":
+            linha["End_x"] = df.iloc[indice+1]["Start_x"]
+            linha["End_y"] = df.iloc[indice+1]["Start_y"]
+
+
+def home_team_id(df):
+    return df.loc[1, 'Team']
+
+def _fix_direction(df):
+    
+    home_id = home_team_id(df)
+    
+    away_idx = df["Team"] != home_id
+
+    for col in ['Start_x', 'End_x']:
+        df.loc[away_idx, col] = 120 - df[away_idx][col].values
+    for col in ['Start_y', 'End_y']:
+        df.loc[away_idx, col] = 80 - df[away_idx][col].values
+    
+    return df
+
+def _add_dribbles(actions):
+    
+    min_dribble_length: float = 3.0
+    max_dribble_length: float = 60.0
+    max_dribble_duration: float = 10.0
+
+    lista_result = ['fail', 'success', 'offside', 'owngoal', 'yellow_card', 'red_card']
+    lista_body_part = ['foot', 'head', 'other', 'head/other', 'foot_left', 'foot_right']
+    lista_type = ['pass', 'cross', 'throw_in', 'freekick_crossed', 'freekick_short', 'corner_crossed', 'corner_short', 'take_on', 'foul', 'tackle',
+                  'interception', 'shot', 'shot_penalty', 'shot_freekick', 'keeper_save', 'keeper_claim', 'keeper_punch', 'keeper_pick_up', 'clearance', 'bad_touch', 'non_action', 'dribble', 'goalkick']
+    
+    next_actions = actions.shift(-1, fill_value=0)
+
+    same_team = actions["Team"] == next_actions["Team"]
+
+    dx = actions["End_x"] - next_actions["Start_x"]
+    dy = actions["End_y"] - next_actions["Start_y"]
+    
+    far_enough = dx**2 + dy**2 >= min_dribble_length**2
+    not_too_far = dx**2 + dy**2 <= max_dribble_length**2
+
+    dt = next_actions["Time"] - actions["Time"]
+    same_phase = dt < max_dribble_duration
+    same_period = actions["Period"] == next_actions["Period"]
+
+    dribble_idx = same_team & far_enough & not_too_far & same_phase & same_period
+
+    dribbles = pd.DataFrame()
+   
+    prev = actions[dribble_idx]
+    nex = next_actions[dribble_idx]
+   
+    dribbles["Period"] = nex["Period"]
+    dribbles["Type_id"] = prev["Type_id"] + 0.1
+    dribbles["Time"] = (prev["Time"] + nex["Time"]) / 2
+    dribbles["Team"] = nex["Team"]
+    dribbles["Player"] = nex["Player"]
+    dribbles["Start_x"] = prev["End_x"]
+    dribbles["Start_y"] = prev["End_y"]
+    dribbles["End_x"] = nex["Start_x"]
+    dribbles["End_y"] = nex["Start_y"]
+    dribbles["Bodypart_id"] = lista_body_part.index('foot')
+    dribbles["Type_id"] = lista_type.index('dribble')
+    dribbles["Result_id"] = lista_result.index('success')
+
+    actions = pd.concat([actions, dribbles], ignore_index=True, sort=False)
+    
+    actions = actions.sort_values(['Period', 'Type_id']).reset_index(drop=True)
+    
+    actions['Type_id'] = range(len(actions))
+    
+    return actions
 
 def _parse_events(caminho):
+    
     lista = ["Pass","Dribble","Carry","Foul Committed","Duel","Interception","Shot","Own Goal Against","Goal Keeper","Clearance","Miscontrol"]
+    lista_result = ['fail', 'success', 'offside', 'owngoal', 'yellow_card', 'red_card']
+    lista_body_part = ['foot', 'head', 'other', 'head/other', 'foot_left', 'foot_right']
+    lista_type = ['pass', 'cross', 'throw_in', 'freekick_crossed', 'freekick_short', 'corner_crossed', 'corner_short', 'take_on', 'foul', 'tackle',
+                  'interception', 'shot', 'shot_penalty', 'shot_freekick', 'keeper_save', 'keeper_claim', 'keeper_punch', 'keeper_pick_up', 'clearance', 'bad_touch', 'non_action', 'dribble', 'goalkick']
     
     df = pd.read_csv(caminho,  sep="|") 
     df = df.where(pd.notnull(df), None)
     
-    data = {
-    'StartTime': [],
-    'EndTime': [],
-    'StartLoc': [],
-    'EndLoc': [],
-    'Player': [],
-    'Team': [],
-    'ActionType': [],
-    'BodyPart': [],
-    'Result': []
-    }
+    data = { "id": [],
+             "Period":int,
+             "Time":int,
+             'Start_x': [],
+             'Start_y': [],
+             'End_x': [],
+             'End_y': [],
+             'Player': int,
+             'Team': int,
+             'Type_name': [],
+             'BodyPart_name': [],
+             'Result_name': [],
+             'Type_id': int,
+             'BodyPart_id': int,
+             'Result_id': int
+             }
 
     df2 = pd.DataFrame(data)
-
+    cont = 0
     for indice, linha in df.iterrows():
         if linha["type.name"] in lista:
             
@@ -308,22 +396,40 @@ def _parse_events(caminho):
                 action, result, body_part = _parse_carry()
             elif linha["type.name"] == "Own Goal Against":
                 action, result, body_part = _parse_owngoal()
+            
+            # Se quiser considerar os non_action comente
+            if action == "non_action":
+                continue
+            
+            start = eval(linha["location"])
+            end = eval(_find_loc(linha))
 
-
-            linha_temp = { 'StartTime': linha["timestamp"],
-                           'EndTime': _find_end_time(df,indice),
-                           'StartLoc': linha["location"],
-                           'EndLoc': _find_loc(linha),
-                           'Player': linha["player.id"],
+            linha_temp = { "id": linha["id"],
+                           "Period": linha["period"],
+                           "Time": find_seconds(linha),
+                           'Start_x': start[0],
+                           'Start_y': start[1],
+                           'End_x': end[0],
+                           'End_y': end[1],
+                           'Player': int(linha["player.id"]),
                            'Team': linha["team.id"],
-                           'ActionType': action,
-                           'BodyPart': body_part,
-                           'Result': result,
-
+                           'Type_name': action,
+                           'BodyPart_name': body_part,
+                           'Result_name': result,
+                           'Type_id':  lista_type.index(action),
+                           'BodyPart_id': lista_body_part.index(body_part),
+                           'Result_id':  lista_result.index(result)
                            }
-
+            # df2 = (action[df2["Type_id"] != lista_type.index('non_action')].sort_values(['Period', 'Time']).reset_index(drop=True))
             df2 = df2._append(linha_temp, ignore_index=True)
     
+    _fix_loc(df2)
+
+    # Altera direção do Jogo
+    _fix_direction(df2)
+    
+    #_add_dribbles(df2)
+
     return df2
 
 def teste(caminho:str):
@@ -337,35 +443,37 @@ def teste(caminho:str):
 
         if os.path.isdir(caminho+"/"+item):
             teste(caminho+"/"+item)
+
         else:
             name_arq = caminho.replace("org-data", "proc-data")
             if os.path.exists(name_arq+"/"+item):
                 #print("já existe")
                 feitos += 1
+                pass
             
             else:
+
                 try:
                     df = _parse_events(caminho+"/"+item)
                     #name_arq = caminho.replace("org-data", "proc-data")
 
-                    df.to_csv(name_arq+"/"+item, sep="|", index=False)
+                    df.to_csv(name_arq+"/"+item, sep='|', index=False)
                     feitos += 1
                     print(feitos)
 
                 except KeyboardInterrupt:
+                    
                     exit()
 
-                except Exception as error:
-                    print(error)
+                except:
                     
-                    """print("erro",name_arq+"/"+item)
+                    print("erro",name_arq+"/"+item)
                     file = open("erros.txt", "r")
                     a = file.readlines()
                     file = open("erros.txt", "w")
                     a.append(name_arq+"/"+item+"\n")
                     file.writelines(a)
-                    file.close()"""
-                
+                    file.close()
 
 def copy_erros():
     file = open("erros.txt", "r")
@@ -378,3 +486,4 @@ def copy_erros():
 if __name__ == "__main__":
     
     teste(os.path.abspath('../org-data/'))
+    #_parse_events("jogo.csv").to_csv("res.csv", index=False)

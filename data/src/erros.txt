@@ -1,0 +1,18 @@
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Barcelona-Levante UD(2019-04-27).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Leganés-Barcelona(2018-09-26).csv
+/home/tsuguil/code/soccerscout/data/proc-data/1979/male/International/FIFA U20 World Cup/Argentina U20-Soviet Union U20(1979-09-07).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Barcelona-Levante UD(2019-04-27).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Leganés-Barcelona(2018-09-26).csv
+/home/tsuguil/code/soccerscout/data/proc-data/1979/male/International/FIFA U20 World Cup/Argentina U20-Soviet Union U20(1979-09-07).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Barcelona-Levante UD(2019-04-27).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Leganés-Barcelona(2018-09-26).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Barcelona-Eibar(2019-01-13).csv
+/home/tsuguil/code/soccerscout/data/proc-data/1979/male/International/FIFA U20 World Cup/Argentina U20-Soviet Union U20(1979-09-07).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Barcelona-Levante UD(2019-04-27).csv
+/home/tsuguil/code/soccerscout/data/proc-data/1979/male/International/FIFA U20 World Cup/Argentina U20-Soviet Union U20(1979-09-07).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Barcelona-Levante UD(2019-04-27).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Leganés-Barcelona(2018-09-26).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Spain/La Liga/Barcelona-Eibar(2019-01-13).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/male/Europe/Champions League/Tottenham Hotspur-Liverpool(2019-06-01).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/female/England/FA Women's Super League/Chelsea FCW-Birmingham City WFC(2019-01-27).csv
+/home/tsuguil/code/soccerscout/data/proc-data/2018-2019/female/England/FA Women's Super League/Liverpool WFC-West Ham United LFC(2019-01-28).csv

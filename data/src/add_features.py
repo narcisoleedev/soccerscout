@@ -14,5 +14,5 @@ def features(path):
     complexFeatures(df)
     df = pd.concat([df,goalscore(df)], axis=1)    
     #One Hot Features
-    df = pd.concat([df,result_onehot(df),bodypart_onehot(df), actiontype_result_onehot(df),actiontype_onehot(df)], axis=1)
+    df = pd.concat([df,result_onehot(df),bodypart_onehot(df), actiontype_result_onehot(df), actiontype_onehot(df)], axis=1)
     return df

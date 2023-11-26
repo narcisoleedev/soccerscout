@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def add_labels(df):
     home_id = home_team_id(df)
 
@@ -24,8 +23,8 @@ def add_labels(df):
             linha_temp1 = {"Scores": False}
             linha_temp2 = {"Concedes": True}
 
-        scores = scores._append(linha_temp1, ignore_index=True)
-        concedes = concedes._append(linha_temp2, ignore_index=True)
+        scores = scores.append(linha_temp1, ignore_index=True)
+        concedes = concedes.append(linha_temp2, ignore_index=True)
 
     return scores, concedes
 
