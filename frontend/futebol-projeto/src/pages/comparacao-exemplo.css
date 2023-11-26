@@ -35,3 +35,25 @@
     padding-top:7%;
 }
 
+.header_exemplo{
+    margin: 0 32px 0;
+}
+
+.coletiva_exemplo{
+    margin: 32px 32px 16px;
+}
+
+.desc{
+    color: #90cf54;
+}
+
+.desc p{
+    font-size: 18px;
+}
+
+.coletiva_selects{
+    width: 100%;
+    display: inline-flex;
+    align-content: center;
+    justify-content: space-around;
+}
