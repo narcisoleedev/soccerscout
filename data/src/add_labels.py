@@ -1,4 +1,6 @@
-from modelParse.labels2 import *
+#Author: narcisoleedev, EdgarLiraa
+
+from modelParse.labels import *
 
 def labels(path):
     df = pd.read_csv(path, sep="|")

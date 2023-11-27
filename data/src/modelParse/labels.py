@@ -1,47 +1,41 @@
 import pandas as pd
 
-def add_labels(df):
+
+def add_labels_optimized(df):
     home_id = home_team_id(df)
 
-    add_true(df)
+    add_true_optimized(df)
 
-    data = {"Concedes": []}
-    data2 = {"Scores": []}
-
-    concedes = pd.DataFrame(data, dtype="object")
-    scores = pd.DataFrame(data2, dtype="object")
+    scores_data = []
+    concedes_data = []
 
     for _, linha in df.iterrows():
         if linha["label"] == False:
-            linha_temp1 = {"Scores": False}
-            linha_temp2 = {"Concedes": False}
-
-        elif (linha["label"] == True) and int(linha["Team"]) == home_id:
-            linha_temp1 = {"Scores": True}
-            linha_temp2 = {"Concedes": False}
+            scores_data.append(False)
+            concedes_data.append(False)
+        elif linha["label"] == True and int(linha["Team"]) == home_id:
+            scores_data.append(True)
+            concedes_data.append(False)
         else:
-            linha_temp1 = {"Scores": False}
-            linha_temp2 = {"Concedes": True}
+            scores_data.append(False)
+            concedes_data.append(True)
 
-        scores = scores.append(linha_temp1, ignore_index=True)
-        concedes = concedes.append(linha_temp2, ignore_index=True)
+    scores = pd.DataFrame({"Scores": scores_data}, dtype="object")
+    concedes = pd.DataFrame({"Concedes": concedes_data}, dtype="object")
 
     return scores, concedes
 
 
-def home_team_id(df):
-    return df.loc[1, "Team"]
-
-
-def add_true(df):
+def add_true_optimized(df):
     lista_type = ["shot", "shot_penalty", "shot_freekick"]
+    df["label"] = False
 
-    df["label"] = None
     for indice, linha in df.iterrows():
-        df.loc[indice, "label"] = False
         if (linha["Result_name"] == "owngoal") or (
             linha["Type_name"] in lista_type and linha["Result_name"] == "success"
         ):
-            for x in range(indice, indice - 10, -1):
-                df.loc[x, "label"] = True
-    return df
+            df.loc[indice - 10 : indice, "label"] = True
+
+
+def home_team_id(df):
+    return df.loc[1, "Team"]

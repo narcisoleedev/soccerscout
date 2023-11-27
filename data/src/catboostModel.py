@@ -1,3 +1,5 @@
+#Author: narcisoleedev
+
 import os
 import random 
 import numpy as np
@@ -25,10 +27,9 @@ def trainModel():
     #I am going to split the features and labels in the training_data:
     training_features = training_data.drop(columns=['Scores', 'Concedes'])
     for c in training_features.columns:
-        if(training_features[c].dtypes==np.float64):
-            training_features[c] = training_features[c]*100
+        if(training_features[c].dtypes==bool):
             training_features[c] = training_features[c].astype(int)
-    training_labels = training_data[['Scores']]
+    training_labels = training_data[['Scores', 'Concedes']]
 
     #Spliter#
     string_features = []
@@ -36,24 +37,33 @@ def trainModel():
         #print(training_features[c].dtypes)
         if(training_features[c].dtypes=='object'):
             string_features.append(training_features.columns.get_loc(c))
+    print(string_features)
     X_train, X_test, Y_train, Y_test = train_test_split(training_features, training_labels, test_size=0.25, random_state=40)
-    train_pool = Pool(data=(X_train), label=np.array(Y_train).ravel(), cat_features=string_features)
     model = CatBoostClassifier(iterations=100, depth=10, learning_rate=0.05)
-    print(train_pool)
-    model.fit(X=train_pool)
-    print('a')
+    models = {}
+    train_pools = {}
+    for c in training_labels.columns:
+        train_pool = Pool(data=(X_train), label=np.array(Y_train[c]).ravel(), cat_features=string_features)
+        train_pools[c] = train_pool
+        models[c] = model.fit(train_pool)
     
     #Evaluation
-    accuracy = model.score(X_test, Y_test.astype(str))
-    print(f"Model Accuracy for 20% of all matches: {accuracy}")
-
-    #Consufion matrix
-    Y_pred = model.predict(X_test)
-    matrix = confusion_matrix(Y_test.astype(str), Y_pred.astype(str))
-    print(matrix)
-    plt.figure(figsize=(8,8))
-    plt.title('Confusion Matrix')
-    sb.heatmap(matrix)
+    for c in training_labels.columns:
+        accuracy = models[c].score(X_test, (Y_test[c].astype(str)))
+        print(Y_test[c])
+        print(f"Model Accuracy for 20% of all matches: {accuracy}")
+        #Consufion matrix
+        Y_pred = {}
+        prob = {}
+        Y_pred[c] = models[c].predict(X_test)
+        matrix = confusion_matrix(Y_test[c].astype(str), Y_pred[c].astype(str))
+        #Save model
+        #if os.path.exists(os.path.abspath('./')+'models/'):
+        models[c].save_model(f'./models/model-{c}.cbm', format="cbm")
+        #else:
+        #    os.mkdir('./models/')
+        #    models[c].save_model(f'./models/model-{c}.csv', format="cbm", pool=train_pools[c])
+   
 
 
 def listProcData(path)->None:

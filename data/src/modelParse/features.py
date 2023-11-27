@@ -6,7 +6,6 @@ import math
 
 def complexFeatures(df):
     goalPos = [120, 40]
-
     temp = pd.DataFrame()
     for _, row in df.iterrows():
         row_temp = {

@@ -1,3 +1,5 @@
+#Author: narcisoleedev, EdgaarLiraga
+
 from modelParse.features import *
 
 def features(path):
@@ -11,8 +13,8 @@ def features(path):
     #State features
     df = pd.concat([df,time,space,team],axis=1)
     #Complex Features
-    complexFeatures(df)
-    df = pd.concat([df,goalscore(df)], axis=1)    
+    df = complexFeatures(df)
+    df = pd.concat([df, goalscore(df)], axis=1)    
     #One Hot Features
-    df = pd.concat([df,result_onehot(df),bodypart_onehot(df), actiontype_result_onehot(df), actiontype_onehot(df)], axis=1)
+    df = pd.concat([df, result_onehot(df), bodypart_onehot(df), actiontype_result_onehot(df), actiontype_onehot(df)], axis=1)
     return df
