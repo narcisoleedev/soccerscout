@@ -20,7 +20,7 @@ function ComparacaoExemplo(){
                 </section>
                 
                 <section className="coletiva_selects">
-                    <Select name = "Liga" options={["Liga baba", "Liga aa"]}/>
+                    <Select name = "Liga" options={["Liga baba", "Liga aa", "Liga baba", "Liga aa", "Liga baba", "Liga aa", "Liga baba", "Liga aa", "Liga baba", "Liga aa", "Liga baba", "Liga aa", "Liga baba", "Liga aa", "Liga baba", "Liga aa", "Liga baba", "Liga aa",]}/>
                     <Select name = "Liga" options={["Liga baba", "Liga aa"]}/>
                     <Select name = "Liga" options={["Liga baba", "Liga aa"]}/>
                     <Select name = "Liga" options={["Liga baba", "Liga aa"]}/>
