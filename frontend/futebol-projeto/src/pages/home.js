@@ -5,6 +5,7 @@ import bola from "../imagens/bola.png"
 import fb from "../imagens/fb.png"
 import x from "../imagens/x.png"
 import em from "../imagens/em.png"
+import falta from "../imagens/falta.png"
 import ig from "../imagens/ig.png"
 
 function Home(){
@@ -35,7 +36,7 @@ function Home(){
                         </div>
                     </div>
                     <div className="foto-div">
-                        <img src={bola}/>
+                        <img src={falta}/>
                     </div>
                 </div>
                 <div className="buraco">
