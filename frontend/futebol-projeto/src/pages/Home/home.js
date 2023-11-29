@@ -1,12 +1,12 @@
 import './home.css'
 
 //imagens
-import bola from "../imagens/bola.png"
-import fb from "../imagens/fb.png"
-import x from "../imagens/x.png"
-import em from "../imagens/em.png"
-import falta from "../imagens/falta.png"
-import ig from "../imagens/ig.png"
+import fb from "../../imagens/fb.png"
+import x from "../../imagens/x.png"
+import em from "../../imagens/em.png"
+import falta from "../../imagens/falta.png"
+import ig from "../../imagens/ig.png"
+import { Link } from 'react-router-dom'
 
 function Home(){
     return (
@@ -27,20 +27,32 @@ function Home(){
                         <br/><br/><br/>
                         <div id="barra_icons">
                             <div className="nav2">
-                                <div className="icon"><img src={x}/></div>
-                                <div className="icon"><img src={ig}/></div>
-                                <div className="icon"><img src={fb}/></div>
-                                <div className="icon"><img src={em}/></div>
+                                <Link to={"/redes-sociais"}>
+                                    <div className="rede-social-icon"><img src={x}/></div>
+                                </Link>
+
+                                <Link to={"/redes-sociais"}>
+                                    <div className="rede-social-icon"><img src={ig}/></div>
+
+                                </Link>
+
+                                <Link to={"/redes-sociais"}>
+                                    <div className="rede-social-icon"><img src={fb}/></div>
+                                </Link>
+
+                                <Link to={"/redes-sociais"}>
+                                    <div className="rede-social-icon"><img src={em}/></div>
+                                </Link>                                
                             </div>
                             <div className="underline"></div>
                         </div>
                     </div>
                     <div className="foto-div">
-                        <img src={falta}/>
+                        <img className="picture" src={falta}/>
                     </div>
                 </div>
                 <div className="buraco">
-                    ESPAÇO
+                    &nbsp;
                 </div>
             </div>
             <div className="side"></div>

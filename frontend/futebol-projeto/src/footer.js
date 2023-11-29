@@ -3,6 +3,7 @@ import em from "./imagens/em.png"
 import ig from "./imagens/ig.png"
 import fb from "./imagens/fb.png"
 import './footer.css'
+import { Link } from 'react-router-dom'
 
 function Footer(){
     return(
@@ -11,11 +12,23 @@ function Footer(){
                 <div className="texto">
                     CONFIRA NOSSAS REDES SOCIAIS!
                 </div>
-                <div className="icons">
-                    <img src={x} alt="Logo da IA"/>
-                    <img src={ig} alt="Logo da IA"/>
-                    <img src={fb} alt="Logo da IA"/>
-                    <img src={em} alt="Logo da IA"/>
+                <div className="social-icons">
+                    <Link to={"/redes-sociais"} className="icons">
+                        <img src={x}/>
+                    </Link>
+
+                    <Link to={"/redes-sociais"} className="icons">
+                        <img src={ig}/>
+
+                    </Link>
+
+                    <Link to={"/redes-sociais"}  className="icons">
+                       <img src={fb}/>
+                    </Link>
+
+                    <Link to={"/redes-sociais"}  className="icons">
+                        <img src={em}/>
+                    </Link>                                
                 </div>
             </div>
         </div>

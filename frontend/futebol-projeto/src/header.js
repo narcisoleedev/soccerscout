@@ -1,6 +1,6 @@
 import mb from "./imagens/mb.png"
 import logoT from "./imagens/logoF.png"
-import style from './header.Module.css'
+import './header.Module.css'
 import { Link } from 'react-router-dom'
 import Barra from "./barra"
 import React, { useState, useEffect, useContext } from 'react';

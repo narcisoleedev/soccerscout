@@ -1,5 +1,5 @@
 import './comparacao-exemplo.css'
-import Select from "../components/Select/Select.js"
+import Select from "../../components/Select/Select.js"
 import {useState} from "react"
 
 
@@ -115,7 +115,7 @@ function ComparacaoExemplo(){
                 </section>
             
 
-                <div className='espaco'>espaço</div>
+                <div className='espaco'>&nbsp;</div>
             </div>
             <div className="side"></div>
         </div>

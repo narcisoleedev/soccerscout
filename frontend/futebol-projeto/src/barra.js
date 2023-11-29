@@ -70,10 +70,22 @@ function Barra({fecharBarra}){
             </div>
             <div className='baixo_barra'>
                 <div className='icons_barra'>
-                    <img src={x} alt='icon x' id='first_img'/>
-                    <img src={ig} alt='icon ig'/>
-                    <img src={fb} alt='icon fb'/>
-                    <img src={em} alt='icon em'/>
+                    <Link to={"/redes-sociais"} alt="icon-x">
+                        <img src={x}/>
+                    </Link>
+
+                    <Link to={"/redes-sociais"}  alt="icon-ig">
+                        <img src={ig}/>
+
+                    </Link>
+
+                    <Link to={"/redes-sociais"}  alt="icon-fb">
+                       <img src={fb}/>
+                    </Link>
+
+                    <Link to={"/redes-sociais"} alt="icon-em ">
+                        <img src={em}/>
+                    </Link>    
                 </div>
             </div>
         </div>

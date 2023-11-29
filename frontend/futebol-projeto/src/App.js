@@ -6,15 +6,16 @@ import Header from './header';
 import Footer from './footer'
 
 //Páginas
-import Home from './pages/home'
-import Tecnica from './pages/tecnica';
-import Sobre from './pages/sobre';
-import Comparacao from './pages/comparacao';
-import Comparacao1v1 from './pages/comparacao-1x1';
-import ComparacaoColetiva from './pages/comparacao-coletiva';
-import ComparacaoExemplo from './pages/comparacao-exemplo';
-import Login from './pages/login';
-import Cadastro from './pages/cadastro';
+import Home from './pages/Home/home'
+import Tecnica from './pages/Tecnica/tecnica';
+import Sobre from './pages/Sobre/sobre';
+import Comparacao from './pages/Comparacao/comparacao';
+import Comparacao1v1 from './pages/Comparacao_1x1/comparacao-1x1';
+import ComparacaoColetiva from './pages/Comparacao_coletiva/comparacao-coletiva';
+import ComparacaoExemplo from './pages/Comparacao_exemplo/comparacao-exemplo';
+import Login from './pages/Login/login';
+import Cadastro from './pages/Cadastro/cadastro';
+import RedesSociais from './pages/Redes_sociais/redes-sociais';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/comparacao-exemplo" Component={ComparacaoExemplo}/>
             <Route path="/login" Component={Login}/>
             <Route path="/cadastro" Component={Cadastro}/>
+            <Route path="/redes-sociais" Component={RedesSociais}/>
         </Routes>
         <Footer/>
     <script src="script.js"></script>

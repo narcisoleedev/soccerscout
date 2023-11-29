@@ -1,26 +1,29 @@
 .header{
-    display: flex;
+    display: inline-flex;
     border-bottom: 1px solid black;
     /* padding: 5px; */
     flex-direction: row;
-    /* justify-content: space-between; */
+    justify-content: space-around;
     height: 70px;
     width: 100%;
     background-color: #90cf54;
   }
   .mb{
-    width: 5%;
+    padding-top: 8px;
     height: 100%;
-    padding-top: 0.5%;
     align-items: center;
+    vertical-align: middle;
   }
   .mb img{
     cursor:pointer;
-    width: 50%;
-    height: 60%;
+    max-width: 90%;
+    max-height: 90%;
   }
   .logo{
-    width: 15%;
+    max-width: 15%;  
+    align-content: center;
+    vertical-align: middle;
+    justify-content: center ;
   }
   .logo img{
     width: 100%;
@@ -46,12 +49,11 @@
     text-decoration: underline;
   }
   .buttons{
-    width: 11%;
+    margin: 0 16px;
     align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 15%;
+    display: inline-flex;
+    justify-content: space-around;
+    
   }
   .login-button,
   .signup-button {
@@ -64,6 +66,7 @@
     /* text-transform: uppercase; */
     font-size: x-large;
     font-weight: 1000;
+    margin: 0 16px;
     padding: 5px 10px;
     cursor: pointer;
   }

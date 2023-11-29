@@ -1,7 +1,7 @@
 .Barra{
     position: fixed;
-    /* top: 0; 
-    left: 0; */
+    top: 0; 
+    left: 0;
     width: 20%;
     height: 100%;
     background-color: #90cf54;
@@ -89,19 +89,23 @@ div.login_texto{
     padding-top: 5%;
     padding-bottom: 5%;
     margin-top: 48%;
-    padding-left: 20%;
+    padding-left: 10%;
 }
 .icons_barra{
-    width: 60%;
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+    align-content: center;
+    vertical-align: middle  ;
+    padding: 8px 8px 0;
     border: 1px solid black;
     background-color: #FFFFFF;
     height: 100%;
     border-radius: 5%;
 }
 .icons_barra img{
-    margin-top: 2%;
-    width: 15%;
-    margin-right:5% ;
+    width: 32px;
+    height: 32px;
 }
 img#first_img{
     margin-left: 10%;
