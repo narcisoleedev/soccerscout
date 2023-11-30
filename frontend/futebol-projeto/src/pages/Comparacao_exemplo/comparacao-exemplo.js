@@ -56,8 +56,13 @@ function ComparacaoExemplo(){
                     <TabelaColetiva players = {players} />
                 </section>
 
-                <section className="coletiva_1v1">
+                <section className="x-exemplo">
                     <h1>EXEMPLO DE COMPARACAO 1X1</h1>
+                    <section className="desc">
+                        <p>Digite o nome dos dois jogadores que quer comparar. Para trocar o jogador, apenas busque novamente.</p>
+                        <p>Para uma comparacao mais realista, busque jogadores de posições semelhantes </p>
+                    </section>
+
                 </section>
 
                 <div className='espaco'>&nbsp;</div>
