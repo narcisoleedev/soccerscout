@@ -1,71 +1,37 @@
 import './comparacao-exemplo.css'
-import Select from "../../components/Select/Select.js"
-import {useState} from "react"
+
+import { useState } from 'react'
+import Filter from '../../components/Filters/Filters'
+import TabelaColetiva from '../../components/TabelaColetiva/TabelaColetiva'
+
 
 
 function ComparacaoExemplo(){
-    const [ligasSelecionadas, setLigas] = useState([])
-    const [paisSelecionadas, setPais] = useState([])
-    const [posicaoSelecionadas, setPosicao] = useState([])
-    const [idadeMinSelecionada, setIdadeMin] = useState(0)
-    const [idadeMaxSelecionada, setIdadeMax] = useState(2000)
-    const [selectedMax, setSelectedMax] = useState("")
-    const [selectedMin, setSelectedMin] = useState("")
+    const [filter, setFilter] = useState({})
 
-    const idades = [16,18,21,24,27,30,32,35]
-
-    const ligasFilterAdd = (liga) => {setLigas([...ligasSelecionadas, liga])}
-
-    const ligasFilterRemove = (liga) => {setLigas(ligasSelecionadas.filter(element => element !== liga))}
-
-    const paisFilterAdd = (pais) => {setPais([...paisSelecionadas, pais])}
-
-    const paisFilterRemove = (pais) => {setPais(paisSelecionadas.filter(element => element !== pais))}
-
-    const posicaoFilterAdd = (posicao) => {setPosicao([...posicaoSelecionadas, posicao])}
-
-    const posicaoFilterRemove = (posicao) => {setPosicao(posicaoSelecionadas.filter(element => element !== posicao))}
-
-    const idadeMinAdd = (choice) => {
-        if(choice.target.value !== "-"){
-            setIdadeMin(choice.target.value)
-            setSelectedMin(choice.target.value)
-            console.log(choice.target.value)
-        } else{
-            setIdadeMin(0)
-        }
-            
+    const applyFilter= (filterApplied) => {
+        setFilter(filterApplied)
+        console.log(filter)
     }
 
-    const idadeMaxAdd = (choice) => {
-        if(choice.target.value !== "-"){
-            setIdadeMax(choice.target.value)
-            setSelectedMax(choice.target.value)
-            console.log(choice.target.value)
-        } else{
-            setIdadeMax(2000)
-        }
-    }
-
-    const applyFilter = () => {
-        console.log({
-            "ligas": ligasSelecionadas,
-            "pais": paisSelecionadas,
-            "posicao": posicaoSelecionadas,
-            "idadeMin": idadeMinSelecionada,
-            "idadeMax": idadeMaxSelecionada 
-        })
-    }
-
-    const eraseFilters = () => {
-        setLigas([])
-        setIdadeMax(2000)
-        setIdadeMin(0)
-        setPais([])
-        setPosicao([])
-        setSelectedMax("")
-        setSelectedMin("")
-    }
+    const players = [
+        {"rank": 1, "jogador": "T. Alexander-Arnold", "time": "Sampaio Corrêa", "pais": "República Centro-Africada", "posicao": "VOL", "idade": 45, "rating" : 0.999, "valor": "180 M €"},
+        {"rank": 2, "jogador": "L. Messi", "time": "Paris Saint-Germain", "pais": "Argentina", "posicao": "ATA", "idade": 34, "rating": 0.998, "valor": "200 M €"},
+        {"rank": 3, "jogador": "K. De Bruyne", "time": "Manchester City", "pais": "Bélgica", "posicao": "MEI", "idade": 30, "rating": 0.995, "valor": "150 M €"},
+        {"rank": 4, "jogador": "Neymar Jr.", "time": "Paris Saint-Germain", "pais": "Brasil", "posicao": "ATA", "idade": 29, "rating": 0.997, "valor": "180 M €"},
+        {"rank": 5, "jogador": "V. van Dijk", "time": "Liverpool", "pais": "Holanda", "posicao": "DEF", "idade": 30, "rating": 0.994, "valor": "120 M €"},
+        {"rank": 6, "jogador": "R. Lewandowski", "time": "Bayern Munich", "pais": "Polônia", "posicao": "ATA", "idade": 33, "rating": 0.996, "valor": "160 M €"},
+        {"rank": 7, "jogador": "K. Mbappé", "time": "Paris Saint-Germain", "pais": "França", "posicao": "ATA", "idade": 23, "rating": 0.993, "valor": "190 M €"},
+        {"rank": 8, "jogador": "J. Oblak", "time": "Atletico Madrid", "pais": "Eslovênia", "posicao": "GOL", "idade": 29, "rating": 0.990, "valor": "100 M €"},
+        {"rank": 9, "jogador": "S. Ramos", "time": "Paris Saint-Germain", "pais": "Espanha", "posicao": "DEF", "idade": 35, "rating": 0.992, "valor": "80 M €"},
+        {"rank": 10, "jogador": "M. Salah", "time": "Liverpool", "pais": "Egito", "posicao": "ATA", "idade": 29, "rating": 0.989, "valor": "170 M €"},
+        {"rank": 11, "jogador": "C. Ronaldo", "time": "Manchester United", "pais": "Portugal", "posicao": "ATA", "idade": 37, "rating": 0.988, "valor": "220 M €"},
+        {"rank": 12, "jogador": "H. Kane", "time": "Tottenham Hotspur", "pais": "Inglaterra", "posicao": "ATA", "idade": 28, "rating": 0.987, "valor": "130 M €"},
+        {"rank": 13, "jogador": "L. Modric", "time": "Real Madrid", "pais": "Croácia", "posicao": "MEI", "idade": 36, "rating": 0.986, "valor": "60 M €"},
+        {"rank": 14, "jogador": "G. Donnarumma", "time": "Paris Saint-Germain", "pais": "Itália", "posicao": "GOL", "idade": 22, "rating": 0.985, "valor": "110 M €"},
+        {"rank": 15, "jogador": "E. Haaland", "time": "Borussia Dortmund", "pais": "Noruega", "posicao": "ATA", "idade": 21, "rating": 0.984, "valor": "140 M €"},
+        {"rank": 16, "jogador": "Bruno Fernandes", "time": "Manchester United", "pais": "Portugal", "posicao": "MEI", "idade": 27, "rating": 0.983, "valor": "150 M €"} 
+    ]
 
     return (
         <div className='Main'>
@@ -83,37 +49,16 @@ function ComparacaoExemplo(){
                         <p>Escolha até 10 opções de liga, país, posição. Para remover, clique no ícone de "-" ao lado da opção selecionada</p>
                         <p>Escolha as idades mínima e máxima. Clique em confirmar para gerar o gráfico e tabela </p>
                     </section>
-
-                    <section className="coletiva_selects">
-                        <Select name = "Liga" placeholder="Selecione uma Liga" callbackAdd = {ligasFilterAdd} callbackRemove = {ligasFilterRemove} filters={ligasSelecionadas} options={["Liga a", "Liga b", "Liga c", "Liga d", "Liga e", "Liga f", "Liga g", "Liga h", "Liga i", "Liga j", "Liga k", "Liga l", "Liga m", "Liga n", "Liga o", "Liga p", "Liga q", "Liga r",]}/>
-                        <Select name = "País" placeholder="Selecione um País"  callbackAdd = {paisFilterAdd} callbackRemove = {paisFilterRemove}  filters={paisSelecionadas}  options={["França", "Brasil", "Italia", "Espanha"]}/>
-                        <Select name = "Posição" placeholder="Selecione uma Posição" callbackAdd = {posicaoFilterAdd} callbackRemove = {posicaoFilterRemove}  filters={posicaoSelecionadas}  options={["Zagueiro", "Volante","Atacante"]}/>
-                        <div className='age-group'>
-                            <div className='select-age'>
-                                <h5>Idade Min.</h5>
-                                <select value = {selectedMin}  onChange = {idadeMinAdd}>
-                                    <option>-</option>
-                                    {idades.filter(idade => idade < idadeMaxSelecionada).map(idade => <option>{idade}</option>)}
-                                        
-                                </select>
-                            </div>
-                            
-                            <div className='select-age'>
-                                <h5>Idade Max.</h5>
-                                <select value = {selectedMax} onChange = {idadeMaxAdd} >
-                                     <option>-</option>
-                                    {idades.filter(idade => idade > idadeMinSelecionada).map(idade => <option >{idade}</option>)}
-                                </select>
-                            </div>
-                        </div>
-                    </section>
-                    <div className='button-group'>
-                        <button onClick={applyFilter} className='button-confirm'>Confirmar</button>
-                        <button onClick={eraseFilters} className='button-erase'>Limpar</button>
-                    </div>
+                    <Filter applyFilter={applyFilter}/>
                     
+
+                    <h1>Tabela</h1>
+                    <TabelaColetiva players = {players} />
                 </section>
-            
+
+                <section className="coletiva_1v1">
+                    <h1>EXEMPLO DE COMPARACAO 1X1</h1>
+                </section>
 
                 <div className='espaco'>&nbsp;</div>
             </div>
