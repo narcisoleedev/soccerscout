@@ -77,6 +77,8 @@ function ComparacaoExemplo(){
                         <p>Para uma comparacao mais realista, busque jogadores de posições semelhantes </p>
                     </section>
 
+                    <Tabela1v1 />
+
                 </section>
 
                 <div className='espaco'>&nbsp;</div>
