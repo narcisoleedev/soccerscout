@@ -6,7 +6,7 @@ function Cadastro(){
         <div className="side"></div>
         <div className='conteudo'>
             
-            <div className='Formulario_Login'>
+            <div className='Formulario_Cadastro'>
                 <form action="/caminho/do-seu-script-de-processamento" method="post">
                     <h1> Cadastre-se</h1>
                     {/*Campo de E-mail*/}
@@ -29,7 +29,7 @@ function Cadastro(){
                     <button type="submit">Criar Conta</button>
                 </form>
             </div>
-            <div className='TextoFinal'>
+            <div className='TextoFinalCadastro'>
                 <p>
                     Já tem cadastro? <span className='Verde'>Faça Login</span>
                 </p> 

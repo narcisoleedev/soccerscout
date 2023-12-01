@@ -15,11 +15,12 @@
     font-weight: 900;
     text-transform: none;
 }
-.Formulario_Login{
+.Formulario_Cadastro{
     margin: auto;
     width: 25%;
     border-bottom: 1.5px solid black;
     padding-bottom: 2%;
+    min-width: 360px;
 }
 
 label{
@@ -41,12 +42,13 @@ form button{
     margin-left: 30%;
     border-radius: 5%;
 }
-.TextoFinal{
+.TextoFinalCadastro{
     width: 25%;
     margin: auto;
+    min-width: 400px;
 }
-.TextoFinal p{
-    font-size: medium
+.TextoFinalCadastro p{
+    font-size: 120%;
 }
 .Verde{
     color: #90cf54;;

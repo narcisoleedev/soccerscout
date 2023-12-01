@@ -8,6 +8,8 @@
     z-index: index 1;;
     border: 1px solid black;
     padding: 0.5%;
+    min-width: 300px;
+    min-height: 600px;
 }
 
 .cima_barra{

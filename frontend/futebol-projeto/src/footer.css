@@ -17,12 +17,14 @@
     height: 70%;
     margin: 32px 0;
     margin: 0;
+    min-width: 1000px;
 }
 .texto{
     flex: 4;
     font-weight: 900;
     text-transform: uppercase;
     font-size: 40px;
+    
 }
 .social-icons{
     display: inline-flex;

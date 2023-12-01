@@ -26,7 +26,7 @@ function Login(){
                     <button type="submit">Entrar</button>
                 </form>
             </div>
-            <div className='TextoFinal'>
+            <div className='TextoFinalLogin'>
                 <p>
                     Ainda não tem cadastro? 
                     <Link to={"/cadastro"}>

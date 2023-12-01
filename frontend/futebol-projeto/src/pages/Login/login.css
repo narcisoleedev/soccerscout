@@ -20,6 +20,7 @@
     width: 25%;
     border-bottom: 1.5px solid black;
     padding-bottom: 2%;
+    min-width: 400px;
 }
 
 label{
@@ -45,12 +46,13 @@ form button{
     margin-left: 40%;
     border-radius: 5%;
 }
-.TextoFinal{
+.TextoFinalLogin{
     width: 25%;
     margin: auto;
+    min-width: 400px;
 }
-.TextoFinal p{
-    font-size: medium
+.TextoFinalLogin p{
+    font-size: 100%
 }
 .Verde{
     color: #90cf54;;
