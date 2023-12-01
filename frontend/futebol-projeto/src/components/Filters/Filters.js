@@ -1,8 +1,13 @@
 import "./Filters.css"
 import Select from "../Select/Select.js"
 import {useState} from "react"
+import info from '../../info.js'
 
 const Filters = (props) => {
+    const {liga} = info
+    const {posicao} = info
+    const {pais} = info
+    const {idades} = info
     const [ligasSelecionadas, setLigas] = useState([])
     const [paisSelecionadas, setPais] = useState([])
     const [posicaoSelecionadas, setPosicao] = useState([])
@@ -11,7 +16,7 @@ const Filters = (props) => {
     const [selectedMax, setSelectedMax] = useState("")
     const [selectedMin, setSelectedMin] = useState("")
 
-    const idades = [16,18,21,24,27,30,32,35]
+    // const idades = [16,18,21,24,27,30,32,35]
 
     const ligasFilterAdd = (liga) => {setLigas([...ligasSelecionadas, liga])}
 
@@ -69,9 +74,9 @@ const Filters = (props) => {
     return(
         <div>
             <section className="coletiva_selects">
-                <Select name = "Liga" placeholder="Selecione uma Liga" callbackAdd = {ligasFilterAdd} callbackRemove = {ligasFilterRemove} filters={ligasSelecionadas} options={["Liga a", "Liga b", "Liga c", "Liga d", "Liga e", "Liga f", "Liga g", "Liga h", "Liga i", "Liga j", "Liga k", "Liga l", "Liga m", "Liga n", "Liga o", "Liga p", "Liga q", "Liga r",]}/>
-                <Select name = "País" placeholder="Selecione um País"  callbackAdd = {paisFilterAdd} callbackRemove = {paisFilterRemove}  filters={paisSelecionadas}  options={["França", "Brasil", "Italia", "Espanha"]}/>
-                <Select name = "Posição" placeholder="Selecione uma Posição" callbackAdd = {posicaoFilterAdd} callbackRemove = {posicaoFilterRemove}  filters={posicaoSelecionadas}  options={["Zagueiro", "Volante","Atacante"]}/>
+                <Select name = "Liga" placeholder="Selecione uma Liga" callbackAdd = {ligasFilterAdd} callbackRemove = {ligasFilterRemove} filters={ligasSelecionadas} options={liga}/>
+                <Select name = "País" placeholder="Selecione um País"  callbackAdd = {paisFilterAdd} callbackRemove = {paisFilterRemove}  filters={paisSelecionadas}  options={pais}/>
+                <Select name = "Posição" placeholder="Selecione uma Posição" callbackAdd = {posicaoFilterAdd} callbackRemove = {posicaoFilterRemove}  filters={posicaoSelecionadas}  options={posicao}/>
                 <div className='age-group'>
                     <div className='select-age'>
                         <h5>Idade Min.</h5>

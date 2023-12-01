@@ -3,7 +3,7 @@ import logoT from "./imagens/logoF.png"
 import './header.Module.css'
 import { Link } from 'react-router-dom'
 import Barra from "./barra"
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 
 function Header(){
     const [barraAberta,setBarraAberta] = useState(false)

@@ -1,19 +1,23 @@
 import './comparacao-exemplo.css'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Filter from '../../components/Filters/Filters'
 import TabelaColetiva from '../../components/TabelaColetiva/TabelaColetiva'
+import Grafico from '../../components/Graficos/grafico'
 
 
 
 function ComparacaoExemplo(){
     const [filter, setFilter] = useState({})
 
-    const applyFilter= (filterApplied) => {
-        setFilter(filterApplied)
-        console.log(filter)
-    }
-
+    const applyFilter = (filterApplied) => {
+        setFilter(filterApplied);
+      };
+      
+    useEffect(() => {
+        console.log(filter);
+      }, [filter]);
+    
     const players = [
         {"rank": 1, "jogador": "T. Alexander-Arnold", "time": "Sampaio Corrêa", "pais": "República Centro-Africada", "posicao": "VOL", "idade": 45, "rating" : 0.999, "valor": "180 M €"},
         {"rank": 2, "jogador": "L. Messi", "time": "Paris Saint-Germain", "pais": "Argentina", "posicao": "ATA", "idade": 34, "rating": 0.998, "valor": "200 M €"},
@@ -32,6 +36,14 @@ function ComparacaoExemplo(){
         {"rank": 15, "jogador": "E. Haaland", "time": "Borussia Dortmund", "pais": "Noruega", "posicao": "ATA", "idade": 21, "rating": 0.984, "valor": "140 M €"},
         {"rank": 16, "jogador": "Bruno Fernandes", "time": "Manchester United", "pais": "Portugal", "posicao": "MEI", "idade": 27, "rating": 0.983, "valor": "150 M €"} 
     ]
+    const data = [
+        { name: "Alfredo", x: 100, y: 200 },
+        { name: "Zatala", x: 170, y: 300 },
+        { name: "Gulo", x: 140, y: 250 },
+        { name: "Batata", x: 150, y: 400 },
+        { name: "Messi", x: 110, y: 280 },
+    ];
+    
 
     return (
         <div className='Main'>
@@ -51,6 +63,8 @@ function ComparacaoExemplo(){
                     </section>
                     <Filter applyFilter={applyFilter}/>
                     
+                    <h1>Gráfico</h1>
+                    <Grafico data={data} />
 
                     <h1>Tabela</h1>
                     <TabelaColetiva players = {players} />
