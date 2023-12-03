@@ -72,6 +72,7 @@ def listProcData(path)->None:
         if os.path.isdir(path+'/'+item):
             subPath = path+'/'+item
             listProcData(subPath)
+
         #If it is it will insert the features
         else:
 

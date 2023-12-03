@@ -469,6 +469,7 @@ def teste(caminho:str):
             if os.path.exists(name_arq+"/"+item):
                 #print("já existe")
                 feitos += 1
+                print(feitos)
                 pass
             
             else:
@@ -482,6 +483,7 @@ def teste(caminho:str):
                    exit()
 
                 except Exception as e:
+                   
                    print(e)
                    print("erro",name_arq+"/"+item)
                    file = open("erross.txt", "r")
