@@ -58,10 +58,10 @@ def calculateProbabilities(filePath, models):
 ]
     df = df[column_names]
     df.to_csv(filePath, sep='|')
-    with open('erros.txt', "w") as file:
+    """with open('erros.txt', "w") as file:
         for index, row in df.iterrows():
             pintoduro = row['probabilitiesScores'] + '' + row['predictScores']
-            file.write(f'{pintoduro}\n')
+            file.write(f'{pintoduro}\n')"""
 
 def listProcData(path)->None:
     #List all itens in the proc-data dir
