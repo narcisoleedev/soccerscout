@@ -57,8 +57,6 @@ def trainModel():
         prob = {}
         Y_pred[c] = models[c].predict(X_test)
         matrix = confusion_matrix(Y_test[c].astype(str), Y_pred[c].astype(str))
-        #Save model
-        #if os.path.exists(os.path.abspath('./')+'models/'):
         models[c].save_model(f'./models/model-{c}.cbm', format="cbm")
         #else:
         #    os.mkdir('./models/')
