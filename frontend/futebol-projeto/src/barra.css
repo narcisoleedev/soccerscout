@@ -5,11 +5,11 @@
     width: 20%;
     height: 100%;
     background-color: #90cf54;
-    z-index: index 1;;
+    z-index: 2;
     border: 1px solid black;
     padding: 0.5%;
     min-width: 300px;
-    min-height: 600px;
+    min-height: 690px;
 }
 
 .cima_barra{

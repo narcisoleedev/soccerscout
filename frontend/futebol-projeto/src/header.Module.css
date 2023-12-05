@@ -77,3 +77,6 @@
     cursor: pointer;
     max-width: 80px;
   }
+  .buttons button:hover{
+    background-color: rgba(0, 0, 0, 0.096);
+  }
