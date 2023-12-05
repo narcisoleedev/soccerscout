@@ -10,10 +10,20 @@ path = os.path.abspath('../')+'/feature-data'
 labels = ['Scores', 'Concedes']
 
 def loadModel():
-    model = CatBoostClassifier()
+    model1 = CatBoostClassifier()
+    model2 = CatBoostClassifier()
+
+    model1.load_model('./models/model-Scores.cbm', format='cbm')
+    model2.load_model('./models/model-Concedes.cbm', format='cbm')
+
     models = {}
-    for l in labels:
-        models[l] = model.load_model(f'./models/model-{l}.cbm', format='cbm')
+
+    # for l in labels:
+    #     models[l] = model.load_model(f'./models/model-{l}.cbm', format='cbm')
+
+    models["Scores"] = model1
+    models["Concedes"] = model2
+
     return models
 
 def calculateProbabilities(filePath, models):
@@ -45,16 +55,19 @@ def calculateProbabilities(filePath, models):
         predicts[l]=models[l].predict(pools[l])
         probabilities[l]=models[l].predict_proba(pools[l])
 
-    print((probabilities['Scores']).shape)
+    #print((probabilities['Scores']).shape)
     
     for l in labels:
         df[f'predicts{l}'] = predicts[l]
         df[f'probabilities{l}'] = (probabilities[l])[:, 1]
     
-    column_names = [
-    'id', 'Period', 'Time', 'Start_x', 'Start_y', 'End_x', 'End_y', 'Player', 'Team', 'Type_name',
-    'BodyPart_name', 'Result_name','Scores', 'Concedes', 'predictsScores', 'probabilitiesScores', 'predictsConcedes', 'probabilitiesConcedes'
-]
+#     column_names = [
+#     'id', 'Period', 'Time', 'Start_x', 'Start_y', 'End_x', 'End_y', 'Player', 'Team', 'Type_name',
+#     'BodyPart_name', 'Result_name','Scores', 'Concedes', 'predictsScores', 'probabilitiesScores', 'predictsConcedes', 'probabilitiesConcedes'
+# ]
+        column_names = [
+        'Type_id','BodyPart_id', 'Result_id', 'Period', 'Time', 'Start_x', 'Start_y', 'End_x', 'End_y', 'Player', 'Team','Scores', 'Concedes', 'predictsScores', 'probabilitiesScores', 'predictsConcedes', 'probabilitiesConcedes'
+    ]
     df = df[column_names]
     return df   
 
@@ -63,7 +76,7 @@ def listProcData(path)->None:
     models = loadModel()
 
     new_name_dir = path.replace("feature-data", "prob-data")
-    
+
     if not os.path.exists(new_name_dir) and os.path.isdir(path):
         os.mkdir(new_name_dir)   
 

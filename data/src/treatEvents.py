@@ -402,8 +402,8 @@ def _parse_events(caminho):
                 action, result, body_part = _parse_owngoal()
             
             # Se quiser considerar os non_action comente
-            if action == "non_action":
-                continue
+            #if action == "non_action":
+            #    continue
 
             try:
                 
@@ -446,7 +446,7 @@ def _parse_events(caminho):
     _fix_loc(df2)
 
     # Altera direção do Jogo
-    _fix_direction(df2)
+    #_fix_direction(df2)
     
     #_add_dribbles(df2)
 
@@ -479,6 +479,7 @@ def teste(caminho:str):
                     df.to_csv(name_arq+"/"+item, sep='|', index=False)
                     feitos += 1
                     print(feitos)
+                    
                 except KeyboardInterrupt:
                    exit()
 
