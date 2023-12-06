@@ -3,14 +3,13 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Executable
 from consts import DATABASE_URI
 from services.database.models.user import UserDao
-
-engine = create_engine(
-    url=DATABASE_URI, enable_from_linting=False, echo=False, pool_pre_ping=True
-)
+from services.database.models.club import ClubDao
+from services.database.models.player import PlayerDao
+from services.database.models.league import LeagueDao
 
 
 class DatabaseManager:
-    engine = engine
+    engine = create_engine(url=DATABASE_URI, pool_pre_ping=True)
 
     @classmethod
     def session_insert_data(cls, entities: list):
@@ -45,4 +44,6 @@ class DatabaseManager:
         cls,
     ):
         UserDao.migrate(cls.engine)
- 
+        ClubDao.migrate(cls.engine)
+        PlayerDao.migrate(cls.engine)
+        LeagueDao.migrate(cls.engine)
