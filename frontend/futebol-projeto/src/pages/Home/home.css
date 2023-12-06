@@ -1,0 +1,87 @@
+body{
+    margin: 0;
+    /* width: 100%;
+    display: inline-block; */
+    align-content: center;
+  }
+  .main{
+    height: 100%;
+    align-content: center;
+    display: flex;
+    width: 100%;
+  }
+  .conteudo{
+    flex:8;
+  }
+  .imagem_e_texto {
+    display: flex;
+  }
+  .content{ 
+    padding-top: 3%;
+    flex:5;
+    padding-left: 1%;
+  }
+  .texto{
+    display: inline-block;
+  }
+  #title{
+    font-size: xx-large;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 900;
+  }
+  .texto h1{
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: xx-large;
+    color: #90cf54;
+    text-align: left;
+  }
+  #frase-div{
+    margin-right: 35%;
+  }
+  #frase{
+    font-size: medium;
+    text-align: justify;
+    font-weight: 800;
+  }
+
+  #barra_icons{
+    display: inline-flex;
+    height: 50px;
+    width: 100%;
+  }
+  .nav2{
+    width: 40%;
+    border: 1px solid black;
+    border-radius: 32px;
+    justify-content: space-between;
+    padding: 8px 12px;
+  }
+
+  .rede-social-icon img{
+    width: 32px;
+    height: 32px;
+  }
+  .underline{
+    margin-left: 0px;
+    border-bottom: 1px solid black;
+  }
+  .foto-div{
+    padding-top: 3%;
+    flex:5;
+    width: 50%;
+  }
+  .side{
+    flex:1;
+    background-color: #F5F5F5;
+  }
+  .buraco{
+    font-size: xxx-large;
+    padding:12.4%;
+  }
+
+  .picture{
+    height: 400px;
+    width: 600px;
+  }
