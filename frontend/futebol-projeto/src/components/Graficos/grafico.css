@@ -7,7 +7,7 @@
 }
 
 .custom-tooltip p{
-    font-size: 90%;
+    font-size: 90% !important;
     font-weight: 900;
     margin-top: 5%;
 }
