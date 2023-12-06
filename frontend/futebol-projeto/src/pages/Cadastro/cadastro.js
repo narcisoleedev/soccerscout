@@ -1,5 +1,6 @@
 import './cadastro.css'
 import {useState} from 'react'
+import { Link } from 'react-router-dom'
 
 function Cadastro(){
     const [formData, setFormData] = useState({
@@ -47,7 +48,7 @@ function Cadastro(){
             </div>
             <div className='TextoFinalCadastro'>
                 <p>
-                    Já tem cadastro? <span className='Verde'>Faça Login</span>
+                    Já tem cadastro? <Link to='/login'><span className='Verde'>Faça Login</span> </Link>
                 </p> 
                 
                 
