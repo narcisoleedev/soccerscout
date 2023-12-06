@@ -29,6 +29,10 @@ def trainModel():
     #I am going to split the features and labels in the training_data:
 
     training_labels = training_data[["Scores",'Concedes']]
+    
+    ## DESCOMENTE ESSA LINHA E COMENTE A PRÓXIMA para remover o result ID
+    # training_features = training_data.drop(columns=['Scores', 'Concedes', "Result_id"])
+    
     training_features = training_data.drop(columns=['Scores', 'Concedes'])
     for c in training_features.columns:
         if(training_features[c].dtypes==bool):
@@ -36,6 +40,7 @@ def trainModel():
 
     #Spliter#
     string_features = []
+
     for c in training_features.columns:
         #print(training_features[c].dtypes)
         if(training_features[c].dtypes=='object'):
@@ -43,6 +48,7 @@ def trainModel():
             string_features.append(training_features.columns.get_loc(c))
     
         print(string_features)
+
     model = []
     model.append(CatBoostClassifier(iterations=100, learning_rate=0.05, eval_metric='BrierScore', loss_function='Logloss'))
     model.append(CatBoostClassifier(iterations=100, learning_rate=0.05, eval_metric='BrierScore', loss_function='Logloss'))
