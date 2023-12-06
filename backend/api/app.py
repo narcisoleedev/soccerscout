@@ -9,7 +9,7 @@ from consts import JWT_SECRET, ADMIN_USER, ADMIN_SECRET
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = JWT_SECRET
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
-app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(hours=1)
+app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(hours=24)
 app.config["BASIC_AUTH_USERNAME"] = ADMIN_USER
 app.config["BASIC_AUTH_PASSWORD"] = ADMIN_SECRET
 
