@@ -3,7 +3,7 @@ import "./TabelaColetiva.css"
 const TabelaColetiva = (props) => {
    return(
     <div className="tabela-coletiva">
-        <table cellspacing="0">
+        <table cellSpacing="0">
             <thead>
                 <tr>
                     <th >Rank.</th>

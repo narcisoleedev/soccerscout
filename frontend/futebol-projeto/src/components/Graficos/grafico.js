@@ -10,7 +10,7 @@ function Grafico({data}){
                 <p className="x">{`Valor médio : ${payload[0].payload.x}`}</p>
                 <p className="y">{`Média de ações : ${payload[0].payload.y}`}</p>
             </div>
-          );
+            );
         }
       
         return null;

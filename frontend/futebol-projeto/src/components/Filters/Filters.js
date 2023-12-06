@@ -34,7 +34,6 @@ const Filters = (props) => {
         if(choice.target.value !== "-"){
             setIdadeMin(choice.target.value)
             setSelectedMin(choice.target.value)
-            console.log(choice.target.value)
         } else{
             setIdadeMin(0)
         }
@@ -45,7 +44,6 @@ const Filters = (props) => {
         if(choice.target.value !== "-"){
             setIdadeMax(choice.target.value)
             setSelectedMax(choice.target.value)
-            console.log(choice.target.value)
         } else{
             setIdadeMax(2000)
         }
@@ -82,7 +80,7 @@ const Filters = (props) => {
                         <h5>Idade Min.</h5>
                         <select value = {selectedMin}  onChange = {idadeMinAdd}>
                             <option>-</option>
-                            {idades.filter(idade => idade < idadeMaxSelecionada).map(idade => <option>{idade}</option>)}
+                            {idades.filter(idade => idade < idadeMaxSelecionada).map(idade => <option key={idade}>{idade}</option>)}
                                 
                         </select>
                     </div>
@@ -91,7 +89,7 @@ const Filters = (props) => {
                         <h5>Idade Max.</h5>
                         <select value = {selectedMax} onChange = {idadeMaxAdd} >
                                 <option>-</option>
-                            {idades.filter(idade => idade > idadeMinSelecionada).map(idade => <option >{idade}</option>)}
+                            {idades.filter(idade => idade > idadeMinSelecionada).map(idade => <option key={idade}>{idade}</option>)}
                         </select>
                     </div>
                 </div>
