@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 #Paths
-path = os.path.abspath('../') + '/open-data/data/'
+path = os.path.abspath('../') + '/open-data-master/data/'
 eventsPath = path + 'events/'
 lineupsPath = path + 'lineups/'
 matchesPath = path + 'matches/'
@@ -70,6 +70,7 @@ def matches_json():
             matchesDict = pd.json_normalize(json.load(matchesFile))
             matchesDF = pd.DataFrame(matchesDict)
             matchesDF.apply(events_to_csv, axis=1)
+            
             #eventsDF = pd.json_normalize(json.load(open(eventsPath + e, 'r')))
             #matchesDict.to_csv(path, sep='|')
 

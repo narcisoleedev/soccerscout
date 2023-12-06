@@ -267,8 +267,13 @@ def find_seconds(linha):
 def _fix_loc(df):
     for indice,linha in df.iterrows(): 
         if linha["Type_name"] == "clearance":
-            linha["End_x"] = df.iloc[indice+1]["Start_x"]
-            linha["End_y"] = df.iloc[indice+1]["Start_y"]
+            try:
+                linha["End_x"] = df.iloc[indice+1]["Start_x"]
+                linha["End_y"] = df.iloc[indice+1]["Start_y"]
+            except:
+                # print("erro no indice",indice)
+                linha["End_x"] = df.iloc[indice]["Start_x"]
+                linha["End_y"] = df.iloc[indice]["Start_y"]
 
 
 def home_team_id(df):
@@ -397,12 +402,28 @@ def _parse_events(caminho):
                 action, result, body_part = _parse_owngoal()
             
             # Se quiser considerar os non_action comente
-            if action == "non_action":
-                continue
-            
-            start = eval(linha["location"])
-            end = eval(_find_loc(linha))
+            #if action == "non_action":
+            #    continue
 
+            try:
+                
+                start = eval(linha["location"])
+            
+            except:
+
+                start[0] = round(float(df2.iloc[-1]["End_x"]),1)
+                start[1] = round(float(df2.iloc[-1]["End_y"]),1)
+            
+            try:
+
+                end = eval(_find_loc(linha))
+
+            except:
+
+                end[0] = start[0]
+                end[1] = start[1]
+
+            #print(result,body_part,action)
             linha_temp = { "id": linha["id"],
                            "Period": linha["period"],
                            "Time": find_seconds(linha),
@@ -425,7 +446,7 @@ def _parse_events(caminho):
     _fix_loc(df2)
 
     # Altera direção do Jogo
-    _fix_direction(df2)
+    #_fix_direction(df2)
     
     #_add_dribbles(df2)
 
@@ -448,31 +469,30 @@ def teste(caminho:str):
             if os.path.exists(name_arq+"/"+item):
                 #print("já existe")
                 feitos += 1
+                print(feitos)
                 pass
             
             else:
-
                 try:
                     df = _parse_events(caminho+"/"+item)
                     #name_arq = caminho.replace("org-data", "proc-data")
-
                     df.to_csv(name_arq+"/"+item, sep='|', index=False)
                     feitos += 1
                     print(feitos)
-
+                    
                 except KeyboardInterrupt:
-                    
-                    exit()
+                   exit()
 
-                except:
-                    
-                    print("erro",name_arq+"/"+item)
-                    file = open("erros.txt", "r")
-                    a = file.readlines()
-                    file = open("erros.txt", "w")
-                    a.append(name_arq+"/"+item+"\n")
-                    file.writelines(a)
-                    file.close()
+                except Exception as e:
+                   
+                   print(e)
+                   print("erro",name_arq+"/"+item)
+                   file = open("erross.txt", "r")
+                   a = file.readlines()
+                   file = open("erross.txt", "w")
+                   a.append(name_arq+"/"+item+"\n")
+                   file.writelines(a)
+                   file.close()
 
 def copy_erros():
     file = open("erros.txt", "r")
@@ -485,4 +505,3 @@ def copy_erros():
 if __name__ == "__main__":
     
     teste(os.path.abspath('../org-data/'))
-    #_parse_events("jogo.csv").to_csv("res.csv", index=False)
