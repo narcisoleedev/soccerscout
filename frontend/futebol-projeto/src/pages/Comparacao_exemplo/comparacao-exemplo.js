@@ -76,13 +76,13 @@ function ComparacaoExemplo(){
                     <h4>Continue Navegando:</h4>  
                     
                     <span> 
-                        <Link to={"/comparacao-coletiva"}  className="continue-coletiva">
+                        <Link to={"/comparacao-coletiva"}>
                             <h4>Comparação Coletiva</h4>
                         </Link> 
                     </span>
 
                     <span> 
-                        <Link to={"/comparacao-1x1"}  className="continue-x">
+                        <Link to={"/comparacao-1x1"}>
                             <h4>Comparação 1 X 1</h4>
                         </Link> 
                     </span>

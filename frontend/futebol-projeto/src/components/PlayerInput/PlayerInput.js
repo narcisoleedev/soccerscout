@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import info from '../../info.js'
 
 
-const PlayerInput = () => {
+const PlayerInput = (props) => {
     const [player, setPlayer] = useState({})
     const [textInput, setTextInput] = useState("")
     const [playersVisible, setPlayersVisible] = useState(false)
@@ -17,21 +17,18 @@ const PlayerInput = () => {
         setTextInput( event.target.value)
     }
 
-    const choosePlayer = (event) =>{
-        const value = event.target.value
-        
-            const player = players.filter(player => player.rank === event.target.value)[0]
-            setPlayer(player)
-            setPlayersVisible(false)
-            setTextInput(player.jogador)
-        
-       
+    const choosePlayer = (event) =>{       
+        const player = players.filter(player => player.rank === event.target.value)[0]
+        setPlayer(player)
+        setPlayersVisible(false)
+        setTextInput(player.jogador)
     }
 
     useEffect (() => {
         if(player.jogador !== undefined){
             setPlayersVisible(false)
-            console.log(textInput)
+            props.func(player)
+
         }
     }, [player])
 

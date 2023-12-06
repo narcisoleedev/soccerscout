@@ -1,10 +1,23 @@
+import { useEffect, useState } from "react"
 import PlayerInput from "../PlayerInput/PlayerInput"
 import "./Tabela1v1.css"
 
 const Tabela1v1 = (props) => {
+
+    const [player, setPlayer] = useState({})
+
+
+    const choosePlayer = (choice) => {
+        setPlayer(choice)
+    }
+
+    useEffect(() => {
+        console.log(player)
+    }, [player])
+
     return(
         <div className="tabela-x">
-            <PlayerInput />
+            <PlayerInput func = {choosePlayer}/>
             <table cellSpacing="0">
                 {!props.isMirrored ?
                     <tbody className="normal">
