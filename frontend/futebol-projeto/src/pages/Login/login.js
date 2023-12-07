@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import './login.css'
 import {useState} from 'react'
+import api from '../../api'
 
 function Login(){
     const [formDataLogin, setFormData] = useState({
@@ -14,6 +15,7 @@ function Login(){
     const handleSubmit = (e) => {
         e.preventDefault();
         // Aqui você pode adicionar lógica para enviar os dados para o servidor
+        api.get();
         console.log('Dados do formulário:', formDataLogin);
       };
     return(
