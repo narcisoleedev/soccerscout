@@ -16,30 +16,72 @@ const Tabela1v1 = (props) => {
     }, [player])
 
     return(
+        
         <div className="tabela-x">
             <PlayerInput func = {choosePlayer}/>
-            <table cellSpacing="0">
-                {!props.isMirrored ?
-                    <tbody className="normal">
-                        {Object.entries(props.players).map( key =>
-                            <tr key={key}>
-                                <td>{key[0]}</td>
-                                <td>{key[1]}</td>
-                            </tr>
-                        )}
-                        
-                    </tbody> :
-                     <tbody className="mirror">
-                     {Object.entries(props.players).map( key =>
-                         <tr key={key}>
-                             <td>{key[1]}</td>
-                             <td>{key[0]}</td>
-                         </tr>
-                     )}
-                     
-                    </tbody>
+            { props.players == undefined ?
+                <div>
+                      { player.Jogador != undefined ?
+                    <table cellSpacing="0">
+                        {!props.isMirrored ?
+                            <tbody className="normal">
+                                {Object.entries(player).map( key =>
+                                    key[0] != "Rank" &&
+                                    <tr key={key}>
+                                        <td>{key[0]}</td>
+                                        <td>{key[1]}</td>
+                                    </tr>
+                                )}
+                                
+                            </tbody> :
+                            <tbody className="mirror">
+                            {Object.entries(player).map( key =>
+                                key[0] != "Rank" &&
+                                <tr key={key}>
+                                    <td>{key[1]}</td>
+                                    <td>{key[0]}</td>
+                                </tr>
+                            )}
+                            
+                            </tbody>
+                        }
+                    </table> :
+                    <div className="placeholder-x">
+                        <h3>Escreva o nome de um jogador acima para comparar com o jogador ao lado</h3>
+                    </div>
+
                 }
-            </table>
+                </div>
+               :
+               <div>
+                    <table cellSpacing="0">
+                        {!props.isMirrored ?
+                            <tbody className="normal">
+                                {Object.entries(props.players).map( key =>
+                                    key[0] != "Rank" &&
+                                    <tr key={key}>
+                                        <td>{key[0]}</td>
+                                        <td>{key[1]}</td>
+                                    </tr>
+                                )}
+                                
+                            </tbody> :
+                            <tbody className="mirror">
+                            {Object.entries(props.players).map( key =>
+                                key[0] != "Rank" &&
+                                <tr key={key}>
+                                    <td>{key[1]}</td>
+                                    <td>{key[0]}</td>
+                                </tr>
+                            )}
+                            
+                            </tbody>
+                        }
+                    </table>
+               </div>
+
+            }
+            
            
         </div>
     )

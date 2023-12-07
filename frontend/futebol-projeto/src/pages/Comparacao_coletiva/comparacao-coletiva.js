@@ -49,7 +49,7 @@ function ComparacaoColetiva(){
                 <h4>Continue Navegando:</h4>  
                 
                 <span> 
-                    <Link to={"/comparacao-coletiva"}>
+                    <Link to={"/comparacao-exemplo"}>
                         <h4>Exemplo</h4>
                     </Link> 
                 </span>
