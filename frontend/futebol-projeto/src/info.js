@@ -8,23 +8,26 @@ const posicao = ["Zagueiro", "Volante","Atacante"]
 
 const idades = [16,18,21,24,27,30,32,35]
 
+
+var isLogged = false
+
 const players = [
-    {"rank": 1, "jogador": "T. Alexander-Arnold", "time": "Sampaio Corrêa", "pais": "República Centro-Africada", "posicao": "VOL", "idade": 45, "rating" : 0.999, "valor": "180 M €"},
-    {"rank": 2, "jogador": "L. Messi", "time": "Paris Saint-Germain", "pais": "Argentina", "posicao": "ATA", "idade": 34, "rating": 0.998, "valor": "200 M €"},
-    {"rank": 3, "jogador": "K. De Bruyne", "time": "Manchester City", "pais": "Bélgica", "posicao": "MEI", "idade": 30, "rating": 0.995, "valor": "150 M €"},
-    {"rank": 4, "jogador": "Neymar Jr.", "time": "Paris Saint-Germain", "pais": "Brasil", "posicao": "ATA", "idade": 29, "rating": 0.997, "valor": "180 M €"},
-    {"rank": 5, "jogador": "V. van Dijk", "time": "Liverpool", "pais": "Holanda", "posicao": "DEF", "idade": 30, "rating": 0.994, "valor": "120 M €"},
-    {"rank": 6, "jogador": "R. Lewandowski", "time": "Bayern Munich", "pais": "Polônia", "posicao": "ATA", "idade": 33, "rating": 0.996, "valor": "160 M €"},
-    {"rank": 7, "jogador": "K. Mbappé", "time": "Paris Saint-Germain", "pais": "França", "posicao": "ATA", "idade": 23, "rating": 0.993, "valor": "190 M €"},
-    {"rank": 8, "jogador": "J. Oblak", "time": "Atletico Madrid", "pais": "Eslovênia", "posicao": "GOL", "idade": 29, "rating": 0.990, "valor": "100 M €"},
-    {"rank": 9, "jogador": "S. Ramos", "time": "Paris Saint-Germain", "pais": "Espanha", "posicao": "DEF", "idade": 35, "rating": 0.992, "valor": "80 M €"},
-    {"rank": 10, "jogador": "M. Salah", "time": "Liverpool", "pais": "Egito", "posicao": "ATA", "idade": 29, "rating": 0.989, "valor": "170 M €"},
-    {"rank": 11, "jogador": "C. Ronaldo", "time": "Manchester United", "pais": "Portugal", "posicao": "ATA", "idade": 37, "rating": 0.988, "valor": "220 M €"},
-    {"rank": 12, "jogador": "H. Kane", "time": "Tottenham Hotspur", "pais": "Inglaterra", "posicao": "ATA", "idade": 28, "rating": 0.987, "valor": "130 M €"},
-    {"rank": 13, "jogador": "L. Modric", "time": "Real Madrid", "pais": "Croácia", "posicao": "MEI", "idade": 36, "rating": 0.986, "valor": "60 M €"},
-    {"rank": 14, "jogador": "G. Donnarumma", "time": "Paris Saint-Germain", "pais": "Itália", "posicao": "GOL", "idade": 22, "rating": 0.985, "valor": "110 M €"},
-    {"rank": 15, "jogador": "E. Haaland", "time": "Borussia Dortmund", "pais": "Noruega", "posicao": "ATA", "idade": 21, "rating": 0.984, "valor": "140 M €"},
-    {"rank": 16, "jogador": "Bruno Fernandes", "time": "Manchester United", "pais": "Portugal", "posicao": "MEI", "idade": 27, "rating": 0.983, "valor": "150 M €"} 
+
+    {"Rank": 1, "Jogador": "T. Alexander-Arnold", "Time": "Sampaio Corrêa", "País": "República Centro-Africada", "Posição": "VOL", "Idade": 45, "Assist./90min":0.053,"Gols/90 min.":0.053,"Ações/90min":80,"Val. Médio/ Ação":0.006,"Rating":0.480,"Valor":"180 M €"},
+    {"Rank": 2, "Jogador": "S. Aguero", "Time": "Flamengo", "País": "Nigéria", "Posição": "ATA", "Idade": 32, "Assist./90min": 0.045, "Gols/90 min.": 0.072, "Ações/90min": 75, "Val. Médio/ Ação": 0.008, "Rating": 0.520, "Valor": "200 M €"},
+    {"Rank": 3, "Jogador": "L. Modric", "Time": "Atlético Mineiro", "País": "Croácia", "Posição": "MEI", "Idade": 35, "Assist./90min": 0.068, "Gols/90 min.": 0.035, "Ações/90min": 88, "Val. Médio/ Ação": 0.007, "Rating": 0.485, "Valor": "150 M €"},    
+    {"Rank": 4, "Jogador": "K. De Bruyne", "Time": "Palmeiras", "País": "Bélgica", "Posição": "MEI", "Idade": 29, "Assist./90min": 0.080, "Gols/90 min.": 0.065, "Ações/90min": 92, "Val. Médio/ Ação": 0.009, "Rating": 0.550, "Valor": "220 M €"},    
+    {"Rank": 5, "Jogador": "N. Kanté", "Time": "Corinthians", "País": "França", "Posição": "VOL", "Idade": 30, "Assist./90min": 0.060, "Gols/90 min.": 0.040, "Ações/90min": 85, "Val. Médio/ Ação": 0.006, "Rating": 0.510, "Valor": "180 M €"},    
+    {"Rank": 6, "Jogador": "R. Sterling", "Time": "Cruzeiro", "País": "Inglaterra", "Posição": "ATA", "Idade": 26, "Assist./90min": 0.055, "Gols/90 min.": 0.075, "Ações/90min": 78, "Val. Médio/ Ação": 0.008, "Rating": 0.525, "Valor": "190 M €"},    
+    {"Rank": 7, "Jogador": "V. van Dijk", "Time": "Vasco da Gama", "País": "Holanda", "Posição": "ZAG", "Idade": 29, "Assist./90min": 0.030, "Gols/90 min.": 0.025, "Ações/90min": 89, "Val. Médio/ Ação": 0.010, "Rating": 0.540, "Valor": "210 M €"},    
+    {"Rank": 8, "Jogador": "M. Salah", "Time": "Internacional", "País": "Egito", "Posição": "ATA", "Idade": 28, "Assist./90min": 0.070, "Gols/90 min.": 0.080, "Ações/90min": 82, "Val. Médio/ Ação": 0.007, "Rating": 0.560, "Valor": "230 M €"},    
+    {"Rank": 9, "Jogador": "B. Fernandes", "Time": "Santos", "País": "Portugal", "Posição": "MEI", "Idade": 27, "Assist./90min": 0.075, "Gols/90 min.": 0.060, "Ações/90min": 90, "Val. Médio/ Ação": 0.008, "Rating": 0.545, "Valor": "200 M €"},    
+    {"Rank": 10, "Jogador": "A. Robertson", "Time": "Grêmio", "País": "Escócia", "Posição": "LAD", "Idade": 27, "Assist./90min": 0.048, "Gols/90 min.": 0.030, "Ações/90min": 87, "Val. Médio/ Ação": 0.009, "Rating": 0.500, "Valor": "170 M €"},    
+    {"Rank": 11, "Jogador": "J. Kimmich", "Time": "Botafogo", "País": "Alemanha", "Posição": "MEI", "Idade": 26, "Assist./90min": 0.065, "Gols/90 min.": 0.050, "Ações/90min": 86, "Val. Médio/ Ação": 0.007, "Rating": 0.535, "Valor": "190 M €"},    
+    {"Rank": 12, "Jogador": "H. Kane", "Time": "Bahia", "País": "Inglaterra", "Posição": "ATA", "Idade": 28, "Assist./90min": 0.055, "Gols/90 min.": 0.090, "Ações/90min": 80, "Val. Médio/ Ação": 0.010, "Rating": 0.570, "Valor": "240 M €"},    
+    {"Rank": 13, "Jogador": "C. Pulisic", "Time": "Fortaleza", "País": "Estados Unidos", "Posição": "ATA", "Idade": 23, "Assist./90min": 0.072, "Gols/90 min.": 0.055, "Ações/90min": 79, "Val. Médio/ Ação": 0.008, "Rating": 0.525, "Valor": "180 M €"},
+    {"Rank": 14, "Jogador": "E. Haaland", "Time": "Atlético Paranaense", "País": "Noruega", "Posição": "ATA", "Idade": 21, "Assist./90min": 0.040, "Gols/90 min.": 0.100, "Ações/90min": 75, "Val. Médio/ Ação": 0.012, "Rating": 0.590, "Valor": "260 M €"},    
+    {"Rank": 15, "Jogador": "A. Laporte", "Time": "Chapecoense", "País": "Espanha", "Posição": "ZAG", "Idade": 27, "Assist./90min": 0.035, "Gols/90 min.": 0.020, "Ações/90min": 88, "Val. Médio/ Ação": 0.009, "Rating": 0.515, "Valor": "160 M €"}
 ]
 
 export default {
@@ -32,5 +35,6 @@ export default {
     pais,
     posicao,
     idades,
-    players
+    players,
+    isLogged
 }

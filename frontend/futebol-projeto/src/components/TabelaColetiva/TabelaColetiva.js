@@ -18,15 +18,15 @@ const TabelaColetiva = (props) => {
             </thead>
             <tbody className="tableContent">
                 {props.players.map( player =>
-                    <tr key={player.rank}>
-                        <td>{player.rank}</td>
-                        <td>{player.jogador}</td>
-                        <td>{player.time}</td>
-                        <td>{player.pais}</td>
-                        <td>{player.posicao}</td>
-                        <td>{player.idade}</td>
-                        <td>{player.rating}</td>
-                        <td>{player.valor}</td>
+                    <tr key={player.Rank}>
+                        <td>{player.Rank}</td>
+                        <td>{player.Jogador}</td>
+                        <td>{player.Time}</td>
+                        <td>{player.País}</td>
+                        <td>{player.Posição}</td>
+                        <td>{player.Idade}</td>
+                        <td>{player.Rating}</td>
+                        <td>{player.Valor}</td>
                     </tr>
                 )}
                 

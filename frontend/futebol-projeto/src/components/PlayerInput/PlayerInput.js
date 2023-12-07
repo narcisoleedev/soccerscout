@@ -14,18 +14,19 @@ const PlayerInput = (props) => {
 
     const changeInput = (event) => {
         event.preventDefault()
+
         setTextInput( event.target.value)
     }
 
     const choosePlayer = (event) =>{       
-        const player = players.filter(player => player.rank === event.target.value)[0]
+        const player = players.filter(player => player.Rank === event.target.value)[0]
         setPlayer(player)
         setPlayersVisible(false)
-        setTextInput(player.jogador)
+        setTextInput(player.Jogador)
     }
 
     useEffect (() => {
-        if(player.jogador !== undefined){
+        if(player.Jogador !== undefined){
             setPlayersVisible(false)
             props.func(player)
 
@@ -44,11 +45,11 @@ const PlayerInput = (props) => {
             </div>
 
             {
-                playersVisible && (textInput != player.jogador)&&
+                playersVisible && (textInput != player.Jogador)&&
                 <div className="player-list">
                     <ul>
-                    {players.filter(players => players.jogador.toUpperCase().includes(textInput.toUpperCase())).map( player =>
-                        <li value={player.rank} onClick={choosePlayer}>{player.jogador}</li>
+                    {players.filter(players => players.Jogador.toUpperCase().includes(textInput.toUpperCase())).map( player =>
+                        <li value={player.Rank} onClick={choosePlayer}>{player.Jogador}</li>
                     )}
                     </ul>
                 </div>
