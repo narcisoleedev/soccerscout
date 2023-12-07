@@ -1,9 +1,9 @@
 // BarraContext.js
 import React, { createContext, useState } from 'react';
 
-const BarraContext = createContext();
+const Context = createContext();
 
-const BarraProvider = ({ children }) => {
+const Authentication = ({ children }) => {
   const [barraAberta, setBarraAberta] = useState(false);
 
   const fecharBarra = () => {
