@@ -6,7 +6,6 @@ import add_labels
 
 #Path to proc-data
 
-
 path = os.path.abspath('../')+'/proc-data'
 
 feitos = 0

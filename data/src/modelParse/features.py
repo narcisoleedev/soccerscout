@@ -53,11 +53,7 @@ def complexFeatures(df):
         temp = temp._append(row_temp, ignore_index=True)
 
     return temp
-<<<<<<< HEAD
-
-=======
->>>>>>> sc/main
-
+    
 ############## Context Feature ##############
 
 # Actions features

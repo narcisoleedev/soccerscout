@@ -31,7 +31,7 @@ def trainModel():
     training_labels = training_data[["Scores",'Concedes']]
     
     ## DESCOMENTE ESSA LINHA E COMENTE A PRÓXIMA para remover o result ID
-    # training_features = training_data.drop(columns=['Scores', 'Concedes', "Result_id"])
+    # training_features = training_data.drop(columns=['Scores', 'Concedes')
     
     training_features = training_data.drop(columns=['Scores', 'Concedes'])
     for c in training_features.columns:

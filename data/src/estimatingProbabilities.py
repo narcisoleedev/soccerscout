@@ -61,19 +61,7 @@ def calculateProbabilities(filePath, models):
         df[f'predicts{l}'] = predicts[l]
         df[f'probabilities{l}'] = (probabilities[l])[:, 1]
     
-#     column_names = [
-#     'id', 'Period', 'Time', 'Start_x', 'Start_y', 'End_x', 'End_y', 'Player', 'Team', 'Type_name',
-#     'BodyPart_name', 'Result_name','Scores', 'Concedes', 'predictsScores', 'probabilitiesScores', 'predictsConcedes', 'probabilitiesConcedes'
-# ]
-        column_names = [
-        'Type_id','BodyPart_id', 'Result_id', 'Period', 'Time', 'Start_x', 'Start_y', 'End_x', 'End_y', 'Player', 'Team','Scores', 'Concedes', 'predictsScores', 'probabilitiesScores', 'predictsConcedes', 'probabilitiesConcedes'
-    ]
-    df = df[column_names]
     df.to_csv(filePath, sep='|')
-    """with open('erros.txt', "w") as file:
-        for index, row in df.iterrows():
-            pintoduro = row['probabilitiesScores'] + '' + row['predictScores']
-            file.write(f'{pintoduro}\n')"""
 
 def listProcData(path)->None:
     #List all itens in the proc-data dir
@@ -101,6 +89,5 @@ def listProcData(path)->None:
             
             else:
                 df = calculateProbabilities(path+'/'+item, models)
-                df.to_csv(path_temp+'/'+item, sep='|')
 
 listProcData(path)
