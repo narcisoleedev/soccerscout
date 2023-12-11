@@ -68,3 +68,7 @@ form button{
     padding-top:7%;
 }
 
+
+.Formulario_Login input{
+    margin: 8px 0;
+}

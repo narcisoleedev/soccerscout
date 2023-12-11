@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 import api from '../../api'
 
 function Cadastro(){
+
+    const [errorPass, setErrorPass] = useState(false)
+    const [confirmPass, setConfirmPass] = useState("")
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -11,17 +15,25 @@ function Cadastro(){
       });
     const handleChange = (e) => {
         const { name, value } = e.target;
+        if(name === "senha2")
+        setConfirmPass( value)
         setFormData({ ...formData, [name]: value });
       };
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(formData.password !== confirmPass){
+            setErrorPass(true)
+            return
+        } else
+            setErrorPass(false)
+            
         // Aqui você pode adicionar lógica para enviar os dados para o servidor
-        api.post('/access/create',formData,{
-            auth: {
-                username: "teste",
-                password: "teste"
-              }
-        })
+        // api.post('/access/create',formData,{
+        //     auth: {
+        //         username: "teste",
+        //         password: "teste"
+        //       }
+        // })
         console.log('Dados do formulário:', formData);
       };
     return(
@@ -48,6 +60,8 @@ function Cadastro(){
                     <label for="senha2">Confirme Sua Senha:</label>
                     <input type="password" id="senha2" name="senha2" onChange={handleChange} value={formData.password2} required>
                     </input>
+                    {errorPass &&
+                    <h4 className='error_password'>Senhas não coincidem</h4>}
                     {/*Botão de envio*/}
                     <button type="submit">Criar Conta</button>
                 </form>
