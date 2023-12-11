@@ -42,9 +42,15 @@ form button{
     margin-left: 30%;
     border-radius: 5%;
 }
+
+.Formulario_Cadastro input{
+    margin: 8px 0;
+}
+
 form button:hover{
     cursor:pointer;
 }
+
 .TextoFinalCadastro{
     width: 25%;
     margin: auto;
@@ -67,3 +73,6 @@ form button:hover{
     padding-top:7%;
 }
 
+.error_password{
+    color: #fc3939;
+}
