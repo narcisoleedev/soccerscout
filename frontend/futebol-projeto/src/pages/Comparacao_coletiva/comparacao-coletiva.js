@@ -19,6 +19,17 @@ function ComparacaoColetiva(){
         console.log(filter);
       }, [filter]);
     
+
+      const playerVazio = [{"Rank": 1, "Jogador": "", "Time": "", "País": "", "Posição": "", "Idade": 0, "Assist./90min":0,"Gols/90 min.":0,"Ações/90min":0,"Val. Médio/ Ação":0,"Rating":0,"Valor":""}]
+      const [dataGraph, setdataGraph] = useState({})
+      const [dataTabela, setdataTabela] = useState(playerVazio)
+
+      useEffect(() => {
+            setdataGraph(data)
+            setdataTabela(players)
+            console.log("dados carregados", dataTabela)
+
+      },[])
     const data = [
         { name: "Alfredo", x: 100, y: 200 },
         { name: "Zatala", x: 170, y: 300 },
@@ -28,6 +39,10 @@ function ComparacaoColetiva(){
     ];
 
     const {players} = info
+
+    const mudarTabela = () => {
+        setdataTabela(playerVazio)
+    }
     return (
         <div className='Main'>
         <div className="side"></div>
@@ -38,10 +53,10 @@ function ComparacaoColetiva(){
                 <Filter applyFilter={applyFilter}/>
                 
                 <h1>Gráfico</h1>
-                <Grafico data={data} />
+                <Grafico data={dataGraph} />
 
                 <h1>Tabela</h1>
-                <TabelaColetiva players = {players} />
+                <TabelaColetiva players = {dataTabela} />
             </section>
 
 
@@ -60,7 +75,7 @@ function ComparacaoColetiva(){
                     </Link> 
                 </span>
             </section>
-
+            <button onClick={mudarTabela}>MUDAR TABELA</button>
             <div className='espaco'>&nbsp;</div>
         </div>
         <div className="side"></div>

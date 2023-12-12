@@ -68,7 +68,6 @@ const Filters = (props) => {
         setSelectedMax("")
         setSelectedMin("")
     }
-
     return(
         <div>
             <section className="coletiva_selects">
