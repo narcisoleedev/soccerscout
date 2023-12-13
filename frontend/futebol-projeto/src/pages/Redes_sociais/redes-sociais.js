@@ -15,7 +15,7 @@ function RedesSociais(){
                 </div>
                
                 
-                <div className='espaco'>&nbsp;</div>
+                <div className='buraco-redes'>&nbsp;</div>
             </div>
             <div className="side"></div>
     </div>

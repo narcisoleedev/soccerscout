@@ -41,7 +41,7 @@ function Sobre(){
                     Estamos comprometidos em respeitar e proteger os direitos autorais de terceiros e agir de acordo com as normas legais aplicáveis. 
                 </p>
 
-                <div className='espaco'>&nbsp;</div>
+                <div className='buraco'>&nbsp;</div>
             </div>
             <div className="side"></div>
     </div>
