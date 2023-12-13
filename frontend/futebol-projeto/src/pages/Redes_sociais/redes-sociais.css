@@ -1,0 +1,11 @@
+.redes-sociais{
+    margin: 16px;
+    min-height: 80%;
+}
+
+.redes-sociais p{
+    margin: 0;
+    padding: 0;
+    color: #90cf54;
+    font-size: 20px;
+}

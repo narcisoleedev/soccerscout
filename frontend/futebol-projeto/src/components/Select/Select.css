@@ -1,0 +1,77 @@
+.select_group{
+    background-color: #d9d9d9;
+    display: inline-flex;
+    border-radius: 24px;
+    border: 1px solid  rgba(0, 0, 0, 1); 
+    width: 25%;
+    margin: 0 16px;
+    text-align: center;
+}
+
+.select_group h5{
+    padding: 0 12px;
+    margin: 20px -4px;
+}
+
+.select_group img{
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.options_list{
+    background-color: #EFEFEF;
+    max-height: 100px;
+    overflow:hidden; 
+    overflow-y:scroll;
+    margin: 0px 24px 12px;
+    border-radius: 16px  0 0 16px ;
+    list-style-type: none;
+    padding: 12px 16px 4px;
+    border: 1px solid rgba(0, 0, 0, 1);
+}
+
+.options_list li:hover{
+    background-color: #c9c9c9;
+    cursor: pointer;
+}
+
+.option_icon{
+    width: 16px;
+    height: 16px;
+    float: right;
+    cursor: pointer;
+}
+
+.select_group span{
+    background-color: #d9d9d9;
+    border-radius: 0 24px 24px 0px;
+    padding: 16px 16px 0;
+    border: 1px solid  rgba(0, 0, 0, 1); 
+    align-content: center;
+    white-space: nowrap ;
+    text-align: center;
+    
+}
+
+.select_group option{
+    background-color: #d9d9d9;
+    border-radius: 0 24px 24px 0px;
+}
+
+
+.filterWrapper{
+    margin: 4px 0 0;
+}
+.filtered-options{
+    background-color: #d9d9d9;
+    border-radius: 24px;
+    border: 1px solid  rgba(0, 0, 0, 1); 
+    padding: 4px 12px;
+    margin: 0 12px;
+}
+
+.filtered-options h5{
+    margin: 0 12px;
+    display: inline-flex;
+}

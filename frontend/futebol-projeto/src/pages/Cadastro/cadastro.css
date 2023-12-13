@@ -1,0 +1,69 @@
+.Main{
+    height: 100%;
+    /* align-content: center; */
+    display: flex;
+    width: 100%;
+}
+.conteudo{
+    flex:8;
+    background-color: #FFFFFF;
+    padding-top: 1%;
+  }
+.conteudo h1{
+    font-size: xx-large;
+    text-align: center;
+    font-weight: 900;
+    text-transform: none;
+}
+.Formulario_Cadastro{
+    margin: auto;
+    width: 25%;
+    border-bottom: 1.5px solid black;
+    padding-bottom: 2%;
+    min-width: 360px;
+}
+
+label{
+    font-weight: 900; 
+}
+input {
+    width: 100%;
+    margin-bottom: 5px;
+    font-weight: 900;
+}
+form button{
+    margin-top: 17px;
+    width: 40%;
+    height: 50px;
+    background-color: #90cf54;
+    font-size: x-large;
+    font-weight: 900;
+    border: 0px;
+    margin-left: 30%;
+    border-radius: 5%;
+}
+form button:hover{
+    cursor:pointer;
+}
+.TextoFinalCadastro{
+    width: 25%;
+    margin: auto;
+    min-width: 400px;
+}
+.TextoFinalCadastro p{
+    font-size: 120%;
+}
+.Verde{
+    color: #90cf54;;
+}
+
+.side{
+    flex:1;
+    background-color: #F5F5F5;
+}
+
+.espaco{
+    font-size: xxx-large;
+    padding-top:7%;
+}
+

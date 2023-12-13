@@ -1,0 +1,35 @@
+.tabela-x{
+    width: 40%;
+    margin: 0px 16px;
+}
+
+.tabela-x table{
+    margin-top: 16px;
+    overflow-y: hidden;
+}
+
+.tabela-x tbody{
+    margin-top: 16px;
+    overflow-y: hidden;
+}
+
+
+.tabela-x tr{
+    padding: 0;
+}
+
+.normal td:nth-child(1) {  
+    padding: 4px 0;
+    background-color: #d9d9d9;
+    border-right: 1px solid rgba(0, 0, 0, 1);
+}
+
+.mirror td:nth-child(2) {  
+    padding: 4px 0;
+    background-color: #d9d9d9;
+    border-left: 1px solid rgba(0, 0, 0, 1);
+}
+
+.tabela-x tr:nth-child(1) {  
+    font-weight: bold;
+}

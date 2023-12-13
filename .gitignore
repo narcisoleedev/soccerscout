@@ -193,6 +193,7 @@ dist-ssr
 data/open-data/
 data/org-data/
 data/proc-data/
+data/feature-data/
 data/venv
 bash.sh
 src/erros.txt

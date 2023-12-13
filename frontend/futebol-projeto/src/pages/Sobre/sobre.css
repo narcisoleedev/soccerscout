@@ -1,0 +1,36 @@
+.Main{
+    height: 100%;
+    /* align-content: center; */
+    display: flex;
+    width: 100%;
+}
+.conteudo{
+    flex:8;
+    background-color: #FFFFFF;
+    padding-top: 1%;
+  }
+.conteudo h1{
+    font-size: xx-large;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bolder;
+}
+.conteudo p{
+    padding-top:1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    font-size: x-large;
+    text-align: justify;
+    font-weight: 800;
+    margin-bottom: 1%;
+}
+
+.side{
+    flex:1;
+    background-color: #F5F5F5;
+}
+
+.espaco{
+    font-size: xxx-large;
+    padding-top:7%;
+}
