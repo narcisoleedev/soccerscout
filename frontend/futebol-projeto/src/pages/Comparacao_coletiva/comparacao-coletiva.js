@@ -8,14 +8,30 @@ import { Link } from 'react-router-dom'
 
 function ComparacaoColetiva(){
     const [filter, setFilter] = useState({})
+    const [hide, setHide] = useState(true)
 
     const applyFilter = (filterApplied) => {
         setFilter(filterApplied);
-      };
+    };
 
+    const eraseInfo = () => {
+        setFilter({})
+    }
 
+    const checkFilter = ({ligas, pais, posicao, idadeMax, idadeMin}) => {
+        if(ligas.length === 0 && pais.length === 0 && posicao.length === 0 && idadeMin === 0 && idadeMax === 2000)
+            setFilter({})
+    }
            
     useEffect(() => {
+
+            
+        if(Object.keys(filter).length !== 0){
+            checkFilter(filter)
+            setHide(false)
+        }
+        else
+            setHide(true)
         console.log(filter);
       }, [filter]);
     
@@ -50,13 +66,24 @@ function ComparacaoColetiva(){
             <section className="coletiva_exemplo">
                 <h1>COMPARACAO COLETIVA</h1>
                 <h2>FILTROS</h2>
-                <Filter applyFilter={applyFilter}/>
-                
-                <h1>Gráfico</h1>
-                <Grafico data={dataGraph} />
-
-                <h1>Tabela</h1>
-                <TabelaColetiva players = {dataTabela} />
+                <Filter applyFilter={applyFilter} isExample ={false} eraseTable={eraseInfo}/>
+              
+                { !hide ? 
+                    <div>
+                        <h1>Gráfico</h1>
+                        <Grafico data={dataGraph}/>
+        
+                        <h1>Tabela</h1>
+                        <TabelaColetiva players = {dataTabela} />
+                    </div>                    
+                     :
+                     <div>
+                        <h1>
+                            Insira os filtros acima para que seja apresentada a tabela
+                        </h1>
+                     </div>
+                }
+               
             </section>
 
 
@@ -75,7 +102,6 @@ function ComparacaoColetiva(){
                     </Link> 
                 </span>
             </section>
-            <button onClick={mudarTabela}>MUDAR TABELA</button>
             <div className='espaco'>&nbsp;</div>
         </div>
         <div className="side"></div>
