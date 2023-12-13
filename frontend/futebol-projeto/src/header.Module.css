@@ -34,7 +34,6 @@
   .nav{
     width: 37.5%;
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     margin-left:6.25%;
     margin-right: 6.25%;
@@ -47,10 +46,13 @@
     font-weight: 700;
     color: #FFFFFF;
     flex: 1;
-    text-align: center;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
   }
   .nav a:hover {
-    text-decoration: underline;
+    background-color: rgba(0, 0, 0, 0.096);
   }
   .buttons{
     margin: 0 16px;

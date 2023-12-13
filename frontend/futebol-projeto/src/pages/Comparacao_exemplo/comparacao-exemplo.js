@@ -90,7 +90,7 @@ function ComparacaoExemplo(){
                     </span>
                 </section>
 
-                <div className='espaco'>&nbsp;</div>
+                <div className='buraco'>&nbsp;</div>
             </div>
             <div className="side"></div>
         </div>

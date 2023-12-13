@@ -23,7 +23,9 @@ function Tecnica(){
                 Jan Van Haaren (SciSports)<br/>
                 Jesse Davis (KU Leuven)
                 </p>
-                <div className='espaco'>espaço</div>
+                <div className='buraco'>
+                    &nbsp;
+                </div>
             </div>
             <div className="side"></div>
         </div>

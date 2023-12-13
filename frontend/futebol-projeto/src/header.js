@@ -29,9 +29,9 @@ function Header(){
                 </Link>
             </div>      
             <div className="nav">
-                <Link to='/tecnica'>Técnica</Link>
-                <Link to='/sobre'>Sobre</Link>
-                <Link to ='/comparacao'>Comparação </Link>
+                <Link to='/tecnica'><span class="texto-link">Técnica</span></Link>
+                <Link to='/sobre'><span class="texto-link">Sobre</span></Link>
+                <Link to ='/comparacao'><span class="texto-link">Comparação </span></Link>
         </div>
             <div className="buttons">
                 <Link to='/login'>
