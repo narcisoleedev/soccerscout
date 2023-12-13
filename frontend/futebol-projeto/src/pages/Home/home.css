@@ -37,6 +37,7 @@
     width: 100%;
   }
   .nav2{
+    display: inline-flex;
     width: 40%;
     border: 1px solid black;
     border-radius: 32px;

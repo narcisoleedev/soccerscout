@@ -17,6 +17,7 @@ body{
   width: 100%;
 }
 .conteudo{
+  padding: 32px;
   flex:8;
 }
 .imagem_e_texto {
