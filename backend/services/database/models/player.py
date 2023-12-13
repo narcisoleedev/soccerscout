@@ -17,7 +17,7 @@ class PlayerDao(Table):
     actions_avg = Column(Float)
     actions_value_avg = Column(Float)
     id_club = Column(BigInteger)
-    
+
     @staticmethod
     def migrate(engine):
         Table.metadata.create_all(engine)

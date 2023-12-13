@@ -9,7 +9,7 @@ class LeagueDao(Table):
     id = Column(BigInteger, primary_key=True)
     name = Column(String(50))
     country = Column(String(50))
-    
+
     @staticmethod
     def migrate(engine):
         Table.metadata.create_all(engine)

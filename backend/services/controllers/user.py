@@ -13,7 +13,7 @@ class UserController:
 
     def _get_hash(self, string: str):
         return sha256(string.encode()).hexdigest()
-    
+
     def login(self, password: str):
         secret_hash = self._get_hash(password)
         query = select(self.user).where(
@@ -26,8 +26,6 @@ class UserController:
 
     def create(self, password: str, name: str):
         user_dao = UserDao(
-            email=self.email,
-            name=name,
-            secret_hash=self._get_hash(password) 
+            email=self.email, name=name, secret_hash=self._get_hash(password)
         )
         DatabaseManager.session_insert_data([user_dao])

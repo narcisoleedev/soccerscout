@@ -9,7 +9,7 @@ class ClubDao(Table):
     id = Column(BigInteger, primary_key=True)
     name = Column(String(50))
     id_league = Column(BigInteger)
-    
+
     @staticmethod
     def migrate(engine):
         Table.metadata.create_all(engine)
