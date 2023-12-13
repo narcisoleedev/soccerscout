@@ -5,25 +5,42 @@ import math
 
 
 def complexFeatures(df):
-    goalPos = [120, 40]
+    goalPosHome = [120, 40]
+    goalPosAway = [0,40]
     temp = pd.DataFrame()
     for _, row in df.iterrows():
         row_temp = {
+            "startLocAngAway": math.atan(
+                abs(goalPosAway[0] - float(row["Start_x"]))
+                / abs(goalPosAway[1] - float(row["Start_y"]) + 0.001)
+            ),
+            "startLocDistAway": math.sqrt(
+                math.pow(goalPosAway[0] - float(row["Start_x"]), 2)
+                + math.pow(goalPosAway[1] - float(row["Start_y"]), 2)
+            ),
+            "endLocAngAway": math.atan(
+                abs(goalPosAway[0] - float(row["End_x"]))
+                / abs(goalPosAway[1] - float(row["End_y"]) + 0.001)
+            ),
+            "endLocDistAway": math.sqrt(
+                math.pow(goalPosAway[0] - float(row["End_x"]), 2)
+                + math.pow(goalPosAway[1] - float(row["End_y"]), 2)
+            ),
             "startLocAngHome": math.atan(
-                abs(goalPos[0] - float(row["Start_x"]))
-                / abs(goalPos[1] - float(row["Start_y"]) + 0.001)
+                abs(goalPosHome[0] - float(row["Start_x"]))
+                / abs(goalPosHome[1] - float(row["Start_y"]) + 0.001)
             ),
             "startLocDistHome": math.sqrt(
-                math.pow(goalPos[0] - float(row["Start_x"]), 2)
-                + math.pow(goalPos[1] - float(row["Start_y"]), 2)
+                math.pow(goalPosHome[0] - float(row["Start_x"]), 2)
+                + math.pow(goalPosHome[1] - float(row["Start_y"]), 2)
             ),
             "endLocAngHome": math.atan(
-                abs(goalPos[0] - float(row["End_x"]))
-                / abs(goalPos[1] - float(row["End_y"]) + 0.001)
+                abs(goalPosHome[0] - float(row["End_x"]))
+                / abs(goalPosHome[1] - float(row["End_y"]) + 0.001)
             ),
             "endLocDistHome": math.sqrt(
-                math.pow(goalPos[0] - float(row["End_x"]), 2)
-                + math.pow(goalPos[1] - float(row["End_y"]), 2)
+                math.pow(goalPosHome[0] - float(row["End_x"]), 2)
+                + math.pow(goalPosHome[1] - float(row["End_y"]), 2)
             ),
             "distCoveredX": abs(float(row["Start_x"]) - float(row["End_x"])),
             "distCoveredY": abs(float(row["Start_y"]) - float(row["End_y"])),
@@ -37,9 +54,7 @@ def complexFeatures(df):
 
     return temp
 
-
 ############## Context Feature ##############
-
 
 # Actions features
 def goalscore(dataframe):
@@ -163,9 +178,7 @@ def actiontype_result_onehot(df):
 
     return action_result
 
-
 ########### State Features ###############
-
 
 def space_feature(list_dfs: list):
     a0 = list_dfs[0]
