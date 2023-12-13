@@ -67,6 +67,8 @@ const Filters = (props) => {
         setPosicao([])
         setSelectedMax("")
         setSelectedMin("")
+        if(!props.isExample)
+            props.eraseTable()
     }
     return(
         <div>

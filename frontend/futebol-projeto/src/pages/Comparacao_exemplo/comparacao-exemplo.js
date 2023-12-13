@@ -52,7 +52,7 @@ function ComparacaoExemplo(){
                         <p>Escolha até 10 opções de liga, país, posição. Para remover, clique no ícone de "-" ao lado da opção selecionada</p>
                         <p>Escolha as idades mínima e máxima. Clique em confirmar para gerar o gráfico e tabela </p>
                     </section>
-                    <Filter applyFilter={applyFilter}/>
+                    <Filter applyFilter={applyFilter} isExample = {true}/>
                     
                     <h1>Gráfico</h1>
                     <Grafico data={data} />
