@@ -1,28 +1,28 @@
-// BarraContext.js
+// Authentication.js
 import React, { createContext, useState } from 'react';
 
-const Context = createContext();
+const AuthenticationContext = createContext();
 
 const Authentication = ({ children }) => {
-  const [barraAberta, setBarraAberta] = useState(false);
+  const [login, setLogin] = useState(false);
 
-  const fecharBarra = () => {
+  const fecharLogin = () => {
     // setBarraAberta(prevState => !prevState);
-    setBarraAberta(false)
-    console.log(`Estado atual: ${barraAberta}`)
+    setLogin(false)
+    console.log(`Estado atual login: ${login}`)
   };
-  const abrirBarra= () => {
-    setBarraAberta(true);
-    console.log(`Estado atual: ${barraAberta}`)
+  const abrirLogin= () => {
+    setLogin(true);
+    console.log(`Estado atual login: ${login}`)
   }
   return (
-    <BarraContext.Provider value={{ barraAberta, fecharBarra, abrirBarra }}>
+    <AuthenticationContext.Provider value={{ login, fecharLogin, abrirLogin }}>
       {children}
-    </BarraContext.Provider>
+    </AuthenticationContext.Provider>
   );
 };
 
-//export { BarraContext, BarraProvider };
+export { Authentication, AuthenticationContext }; // Exportando o contexto
 
 
 //NAO TO USANDO ISSO PRA NADA ATUALMENTE

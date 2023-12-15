@@ -63,7 +63,9 @@
     width: 15%;
   }
   .login-button,
-  .signup-button {
+  .signup-button, 
+  .leave-button, 
+  .perfil {
     width: 120%;
     border: 1px;
     border-style: solid;

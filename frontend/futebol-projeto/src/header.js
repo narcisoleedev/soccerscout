@@ -3,9 +3,11 @@ import logoT from "./imagens/logoF.png"
 import './header.Module.css'
 import { Link } from 'react-router-dom'
 import Barra from "./barra"
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthenticationContext } from "./context/Authentication"
 
 function Header(){
+    const { login, fecharLogin, abrirLogin } = useContext(AuthenticationContext)
     const [barraAberta,setBarraAberta] = useState(false)
     const fecharBarra = () => {
         // setBarraAberta(prevState => !prevState);
@@ -33,12 +35,24 @@ function Header(){
                 <Link to='/sobre'><span class="texto-link">Sobre</span></Link>
                 <Link to ='/comparacao'><span class="texto-link">Comparação </span></Link>
         </div>
-            <div className="buttons">
-                <Link to='/login'>
-                    <button className="login-button" id = "login">login</button>
+            {!login ?(
+                <div className="buttons">
+                    
+                        <Link to='/login'>
+                            <button className="login-button" id = "login">login</button>
+                        </Link>
+                        <Link to='/cadastro'> <button className="signup-button">sign up</button> </Link>
+                </div>
+            ) : (
+                <div className="buttons">
+                    
+                <Link to='/redes-sociais'>
+                    <button className="perfil" id = "perfil">redes sociais</button>
                 </Link>
-                <Link to='/cadastro'> <button className="signup-button">sign up</button> </Link>
-            </div>
+                <Link to='/'> <button className="leave-button" onClick={fecharLogin}>sair</button> </Link>
+                </div>
+                )
+            }
         </div>
     )
 }
