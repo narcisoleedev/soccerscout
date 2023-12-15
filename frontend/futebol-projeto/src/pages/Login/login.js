@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom'
 import './login.css'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import api from '../../api'
+import { AuthenticationContext } from '../../context/Authentication'
+import { useNavigate } from 'react-router-dom'
 
 function Login(){
+    const navigate = useNavigate()
+    const {abrirLogin} = useContext(AuthenticationContext)
     const [formDataLogin, setFormData] = useState({
         email: '',
         senha: '',
@@ -15,8 +19,9 @@ function Login(){
     const handleSubmit = (e) => {
         e.preventDefault();
         // Aqui você pode adicionar lógica para enviar os dados para o servidor
-        api.get();
+        abrirLogin()
         console.log('Dados do formulário:', formDataLogin);
+        navigate('/')
       };
     return(
         <div className='Main'>
