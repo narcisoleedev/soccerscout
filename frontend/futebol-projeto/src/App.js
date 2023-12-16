@@ -47,7 +47,8 @@ function App() {
               <Route path="/login" Component={Login}/>
               <Route path="/cadastro" Component={Cadastro}/>
               <Route path="/redes-sociais" Component={RedesSociais}/>
-          </Routes>
+              <Route path="/profile" Component={Profile}/>
+        </Routes>
           <Footer/>
       <script src="script.js"></script>
       </Router>
