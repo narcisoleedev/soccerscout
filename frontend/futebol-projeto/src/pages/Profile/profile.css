@@ -49,20 +49,3 @@
     flex-direction: column;
 }
 
-.input-pass{
-    display: inline-flex;
-    align-items: center;
-    
-}
-
-.input-pass input{
-    padding: 8px 8px;
-}
-
-.input-pass img{
-    width: 32px;
-    height: 16px;
-    margin-left: -44px;
-    margin-top: -8px;
-    cursor: pointer;
-}
