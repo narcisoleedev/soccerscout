@@ -18,6 +18,7 @@ import Cadastro from './pages/Cadastro/cadastro';
 import RedesSociais from './pages/Redes_sociais/redes-sociais';
 import { Authentication, AuthenticationContext } from './context/Authentication';
 import RotaProtegida from './RotaProtegida';
+import Profile from './pages/Profile/profile';
 
 function App() {
   return (
