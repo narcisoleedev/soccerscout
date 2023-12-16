@@ -13,6 +13,8 @@ const Profile = () => {
 
     const [confPass, setConfPass] = useState("")
 
+    const [erroConfPass, setErroConfPass] = useState(false)
+
     const handleChange = (e) => {
         switch(e.target.id){
             case "oldPass":
@@ -28,9 +30,19 @@ const Profile = () => {
        
     }
 
-    const handleSubmit = () => {
-
-        console.log()
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if(newPass !== confPass){
+            setErroConfPass(true)
+            return
+        } else{
+            setErroConfPass(false)
+        }
+           
+        const json = {
+            "password" : newPass
+        }
+        console.log(json)
     }
 
     return(
@@ -49,22 +61,24 @@ const Profile = () => {
                         <h2>Trocar senha</h2>
                         <form onSubmit={handleSubmit}>
                             <div className="input-groups">
-                                <label for="email">Senha Antiga:</label>
-                                <PassInput handleChange = {handleChange} value = {oldPass} id={"oldPass"}/>
+                                <label>Senha Antiga:</label>
+                                <PassInput autocomplete= {"current-password"} handleChange = {handleChange} value = {oldPass} id={"oldPass"}/>
                                 
                             </div>
                             <div className="input-groups">
-                                <label for="nome">Nova Senha:</label>
-                                <PassInput handleChange = {handleChange} value = {newPass} id={"newPass"}/>
+                                <label>Nova Senha:</label>
+                                <PassInput autocomplete= {"new-password"} handleChange = {handleChange} value = {newPass} id={"newPass"}/>
                             </div>
 
                             <div className="input-groups">
-                                <label for="senha">Confirmar Senha:</label>
+                                <label >Confirmar Senha:</label>
                                 <PassInput handleChange = {handleChange} value = {confPass} id={"confPass"}/>
                             </div>
                             
-                            
-                            <button type="submit" onClick = {handleSubmit()}>Alterar senha</button>
+                            {erroConfPass &&
+                                <h4 className='error_password'>Nova senha não coincidem com confirmar</h4>}
+
+                            <button type="submit">Alterar senha</button>
                         </form>
                     </div>
                 </div>

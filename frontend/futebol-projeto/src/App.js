@@ -16,6 +16,7 @@ import ComparacaoExemplo from './pages/Comparacao_exemplo/comparacao-exemplo';
 import Login from './pages/Login/login';
 import Cadastro from './pages/Cadastro/cadastro';
 import RedesSociais from './pages/Redes_sociais/redes-sociais';
+import Profile from './pages/Profile/profile';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/login" Component={Login}/>
             <Route path="/cadastro" Component={Cadastro}/>
             <Route path="/redes-sociais" Component={RedesSociais}/>
+            <Route path="/profile" Component={Profile}/>
         </Routes>
         <Footer/>
     <script src="script.js"></script>
