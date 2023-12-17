@@ -49,7 +49,7 @@ function App() {
               <Route path="/cadastro" Component={Cadastro}/>
               <Route path="/redes-sociais" Component={RedesSociais}/>
               <Route path="/profile" Component={Profile}/>
-        </Routes>
+          </Routes>
           <Footer/>
       <script src="script.js"></script>
       </Router>

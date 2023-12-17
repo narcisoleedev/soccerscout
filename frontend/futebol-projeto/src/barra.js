@@ -5,11 +5,20 @@ import x from './imagens/x.png'
 import ig from './imagens/ig.png'
 import fb from './imagens/fb.png'
 import em from './imagens/em.png'
-
+import { AuthenticationContext } from "./context/Authentication"
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 function Barra({fecharBarra}){
-    // const {fecharBarra} = useContext(BarraContext)
+    const { login, fecharLogin } = useContext(AuthenticationContext)
+    const navigate = useNavigate()
+
+    const sairBarra = () => {
+        fecharLogin()
+        fecharBarra()
+        navigate('/')
+    }
     return(
         <div className="Barra">
             <div className="cima_barra">
@@ -54,19 +63,31 @@ function Barra({fecharBarra}){
             
             </div>
             <div className='login_barra'>
-                <div className='login_texto'>
-                    <Link to='/login'>
-                        <span onClick={fecharBarra}> Login </span>
-                    </Link>
-                </div>
-                <div className='login_texto'>
-                <Link to='/cadastro'>
-                        <span onClick={fecharBarra}> Sign up </span>
-                    </Link>
-                </div>
+                {!login ?(<>
+                    <div className='login_texto'>
+                        <Link to='/login'>
+                            <span onClick={fecharBarra}> Login </span>
+                        </Link>
+                    </div>
+                    <div className='login_texto'>
+                    <Link to='/cadastro'>
+                            <span onClick={fecharBarra}> Sign up </span>
+                        </Link>
+                    </div>
+                </> ) : (<>
+                    <div className='login_texto'>
+                            <span id="welcome"> Bem vindo </span>
+                    </div>
+                    <div className='login_texto'>
+                        <Link to='/profile'>
+                            <span onClick={fecharBarra}> Ver Perfil </span>
+                        </Link>
+                    </div>
+                </>)
+                }
             </div>
             <div className='sair_barra'>
-                <span onClick={fecharBarra}> Sair </span>
+                <span onClick={sairBarra}> Sair </span>
             </div>
             <div className='baixo_barra'>
                 <div className='icons_barra'>

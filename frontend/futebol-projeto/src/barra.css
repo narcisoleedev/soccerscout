@@ -115,3 +115,11 @@ img#first_img{
 .Barra span:hover {
     text-decoration: underline;
 }
+
+.sair_barra span {
+    cursor: pointer;
+}
+
+#welcome:hover {
+    text-decoration: none;
+}

@@ -84,7 +84,7 @@ const Profile = () => {
                 </div>
                
 
-                <div className='buraco'>&nbsp;</div>
+                {/*<div className='buraco'>&nbsp;</div>*/}
             </div>
             <div className="side"></div>
         </div>

@@ -7,7 +7,7 @@ import React, { useState, useContext } from 'react';
 import { AuthenticationContext } from "./context/Authentication"
 
 function Header(){
-    const { login, fecharLogin, abrirLogin } = useContext(AuthenticationContext)
+    const { login, fecharLogin } = useContext(AuthenticationContext)
     const [barraAberta,setBarraAberta] = useState(false)
     const fecharBarra = () => {
         // setBarraAberta(prevState => !prevState);
@@ -46,8 +46,8 @@ function Header(){
             ) : (
                 <div className="buttons">
                     
-                <Link to='/redes-sociais'>
-                    <button className="perfil" id = "perfil">redes sociais</button>
+                <Link to='/profile'>
+                    <button className="perfil" id = "perfil">perfil</button>
                 </Link>
                 <Link to='/'> <button className="leave-button" onClick={fecharLogin}>sair</button> </Link>
                 </div>
