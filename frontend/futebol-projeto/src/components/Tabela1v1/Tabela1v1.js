@@ -1,8 +1,21 @@
 import { useEffect, useState } from "react"
 import PlayerInput from "../PlayerInput/PlayerInput"
 import "./Tabela1v1.css"
+import Buscar1v1 from '../../fetch'
 
 const Tabela1v1 = (props) => {
+
+    const MudarDataTabela = (data) => {
+        const saida = data.map(
+            (player) => {
+                const { name, position, id_club, date_nasc, nationality, market_value, actions_value_avg, actions_avg, rating_avg,...rest } = player;
+                const x = actions_value_avg;
+                const y = actions_avg;
+                return { name, x, y };
+            }
+        )
+        return saida
+    }
 
     const [player, setPlayer] = useState({})
 
