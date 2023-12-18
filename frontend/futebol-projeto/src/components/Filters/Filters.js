@@ -67,7 +67,7 @@ const Filters = (props) => {
         let ligas = []
         info.league.map(league => {
             if(ligasLabels.includes(league.Label))
-                ligas= [...ligas, league]
+                ligas= [...ligas, league.value]
         })
         return ligas
     }
