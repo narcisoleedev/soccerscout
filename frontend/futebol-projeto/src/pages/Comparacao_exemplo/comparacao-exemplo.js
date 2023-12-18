@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 
 function ComparacaoExemplo(){
     const player = {
-        "Jogador": "Fabinho", "Time": "Al-Ittihad","País":"Brasil", "Idade":29, "Posição":"VOL","Car.Amar./90 min.":0.303,"Assist./90min":0.053,"Gols/90 min.":0.053,"Ações/90min":80,"Val. Médio/ Ação":0.006,"Rating":0.480,"Val mercado":"42 M €"
+        "Jogador": "Fabinho", "Posição":"VOL","Time": "Al-Ittihad","País":"Brasil","Valor":"42 M €", "Idade":29,"Assist":0.053,"Gols/90 min.":0.053,"Ações/90min":80,"Val. Médio/ Ação":0.006,"Rating":0.480
     }
 
     const [filter, setFilter] = useState({})
