@@ -4,8 +4,8 @@ import {useState} from "react"
 import info from '../../info.js'
 
 const Filters = (props) => {
-    const {liga} = info
-    const {league} = info
+
+    const league = info.league.map(element => element.Label)
     const {posicao} = info
     const {pais} = info
     const {idades} = info
@@ -16,10 +16,13 @@ const Filters = (props) => {
     const [idadeMaxSelecionada, setIdadeMax] = useState(2000)
     const [selectedMax, setSelectedMax] = useState("")
     const [selectedMin, setSelectedMin] = useState("")
+    
+   
 
-    // const idades = [16,18,21,24,27,30,32,35]
-
-    const ligasFilterAdd = (liga) => {setLigas([...ligasSelecionadas, liga])}
+    const ligasFilterAdd = (liga) => {
+        
+        setLigas([...ligasSelecionadas, liga])
+    }
 
     const ligasFilterRemove = (liga) => {setLigas(ligasSelecionadas.filter(element => element !== liga))}
 
@@ -52,12 +55,21 @@ const Filters = (props) => {
 
     const applyFilter = () => {
         props.applyFilter({
-            "ligas": ligasSelecionadas,
+            "ligas": changeLigas(ligasSelecionadas),
             "pais": paisSelecionadas,
             "posicao": posicaoSelecionadas,
             "idadeMin": idadeMinSelecionada,
             "idadeMax": idadeMaxSelecionada 
         })
+    }
+
+    const changeLigas = (ligasLabels) => {
+        let ligas = []
+        info.league.map(league => {
+            if(ligasLabels.includes(league.Label))
+                ligas= [...ligas, league]
+        })
+        return ligas
     }
 
     const eraseFilters = () => {

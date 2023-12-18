@@ -1,12 +1,6 @@
 import api from "./api"
 import { useState } from "react"
 
-const liga = [
-                "FA Women's Super League|England", "Premier League|England", "Champions League|Europe", "UEFA Women's Euro|Europe", "UEFA Euro|Europe", 
-                "Bundesliga|Germany", "La Liga|Spain", "Liga h", "Liga i", 
-                "Ligue 1|France", "Liga k", "Liga l", "Liga m", "Liga n", "Liga o", "Liga p", "Liga q", "Liga r"
-            ]
-
 const clubs = [
     {"id": 212, "name": "Atlético Madrid"},
     {"id": 220, "name": "Real Madrid"},
@@ -296,7 +290,6 @@ const players = [
     {"Rank": 15, "Jogador": "A. Laporte", "Time": "Chapecoense", "País": "Espanha", "Posição": "ZAG", "Idade": 27, "Assist./90min": 0.035, "Gols/90 min.": 0.020, "Ações/90min": 88, "Val. Médio/ Ação": 0.009, "Rating": 0.515, "Valor": "160 M €"}
 ]
 export default {
-    liga,
     pais,
     posicao,
     idades,
