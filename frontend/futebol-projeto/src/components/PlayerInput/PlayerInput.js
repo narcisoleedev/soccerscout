@@ -9,11 +9,11 @@ let nomes = []
 
 
 const PlayerInput = (props) => {
-    const { players } = info
-    const [player, setPlayer] = useState({})
+    const [player, setPlayer] = useState("")
     const [textInput, setTextInput] = useState("")
     const [playersVisible, setPlayersVisible] = useState(false)
     const [names, setnames] = useState([])
+
     useEffect(() => {
         const fetchNames = async () => {
             const { data } = await api.get('/player', { headers: { "ngrok-skip-browser-warning": "any" } })
@@ -24,27 +24,26 @@ const PlayerInput = (props) => {
             })
             setnames(players)
         }
+        setnames(info.names)
 
         //fetchNames()
         //return () => {}
     }, [])
-    console.log(names)
-
+   
     const changeInput = (event) => {
         event.preventDefault()
-
         setTextInput(event.target.value)
     }
 
     const choosePlayer = (event) => {
-        const player = players.filter(player => player.Rank === event.target.value)[0]
+        const player = names.filter(player => player === event.target.innerHTML)[0]
         setPlayer(player)
         setPlayersVisible(false)
-        setTextInput(player.Jogador)
+        setTextInput(player)
     }
 
     useEffect(() => {
-        if (player.Jogador !== undefined) {
+        if (player !== undefined) {
             setPlayersVisible(false)
             props.func(player)
 
@@ -63,11 +62,11 @@ const PlayerInput = (props) => {
             </div>
 
             {
-                playersVisible && (textInput != player.Jogador) &&
+                playersVisible && (textInput != player) &&
                 <div className="player-list">
                     <ul>
-                        {players.filter(players => players.Jogador.toUpperCase().includes(textInput.toUpperCase())).map(player =>
-                            <li value={player.Rank} onClick={choosePlayer}>{player.Jogador}</li>
+                        {names.filter(players => players.toUpperCase().includes(textInput.toUpperCase())).map(player =>
+                            <li value={player} onClick={choosePlayer}>{player}</li>
                         )}
                     </ul>
                 </div>

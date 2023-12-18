@@ -273,6 +273,7 @@ const posicao = ["Zagueiro", "Volante","Atacante"]
 
 const idades = [16,18,21,24,27,30,32,35]
 
+const names = ["Jorge Verdade","Mauricio da Serra","José da Silve","João Pé de Feijão"]
 
 var isLogged = false
 
@@ -302,4 +303,6 @@ export default {
     players,
     isLogged,
     league,
+    names,
+    clubs
 }
