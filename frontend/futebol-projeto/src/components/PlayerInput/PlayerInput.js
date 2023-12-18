@@ -9,12 +9,12 @@ let nomes = []
 
 
 const PlayerInput = (props) => {
-    const {players} = info
+    const { players } = info
     const [player, setPlayer] = useState({})
     const [textInput, setTextInput] = useState("")
     const [playersVisible, setPlayersVisible] = useState(false)
     const [names, setnames] = useState([])
-    useEffect(() =>{
+    useEffect(() => {
         const fetchNames = async () => {
             const { data } = await api.get('/player', { headers: { "ngrok-skip-browser-warning": "any" } })
             const dataPlayers = data.players
@@ -27,24 +27,24 @@ const PlayerInput = (props) => {
 
         //fetchNames()
         //return () => {}
-    },[])
+    }, [])
     console.log(names)
-  
+
     const changeInput = (event) => {
         event.preventDefault()
 
         setTextInput(event.target.value)
     }
 
-    const choosePlayer = (event) =>{       
+    const choosePlayer = (event) => {
         const player = players.filter(player => player.Rank === event.target.value)[0]
         setPlayer(player)
         setPlayersVisible(false)
         setTextInput(player.Jogador)
     }
 
-    useEffect (() => {
-        if(player.Jogador !== undefined){
+    useEffect(() => {
+        if (player.Jogador !== undefined) {
             setPlayersVisible(false)
             props.func(player)
 
@@ -53,7 +53,7 @@ const PlayerInput = (props) => {
 
     useEffect(() => {
         setPlayersVisible(textInput !== "")
-    },[textInput])
+    }, [textInput])
 
     return (
         <div>
@@ -63,12 +63,12 @@ const PlayerInput = (props) => {
             </div>
 
             {
-                playersVisible && (textInput != player.Jogador)&&
+                playersVisible && (textInput != player.Jogador) &&
                 <div className="player-list">
                     <ul>
-                    {players.filter(players => players.Jogador.toUpperCase().includes(textInput.toUpperCase())).map( player =>
-                        <li value={player.Rank} onClick={choosePlayer}>{player.Jogador}</li>
-                    )}
+                        {players.filter(players => players.Jogador.toUpperCase().includes(textInput.toUpperCase())).map(player =>
+                            <li value={player.Rank} onClick={choosePlayer}>{player.Jogador}</li>
+                        )}
                     </ul>
                 </div>
 
