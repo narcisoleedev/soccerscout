@@ -19,19 +19,18 @@ const Tabela1v1 = (props) => {
         const fetchPlayer = async (name) => {
             try{
                 const response = await Buscar1v1(name)
-                const {data} = response
-                const dataArrumado = MudarDataTabela(data)
-                setDadosPlayer(dataArrumado)
+                const {players} = response
+                const dataArrumado = MudarDataTabela(players)
+                setDadosPlayer(dataArrumado[0])
             }catch(error){
                 console.error("Erro no fetchPlayer:",error)
             }     
         }
         fetchPlayer(player)
-        console.log(DadosPlayer)
+        console.log("Resposta final:",DadosPlayer)
     }, [player])
 
     return(
-        
         <div className="tabela-x">
             <PlayerInput func = {choosePlayer}/>
             { props.players == undefined ?

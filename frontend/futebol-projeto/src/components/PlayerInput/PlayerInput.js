@@ -24,10 +24,10 @@ const PlayerInput = (props) => {
             })
             setnames(players)
         }
-        setnames(info.names)
+        //setnames(info.names)
 
-        //fetchNames()
-        //return () => {}
+        fetchNames()
+        return () => {}
     }, [])
    
     const changeInput = (event) => {

@@ -28,11 +28,12 @@ const ConverterIdade = (date) => {
 const MudarDataTabela = (data) => {
     const saida = data.map(
         (player) => {
-            const { name, position, id_club, date_nasc, nationality, market_value, actions_value_avg, actions_avg, rating_avg,assist_avg,goals_avg,...rest } = player;
+            const { name, position, id_club, date_nasc, nationality, market_value, actions_value_avg, actions_avg, assist_avg,goals_avg,...rest } = player;
             return { 
                 "Jogador": name, "Posição": position, "Time": ConverterCLube(id_club), "País": nationality, "Valor": market_value,
-                "Idade": ConverterIdade(date_nasc), "Assist./90min":assist_avg, "Gols/90 min.": goals_avg, "Ações/90min": actions_avg, 
-                "Val. Médio/ Ação": actions_value_avg, "Rating":rating_avg
+                "Idade": ConverterIdade(date_nasc), "Assist./90min":parseFloat(assist_avg).toFixed(2), "Gols/90 min.": parseFloat(goals_avg).toFixed(2), 
+                "Ações/90min": parseFloat(actions_avg).toFixed(2),  "Val. Médio/ Ação": parseFloat(actions_value_avg).toFixed(2), 
+                "Rating":parseFloat(actions_value_avg*actions_avg).toFixed(2)
             };
         }
     )

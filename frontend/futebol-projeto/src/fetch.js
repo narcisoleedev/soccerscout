@@ -2,13 +2,11 @@ import api from "./api";
 
 const Buscar1v1 = async (jogador) => {
     try {
-        const response = await api.get(`/player/${jogador}`)
-        if(!response.ok) {
-            throw new Error("Erro na requisição")
-        }
+        const response = await api.get(`/player/${jogador}`,{ headers: { "ngrok-skip-browser-warning": "any" } })
         const { data } = response
         return data
     }catch(error){
+        console.log(jogador)
         console.error("Erro ao obter resultados",error)
     }
 }
