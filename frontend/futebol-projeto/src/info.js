@@ -253,11 +253,20 @@ const clubs = [
 ]
 
 const league = [
-    {
-        "Label" : "ligaexemplo",
-        "value" : 1
-    }
-]
+    {"value": 1, "Label": "FA Women's Super League"},
+    {"value": 2, "Label": "Premier League"},
+    {"value": 3, "Label": "Champions League"},
+    {"value": 4, "Label": "UEFA Women's Euro"},
+    {"value": 5, "Label": "UEFA Euro", "region": "Europe"},
+    {"value": 6, "Label": "Ligue 1"},
+    {"value": 7, "Label": "Bundesliga"},
+    {"value": 8, "Label": "La Liga"},
+    {"value": 9, "Label": "NWSL"},
+    {"value": 10, "Label": "Serie A"},
+    {"value": 11, "Label": "Indian Super League"},
+    {"value": 12, "Label": "FIFA World Cup"},
+    {"value": 13, "Label": "Women's World Cup"}
+  ]
 const pais = ["França", "Brasil", "Italia", "Espanha"]
 
 const posicao = ["Zagueiro", "Volante","Atacante"]
