@@ -302,4 +302,5 @@ export default {
     players,
     isLogged,
     league,
+    clubs,
 }
