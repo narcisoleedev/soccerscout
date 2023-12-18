@@ -1,31 +1,33 @@
 import { useEffect, useState } from "react"
 import PlayerInput from "../PlayerInput/PlayerInput"
 import "./Tabela1v1.css"
-import Buscar1v1 from '../../fetch'
+import fetch from '../../fetch'
+import tratamento from "../../TratarDados"
 
 const Tabela1v1 = (props) => {
+    const [player, setPlayer] = useState('')
+    const [DadosPlayer, setDadosPlayer] = useState({})
+    const {MudarDataTabela} = tratamento
 
-    const MudarDataTabela = (data) => {
-        const saida = data.map(
-            (player) => {
-                const { name, position, id_club, date_nasc, nationality, market_value, actions_value_avg, actions_avg, rating_avg,...rest } = player;
-                const x = actions_value_avg;
-                const y = actions_avg;
-                return { name, x, y };
-            }
-        )
-        return saida
-    }
-
-    const [player, setPlayer] = useState({})
-
+    const {Buscar1v1} = fetch
 
     const choosePlayer = (choice) => {
         setPlayer(choice)
     }
 
     useEffect(() => {
-        console.log(player)
+        const fetchPlayer = async (name) => {
+            try{
+                const response = await Buscar1v1(name)
+                const {data} = response
+                const dataArrumado = MudarDataTabela(data)
+                setDadosPlayer(dataArrumado)
+            }catch(error){
+                console.error("Erro no fetchPlayer:",error)
+            }     
+        }
+        fetchPlayer(player)
+        console.log(DadosPlayer)
     }, [player])
 
     return(
@@ -34,11 +36,11 @@ const Tabela1v1 = (props) => {
             <PlayerInput func = {choosePlayer}/>
             { props.players == undefined ?
                 <div>
-                      { player.Jogador != undefined ?
+                      { DadosPlayer.Jogador != undefined ?
                     <table cellSpacing="0">
                         {!props.isMirrored ?
                             <tbody className="normal">
-                                {Object.entries(player).map( key =>
+                                {Object.entries(DadosPlayer).map( key =>
                                     key[0] != "Rank" &&
                                     <tr key={key}>
                                         <td>{key[0]}</td>
@@ -48,7 +50,7 @@ const Tabela1v1 = (props) => {
                                 
                             </tbody> :
                             <tbody className="mirror">
-                            {Object.entries(player).map( key =>
+                            {Object.entries(DadosPlayer).map( key =>
                                 key[0] != "Rank" &&
                                 <tr key={key}>
                                     <td>{key[1]}</td>

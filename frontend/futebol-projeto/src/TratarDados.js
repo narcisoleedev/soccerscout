@@ -29,9 +29,6 @@ const MudarDataTabela = (data) => {
     const saida = data.map(
         (player) => {
             const { name, position, id_club, date_nasc, nationality, market_value, actions_value_avg, actions_avg, rating_avg,assist_avg,goals_avg,...rest } = player;
-            const Posição = position
-            const x = actions_value_avg;
-            const y = actions_avg;
             return { 
                 "Jogador": name, "Posição": position, "Time": ConverterCLube(id_club), "País": nationality, "Valor": market_value,
                 "Idade": ConverterIdade(date_nasc), "Assist./90min":assist_avg, "Gols/90 min.": goals_avg, "Ações/90min": actions_avg, 
