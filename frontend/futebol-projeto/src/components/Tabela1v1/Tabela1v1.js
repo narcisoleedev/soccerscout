@@ -41,7 +41,7 @@ const Tabela1v1 = (props) => {
                         {!props.isMirrored ?
                             <tbody className="normal">
                                 {Object.entries(DadosPlayer).map( key =>
-                                    key[0] != "Rank" &&
+                                    
                                     <tr key={key}>
                                         <td>{key[0]}</td>
                                         <td>{key[1]}</td>
@@ -51,7 +51,7 @@ const Tabela1v1 = (props) => {
                             </tbody> :
                             <tbody className="mirror">
                             {Object.entries(DadosPlayer).map( key =>
-                                key[0] != "Rank" &&
+                            
                                 <tr key={key}>
                                     <td>{key[1]}</td>
                                     <td>{key[0]}</td>
@@ -73,7 +73,7 @@ const Tabela1v1 = (props) => {
                         {!props.isMirrored ?
                             <tbody className="normal">
                                 {Object.entries(props.players).map( key =>
-                                    key[0] != "Rank" &&
+                                    
                                     <tr key={key}>
                                         <td>{key[0]}</td>
                                         <td>{key[1]}</td>
@@ -83,7 +83,7 @@ const Tabela1v1 = (props) => {
                             </tbody> :
                             <tbody className="mirror">
                             {Object.entries(props.players).map( key =>
-                                key[0] != "Rank" &&
+                                
                                 <tr key={key}>
                                     <td>{key[1]}</td>
                                     <td>{key[0]}</td>
