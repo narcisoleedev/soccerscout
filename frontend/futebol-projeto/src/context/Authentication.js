@@ -1,5 +1,6 @@
 // Authentication.js
 import React, { createContext, useState } from 'react';
+import api from '../api';
 
 const AuthenticationContext = createContext();
 
@@ -15,6 +16,7 @@ const Authentication = ({ children }) => {
     setLogin(true);
     console.log(`Estado atual login: ${login}`)
   }
+
   return (
     <AuthenticationContext.Provider value={{ login, fecharLogin, abrirLogin }}>
       {children}

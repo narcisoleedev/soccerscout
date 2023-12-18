@@ -7,8 +7,11 @@ import em from "../../imagens/em.png"
 import falta from "../../imagens/falta.png"
 import ig from "../../imagens/ig.png"
 import { Link } from 'react-router-dom'
+import info from '../../info'
 
 function Home(){
+    const {nomes} = info
+    console.log(nomes)
     return (
         <div className="Main">
             <div className="side"></div>

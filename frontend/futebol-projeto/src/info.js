@@ -1,7 +1,33 @@
+import api from "./api"
+import { useState } from "react"
+
 const liga = [
-                "Liga a", "Liga b", "Liga c", "Liga d", "Liga e", "Liga f", "Liga g", "Liga h", "Liga i", 
-                "Liga j", "Liga k", "Liga l", "Liga m", "Liga n", "Liga o", "Liga p", "Liga q", "Liga r"
+                "FA Women's Super League|England", "Premier League|England", "Champions League|Europe", "UEFA Women's Euro|Europe", "UEFA Euro|Europe", 
+                "Bundesliga|Germany", "La Liga|Spain", "Liga h", "Liga i", 
+                "Ligue 1|France", "Liga k", "Liga l", "Liga m", "Liga n", "Liga o", "Liga p", "Liga q", "Liga r"
             ]
+
+            /*
+1|FA Women's Super League|England
+2|Premier League|England
+3|Champions League|Europe
+4|UEFA Women's Euro|Europe
+5|UEFA Euro|Europe
+6|Ligue 1|France
+7|Bundesliga|Germany
+8|La Liga|Spain
+9|NWSL|United States of America
+10|Serie A|Italy
+11|Indian Super league|India
+12|FIFA World Cup|International
+13|Women's World Cup|International
+            */
+const league = [
+    {
+        "Label" : "ligaexemplo",
+        "value" : 1
+    }
+]
 const pais = ["França", "Brasil", "Italia", "Espanha"]
 
 const posicao = ["Zagueiro", "Volante","Atacante"]
@@ -29,12 +55,12 @@ const players = [
     {"Rank": 14, "Jogador": "E. Haaland", "Time": "Atlético Paranaense", "País": "Noruega", "Posição": "ATA", "Idade": 21, "Assist./90min": 0.040, "Gols/90 min.": 0.100, "Ações/90min": 75, "Val. Médio/ Ação": 0.012, "Rating": 0.590, "Valor": "260 M €"},    
     {"Rank": 15, "Jogador": "A. Laporte", "Time": "Chapecoense", "País": "Espanha", "Posição": "ZAG", "Idade": 27, "Assist./90min": 0.035, "Gols/90 min.": 0.020, "Ações/90min": 88, "Val. Médio/ Ação": 0.009, "Rating": 0.515, "Valor": "160 M €"}
 ]
-
 export default {
     liga,
     pais,
     posicao,
     idades,
     players,
-    isLogged
+    isLogged,
+    league,
 }

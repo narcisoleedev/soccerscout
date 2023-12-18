@@ -5,6 +5,7 @@ import info from '../../info.js'
 
 const Filters = (props) => {
     const {liga} = info
+    const {league} = info
     const {posicao} = info
     const {pais} = info
     const {idades} = info
@@ -73,7 +74,7 @@ const Filters = (props) => {
     return(
         <div>
             <section className="coletiva_selects">
-                <Select name = "Liga" placeholder="Selecione uma Liga" callbackAdd = {ligasFilterAdd} callbackRemove = {ligasFilterRemove} filters={ligasSelecionadas} options={liga}/>
+                <Select name = "Liga" placeholder="Selecione uma Liga" callbackAdd = {ligasFilterAdd} callbackRemove = {ligasFilterRemove} filters={ligasSelecionadas} options={league}/>
                 <Select name = "País" placeholder="Selecione um País"  callbackAdd = {paisFilterAdd} callbackRemove = {paisFilterRemove}  filters={paisSelecionadas}  options={pais}/>
                 <Select name = "Posição" placeholder="Selecione uma Posição" callbackAdd = {posicaoFilterAdd} callbackRemove = {posicaoFilterRemove}  filters={posicaoSelecionadas}  options={posicao}/>
                 <div className='age-group'>

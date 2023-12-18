@@ -5,11 +5,48 @@ import TabelaColetiva from '../../components/TabelaColetiva/TabelaColetiva'
 import Grafico from '../../components/Graficos/grafico'
 import info from '../../info.js'
 import { Link } from 'react-router-dom'
+import fetch from '../../fetch.js'
 
 function ComparacaoColetiva(){
     const [filter, setFilter] = useState({})
     const [hide, setHide] = useState(true)
+    const {BuscarColetivo} = fetch
 
+    const MudarDataGrafico = (data) => {
+        const saida = data.map(
+            (player) => {
+                const { name, actions_value_avg, actions_avg, ...rest } = player;
+                const x = actions_value_avg;
+                const y = actions_avg;
+                return { name, x, y };
+            }
+        )
+        return saida
+    }
+
+    const FetchTabela = async (filter) => {
+        try{
+            const data = await BuscarColetivo(filter)
+            console.log("resposta da API:",data)
+            await setdataTabela(data)
+            const dataGrafico = MudarDataGrafico(data)
+            await setdataGraph(dataGrafico)
+            return false
+        }catch(error){
+            console.error("Erro",error)
+            return true
+        }
+    }
+
+    const MostrarConteudo = async() => {
+        try{
+            const resposta = await FetchTabela(filter)
+            setHide(true)
+        }
+        catch(error){
+            setHide(false)
+        }
+    }
     const applyFilter = (filterApplied) => {
         setFilter(filterApplied);
     };
@@ -19,19 +56,31 @@ function ComparacaoColetiva(){
     }
 
     const checkFilter = ({ligas, pais, posicao, idadeMax, idadeMin}) => {
-        if(ligas.length === 0 && pais.length === 0 && posicao.length === 0 && idadeMin === 0 && idadeMax === 2000)
+        if(ligas.length === 0 && pais.length === 0 && posicao.length === 0 && idadeMin === 0 && idadeMax === 2000){
             setFilter({})
+            return false
+        }
+        return true
     }
            
-    useEffect(() => {
-
+    useEffect(() => {       
+        if(Object.keys(filter).length !== 0 && checkFilter(filter)){
+            (async () => {
+                    try {
+                        const busca = await FetchTabela(filter)
+                        setHide(busca)
+                        console.log("EU ESTOU AQUI ")
+                    }catch(error){
+                        console.error("ERRO:",error)
+                    }
+                })()
             
-        if(Object.keys(filter).length !== 0){
-            checkFilter(filter)
-            setHide(false)
+            return
         }
-        else
+         else{
             setHide(true)
+            return        
+        }
         console.log(filter);
       }, [filter]);
     
@@ -41,12 +90,12 @@ function ComparacaoColetiva(){
       const [dataTabela, setdataTabela] = useState(playerVazio)
 
       useEffect(() => {
-            setdataGraph(data)
+            setdataGraph(dataG)
             setdataTabela(players)
             console.log("dados carregados", dataTabela)
 
       },[])
-    const data = [
+    const dataG = [
         { name: "Alfredo", x: 100, y: 200 },
         { name: "Zatala", x: 170, y: 300 },
         { name: "Gulo", x: 140, y: 250 },
@@ -56,9 +105,6 @@ function ComparacaoColetiva(){
 
     const {players} = info
 
-    const mudarTabela = () => {
-        setdataTabela(playerVazio)
-    }
     return (
         <div className='Main'>
         <div className="side"></div>
@@ -67,7 +113,6 @@ function ComparacaoColetiva(){
                 <h1>COMPARACAO COLETIVA</h1>
                 <h2>FILTROS</h2>
                 <Filter applyFilter={applyFilter} isExample ={false} eraseTable={eraseInfo}/>
-              
                 { !hide ? 
                     <div>
                         <h1>Gráfico</h1>
