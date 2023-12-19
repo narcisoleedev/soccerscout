@@ -7,12 +7,19 @@ import PassInput from "../../components/PassInput/passinput"
 
 const Profile = () => {
     const {token} = useContext(AuthenticationContext)
+    const [name,setname] = useState('')
+    const[email,setemail] = useState('')
 
     useEffect( () => {
+    if(token !== undefined){
         var base64Url = token.split('.')[1];
         var base64 = base64Url.replace('-', '+').replace('_', '/');
         var payload  =JSON.parse(window.atob(base64));
+        const {sub} = payload
+        setname(sub.name)
+        setemail(sub.email)
         console.log(payload)
+    }
     }, [])
     const [oldPass, setOldPass] = useState("")
 
@@ -60,8 +67,8 @@ const Profile = () => {
                 <div className="profile">
                     <div className="infos-profile">
                         <img className ="icon-profile" src={avatar} />
-                        <h2>Nome</h2>
-                        <h3>Email</h3>
+                        <h2>Nome: {name}</h2>
+                        <h3>Email: {email}</h3>
                         <span> <b>Plano: </b> Ômega</span>
                     </div>
                     <div className="form-profile">

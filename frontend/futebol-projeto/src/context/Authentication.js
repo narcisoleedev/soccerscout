@@ -16,7 +16,8 @@ const Authentication = ({ children }) => {
 
   useEffect( () => {
     if(token){
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token
+      console.log("TOKEN:",token)
+      //axios.defaults.headers.common["Authorization"] = "Bearer " + token
       localStorage.setItem("token",token)
     
         
@@ -31,6 +32,7 @@ const Authentication = ({ children }) => {
   const fecharLogin = () => {
     // setBarraAberta(prevState => !prevState);
     setLogin(false)
+    localStorage.removeItem("token")
     console.log(`Estado atual login: ${login}`)
   };
   const abrirLogin= () => {
@@ -39,7 +41,7 @@ const Authentication = ({ children }) => {
   }
 
   return (
-    <AuthenticationContext.Provider value={{ login, token,fecharLogin, abrirLogin }}>
+    <AuthenticationContext.Provider value={{ login, token,fecharLogin, abrirLogin, defineToken }}>
       {children}
     </AuthenticationContext.Provider>
   );

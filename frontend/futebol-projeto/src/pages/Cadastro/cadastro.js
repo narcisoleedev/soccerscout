@@ -1,12 +1,13 @@
 import './cadastro.css'
 import {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import api from '../../api'
 
 function Cadastro(){
 
     const [errorPass, setErrorPass] = useState(false)
     const [confirmPass, setConfirmPass] = useState("")
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         email: '',
@@ -27,9 +28,19 @@ function Cadastro(){
         } else
             setErrorPass(false)
         const signUp = async () => {
-            const response = await api.post('/access/create', formData, {  headers: { "ngrok-skip-browser-warning": "any" } })
+            try{
+                const response = await api.post('/access/create', formData, {  headers: { "ngrok-skip-browser-warning": "any" } })
+                return response
+            }catch(error){
+                console.log("Erro singUp",error)
+                return undefined
+            }
         }
-        signUp()
+        const x = signUp()
+        if(x!= undefined){
+            console.log("Conta registrada:",formData)
+            navigate('/')
+        }
       };
     return(
         <div className='Main'>

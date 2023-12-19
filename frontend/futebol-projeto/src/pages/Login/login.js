@@ -7,10 +7,12 @@ import { useNavigate } from 'react-router-dom'
 
 function Login(){
     const navigate = useNavigate()
-    const {abrirLogin} = useContext(AuthenticationContext)
+    const {abrirLogin,defineToken} = useContext(AuthenticationContext)
+    const [failLogin,setfailLogin] = useState(false)
+
     const [formDataLogin, setFormData] = useState({
         email: '',
-        senha: '',
+        password: '',
     });
 
     const handleChange = (e) => {
@@ -26,11 +28,24 @@ function Login(){
         e.preventDefault();
         
         const checkLogin = async () => {
-            const response = api.post("/access/login",formDataLogin,{ headers: { "ngrok-skip-browser-warning": "any" }})
-            return response
+            try{
+                console.log("Request:",formDataLogin)
+                const response = await api.post("/access/login",formDataLogin,{ headers: { "ngrok-skip-browser-warning": "any" }})
+                console.log("response",response)
+                const {data} = response
+                return data.accessToken
+            }catch(error){
+                console.error("ERROR CHECKLOGIN",error)
+                setfailLogin(true)
+                return undefined
+            }
         }
         const x = await checkLogin()
-        
+        if(x!=undefined){
+            defineToken(x)
+            abrirLogin()
+            navigate('/')
+        }
         console.log("Response: ",x)
        
         // abrirLogin()
@@ -53,11 +68,12 @@ function Login(){
                     <br/>
                     {/*Campo de Senha*/}
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" onChange={handleChange} value={formDataLogin.senha} required>
+                    <input type="password" id="senha" name="password" onChange={handleChange} value={formDataLogin.password} required>
                     </input>
                     <p id ="forgot" className='Verde'>Esqueci minha Senha</p>
                     <br/>
                     {/*Botão de envio*/}
+                    {failLogin && <p className='falha'>Usuario ou senha incorretos</p>}
                     <button type="submit">Entrar</button>
                 </form>
             </div>

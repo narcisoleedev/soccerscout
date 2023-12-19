@@ -43,3 +43,9 @@ form button{
 .Formulario_Login input{
     margin: 8px 0;
 }
+
+p.falha {
+    font-size: medium;
+    margin:auto;
+    color: red;
+}

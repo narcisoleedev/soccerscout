@@ -120,6 +120,7 @@ img#first_img{
     cursor: pointer;
 }
 
-#welcome:hover {
+#welcome,#explore:hover {
     text-decoration: none;
+    cursor: default;
 }

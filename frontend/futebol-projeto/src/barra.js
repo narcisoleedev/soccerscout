@@ -87,7 +87,16 @@ function Barra({fecharBarra}){
                 }
             </div>
             <div className='sair_barra'>
-                <span onClick={sairBarra}> Sair </span>
+                {login ?(
+                    <>
+                        <span onClick={sairBarra}> Sair </span>
+                    </>
+                ) : (
+                    <>
+                        <span id="explore">Explore nosso site!</span>
+                    </>
+                )}
+                
             </div>
             <div className='baixo_barra'>
                 <div className='icons_barra'>
