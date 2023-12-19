@@ -16,6 +16,6 @@ def group_route():
     except KeyError:
         return jsonify(msg="Erro no objeto de envio"), 400
     result = AnalyzeController.analyze(league, country, position, age_min, age_max)
-    if len(result) > 500:
-        result = result[:500]
+    if len(result) > 300:
+        result = result[:300]
     return jsonify(result=result), 200

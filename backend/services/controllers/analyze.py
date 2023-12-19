@@ -21,7 +21,7 @@ class AnalyzeController:
         age_min: int,
         age_max: int,
         country: str,
-        league: str,
+        league: list[str],
     ):
         date_nasc = datetime.strptime(player.get("date_nasc", "01/01/2000"), "%d/%m/%Y")
         today = datetime.now()
@@ -31,15 +31,19 @@ class AnalyzeController:
             - ((today.month, today.day) < (date_nasc.month, date_nasc.day))
         )
 
-        is_position = player.get("position", "") == position if position else True
-        is_country = player.get("nationality", "") == country if country else True
+        is_position = player.get("position", "") in position if position else True
+        is_country = player.get("nationality", "") in country if country else True
+        
         if league:
-            valid_clubs = cls._get_valid_club(league)
-            is_club = player.get("id_club", 0) in valid_clubs
+            all_clubs = []
+            for le in league:
+                valid_clubs = cls._get_valid_club(le)
+                all_clubs.extend(valid_clubs)
+            is_club = player.get("id_club", 0) in all_clubs
         else:
             is_club = True
-        age_min = age_min or 0
-        age_max = age_max or 1000
+        age_min = int(age_min) or 0
+        age_max = int(age_max) or 1000
         actions_avg = player.get("actions_avg", 0) > 0.001
         actions_value_avg = player.get("actions_value_avg", 0) > 0.001
 
@@ -61,7 +65,7 @@ class AnalyzeController:
 
     @classmethod
     def analyze(
-        cls, league: str, country: str, position: str, age_min: int, age_max: int
+        cls, league: list[str], country: list[str], position: list[str], age_min: int, age_max: int
     ):
         players = PlayerController.get_all()
         return [
