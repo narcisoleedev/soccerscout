@@ -61,6 +61,8 @@ function ComparacaoColetiva(){
            
     useEffect(() => {       
         if(Object.keys(filter).length !== 0 && checkFilter(filter)){
+                setNoneFound(false)
+                setHide(true)
                 const Buscar = async (filter) => {
                     const resposta = await FetchTabela(filter)
                     setHide(resposta)
