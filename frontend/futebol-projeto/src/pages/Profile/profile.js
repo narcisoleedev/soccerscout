@@ -1,12 +1,19 @@
 import "./profile.css"
-
 import avatar from "../../imagens/avatar.png"
-
-import {useState} from "react"
+import { AuthenticationContext } from '../../context/Authentication'
+import {useState, useContext, useEffect} from "react"
 import PassInput from "../../components/PassInput/passinput"
 
-const Profile = () => {
 
+const Profile = () => {
+    const {token} = useContext(AuthenticationContext)
+
+    useEffect( () => {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace('-', '+').replace('_', '/');
+        var payload  =JSON.parse(window.atob(base64));
+        console.log(payload)
+    }, [])
     const [oldPass, setOldPass] = useState("")
 
     const [newPass, setNewPass] = useState("")

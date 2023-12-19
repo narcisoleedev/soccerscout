@@ -26,15 +26,10 @@ function Cadastro(){
             return
         } else
             setErrorPass(false)
-            
-        // Aqui você pode adicionar lógica para enviar os dados para o servidor
-        // api.post('/access/create',formData,{
-        //     auth: {
-        //         username: "teste",
-        //         password: "teste"
-        //       }
-        // })
-        console.log('Dados do formulário:', formData);
+        const signUp = async () => {
+            const response = await api.post('/access/create', formData, {  headers: { "ngrok-skip-browser-warning": "any" } })
+        }
+        signUp()
       };
     return(
         <div className='Main'>

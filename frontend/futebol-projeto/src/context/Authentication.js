@@ -1,12 +1,32 @@
 // Authentication.js
+import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
 import api from '../api';
 
 const AuthenticationContext = createContext();
 
 const Authentication = ({ children }) => {
-
+  const [token, setToken] = useState()
   const [login, setLogin] = useState(false);
+
+
+  const defineToken = (newToken) => {
+    setToken(newToken)
+  }
+
+  useEffect( () => {
+    if(token){
+      axios.defaults.headers.common["Authorization"] = "Bearer " + token
+      localStorage.setItem("token",token)
+    
+        
+      
+    } else{
+      delete axios.defaults.headers
+      localStorage.removeItem("token")
+    }
+
+  },[token])
 
   const fecharLogin = () => {
     // setBarraAberta(prevState => !prevState);
@@ -19,7 +39,7 @@ const Authentication = ({ children }) => {
   }
 
   return (
-    <AuthenticationContext.Provider value={{ login, fecharLogin, abrirLogin }}>
+    <AuthenticationContext.Provider value={{ login, token,fecharLogin, abrirLogin }}>
       {children}
     </AuthenticationContext.Provider>
   );

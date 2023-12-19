@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import './login.css'
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import api from '../../api'
 import { AuthenticationContext } from '../../context/Authentication'
 import { useNavigate } from 'react-router-dom'
@@ -11,17 +11,31 @@ function Login(){
     const [formDataLogin, setFormData] = useState({
         email: '',
         senha: '',
-      });
-      const handleChange = (e) => {
+    });
+
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formDataLogin, [name]: value });
-      };
-    const handleSubmit = (e) => {
+    };
+
+    useEffect(() => {
+       
+    }, [])
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Aqui você pode adicionar lógica para enviar os dados para o servidor
-        abrirLogin()
-        console.log('Dados do formulário:', formDataLogin);
-        navigate('/')
+        
+        const checkLogin = async () => {
+            const response = api.post("/access/login",formDataLogin,{ headers: { "ngrok-skip-browser-warning": "any" }})
+            return response
+        }
+        const x = await checkLogin()
+        
+        console.log("Response: ",x)
+       
+        // abrirLogin()
+        // console.log('Dados do formulário:', formDataLogin);
+        // navigate('/')
       };
     return(
         <div className='Main'>
