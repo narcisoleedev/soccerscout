@@ -112,3 +112,15 @@ div.login_texto{
 img#first_img{
     margin-left: 10%;
 }
+.Barra span:hover {
+    text-decoration: underline;
+}
+
+.sair_barra span {
+    cursor: pointer;
+}
+
+#welcome,#explore:hover {
+    text-decoration: none;
+    cursor: default;
+}

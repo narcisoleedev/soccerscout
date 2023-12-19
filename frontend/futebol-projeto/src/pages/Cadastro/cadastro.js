@@ -1,22 +1,44 @@
 import './cadastro.css'
 import {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import api from '../../api'
 
 function Cadastro(){
+
+    const [errorPass, setErrorPass] = useState(false)
+    const [confirmPass, setConfirmPass] = useState("")
+    const navigate = useNavigate()
+
     const [formData, setFormData] = useState({
         email: '',
-        nome: '',
-        senha: '',
-        senha2: '',
+        password: '',
+        name: '',
       });
     const handleChange = (e) => {
         const { name, value } = e.target;
+        if(name === "senha2")
+        setConfirmPass( value)
         setFormData({ ...formData, [name]: value });
       };
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aqui você pode adicionar lógica para enviar os dados para o servidor
-        console.log('Dados do formulário:', formData);
+        if(formData.password !== confirmPass){
+            setErrorPass(true)
+            return
+        } else
+            setErrorPass(false)
+        const signUp = async () => {
+            try{
+                const response = await api.post('/access/create', formData, {  headers: { "ngrok-skip-browser-warning": "any" } })
+                return response
+            }catch(error){
+                return undefined
+            }
+        }
+        const x = signUp()
+        if(x!= undefined){
+            navigate('/')
+        }
       };
     return(
         <div className='Main'>
@@ -32,16 +54,18 @@ function Cadastro(){
                     </input>
                     {/*Campo de Nome*/}
                     <label for="nome">Nome de usuário:</label>
-                    <input type="text" id="nome" name="nome" onChange={handleChange} value={formData.nome} required>
+                    <input type="text" id="name" name="name" onChange={handleChange} value={formData.name} required>
                     </input>
                     {/*Campo de Senha*/}
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" onChange={handleChange} value={formData.senha} required>
+                    <input type="password" id="password" name="password" onChange={handleChange} value={formData.password} required>
                     </input>
                     {/*Campo de Senha 2*/}
                     <label for="senha2">Confirme Sua Senha:</label>
-                    <input type="password" id="senha2" name="senha2" onChange={handleChange} value={formData.senha2} required>
+                    <input type="password" id="senha2" name="senha2" onChange={handleChange} value={formData.password2} required>
                     </input>
+                    {errorPass &&
+                    <h4 className='error_password'>Senhas não coincidem</h4>}
                     {/*Botão de envio*/}
                     <button type="submit">Criar Conta</button>
                 </form>
@@ -53,7 +77,9 @@ function Cadastro(){
                 
                 
             </div>
-            <div className='espaco'>espaço</div>
+            <div className="buraco">
+                    &nbsp;
+            </div>
         </div>
         <div className="side"></div>
     </div>

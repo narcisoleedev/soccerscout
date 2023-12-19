@@ -5,7 +5,7 @@ import plus from "../../imagens/mais.png"
 import minus from "../../imagens/minus.png"
 import {useState} from "react"
     
-const Select = (props) => {
+const Select = (props) => {  
     const [listVisible, setListVisible] = useState(false)
     const [upArrow, setupArrow] = useState(true)
     const [listEmpty, setUpEmpty] = useState(false)

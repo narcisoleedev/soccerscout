@@ -1,20 +1,55 @@
 import { Link } from 'react-router-dom'
 import './login.css'
-import {useState} from 'react'
+import {useState, useContext, useEffect} from 'react'
+import api from '../../api'
+import { AuthenticationContext } from '../../context/Authentication'
+import { useNavigate } from 'react-router-dom'
 
 function Login(){
+    const navigate = useNavigate()
+    const {abrirLogin,defineToken} = useContext(AuthenticationContext)
+    const [failLogin,setfailLogin] = useState(false)
+
     const [formDataLogin, setFormData] = useState({
         email: '',
-        senha: '',
-      });
-      const handleChange = (e) => {
+        password: '',
+    });
+
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formDataLogin, [name]: value });
-      };
-    const handleSubmit = (e) => {
+    };
+
+    useEffect(() => {
+       
+    }, [])
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Aqui você pode adicionar lógica para enviar os dados para o servidor
-        console.log('Dados do formulário:', formDataLogin);
+        
+        const checkLogin = async () => {
+            try{
+                const response = await api.post("/access/login",formDataLogin,{ headers: { "ngrok-skip-browser-warning": "any" }})
+
+                const {data} = response
+                return data.accessToken
+            }catch(error){
+                console.error("ERROR CHECKLOGIN",error)
+                setfailLogin(true)
+                return undefined
+            }
+        }
+        const x = await checkLogin()
+        if(x!=undefined){
+            defineToken(x)
+            abrirLogin()
+            navigate('/')
+        }
+        console.log("Response: ",x)
+       
+        // abrirLogin()
+        // console.log('Dados do formulário:', formDataLogin);
+        // navigate('/')
       };
     return(
         <div className='Main'>
@@ -32,11 +67,12 @@ function Login(){
                     <br/>
                     {/*Campo de Senha*/}
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" onChange={handleChange} value={formDataLogin.senha} required>
+                    <input type="password" id="senha" name="password" onChange={handleChange} value={formDataLogin.password} required>
                     </input>
                     <p id ="forgot" className='Verde'>Esqueci minha Senha</p>
                     <br/>
                     {/*Botão de envio*/}
+                    {failLogin && <p className='falha'>Usuario ou senha incorretos</p>}
                     <button type="submit">Entrar</button>
                 </form>
             </div>
@@ -50,7 +86,9 @@ function Login(){
                 
                 
             </div>
-            <div className='espaco'>espaço</div>
+            <div className="buraco">
+                    &nbsp;
+            </div>
         </div>
         <div className="side"></div>
 </div>

@@ -10,12 +10,14 @@ import { Link } from 'react-router-dom'
 
 
 function ComparacaoExemplo(){
+    const player = {
+        "Jogador": "Fabinho", "Posição":"VOL","Time": "Al-Ittihad","País":"Brasil","Valor":"42 M €", "Idade":29,"Assist":0.053,"Gols/90 min.":0.053,"Ações/90min":80,"Val. Médio/ Ação":0.006,"Rating":0.480
+    }
+
     const [filter, setFilter] = useState({})
 
     const {players} = info
-    const player = {
-        "Jogador": "Fabinho", "Time": "Al-Ittihad","País":"Brasil", "Idade":29, "Posição":"VOL","Car.Amar./90 min.":0.303,"Assist./90min":0.053,"Gols/90 min.":0.053,"Ações/90min":80,"Val. Médio/ Ação":0.006,"Rating":0.480,"Val mercado":"42 M €"
-    }
+
 
     const applyFilter = (filterApplied) => {
         setFilter(filterApplied);
@@ -50,7 +52,7 @@ function ComparacaoExemplo(){
                         <p>Escolha até 10 opções de liga, país, posição. Para remover, clique no ícone de "-" ao lado da opção selecionada</p>
                         <p>Escolha as idades mínima e máxima. Clique em confirmar para gerar o gráfico e tabela </p>
                     </section>
-                    <Filter applyFilter={applyFilter}/>
+                    <Filter applyFilter={applyFilter} isExample = {true}/>
                     
                     <h1>Gráfico</h1>
                     <Grafico data={data} />
@@ -66,8 +68,8 @@ function ComparacaoExemplo(){
                         <p>Para uma comparacao mais realista, busque jogadores de posições semelhantes </p>
                     </section>
                     <div className='tables-x'>
-                        <Tabela1v1 players = {player} isMirrored = {false}/>
-                        <Tabela1v1 players = {player} isMirrored = {true}/>
+                        <Tabela1v1 players={player} isMirrored = {false}/>
+                        <Tabela1v1 players={player} isMirrored = {true}/>
                     </div>
                     
                 </section>
@@ -88,7 +90,7 @@ function ComparacaoExemplo(){
                     </span>
                 </section>
 
-                <div className='espaco'>&nbsp;</div>
+                <div className='buraco'>&nbsp;</div>
             </div>
             <div className="side"></div>
         </div>

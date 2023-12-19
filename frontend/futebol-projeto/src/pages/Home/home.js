@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 
 function Home(){
     return (
-        <div className="main">
+        <div className="Main">
             <div className="side"></div>
             <div className="conteudo">
                 <div className="imagem_e_texto">

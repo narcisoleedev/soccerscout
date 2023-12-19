@@ -6,27 +6,37 @@ const TabelaColetiva = (props) => {
         <table cellSpacing="0">
             <thead>
                 <tr>
-                    <th >Rank.</th>
-                    <th >Jogador</th>
-                    <th >Time</th>
-                    <th >País</th>
-                    <th >Posição</th>
-                    <th >Idade</th>
-                    <th >Rating</th>
-                    <th >Val. Mercado</th>
+                    <th>Rank</th>
+                    <th>Jogador</th>
+                    <th>Posição</th>
+                    <th>Time</th>
+                    <th>País</th>
+                    <th>Valor</th>
+                    <th>Idade</th>
+                    <th>Assist</th>
+                    <th>Gols/90min</th>
+                    <th>Ações/90min</th>
+                    <th>Val. Médio/Ação</th>
+                    <th>Rating</th>
+                    
                 </tr>
             </thead>
             <tbody className="tableContent">
                 {props.players.map( player =>
-                    <tr key={player.rank}>
-                        <td>{player.rank}</td>
-                        <td>{player.jogador}</td>
-                        <td>{player.time}</td>
-                        <td>{player.pais}</td>
-                        <td>{player.posicao}</td>
-                        <td>{player.idade}</td>
-                        <td>{player.rating}</td>
-                        <td>{player.valor}</td>
+                    <tr key={player.Rank}>
+                        <td>{player.Rank}</td>
+                        <td>{player.Jogador}</td>
+                        <td>{player.Posição}</td>
+                        <td>{player.Time}</td>
+                        <td>{player.País}</td>
+                        <td>{player.Valor}</td>
+                        <td>{player.Idade}</td>
+                        <td>{player["Assist./90min"]}</td>
+                        <td>{player["Gols/90 min."]}</td>
+                        <td>{player["Ações/90min"]}</td>
+                        <td>{player["Val. Médio/ Ação"]}</td>
+                        <td>{player.Rating}</td>
+                       
                     </tr>
                 )}
                 

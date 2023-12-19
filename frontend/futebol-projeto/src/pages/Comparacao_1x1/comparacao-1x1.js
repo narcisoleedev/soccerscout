@@ -3,9 +3,7 @@ import Tabela1v1 from '../../components/Tabela1v1/Tabela1v1'
 import { Link } from 'react-router-dom'
 
 function Comparacao1v1(){
-    const player = {
-        "Jogador": "Fabinho", "Time": "Al-Ittihad","País":"Brasil", "Idade":29, "Posição":"VOL","Car.Amar./90 min.":0.303,"Assist./90min":0.053,"Gols/90 min.":0.053,"Ações/90min":80,"Val. Médio/ Ação":0.006,"Rating":0.480,"Val mercado":"42 M €"
-    }
+
     return (
         <div className='Main'>
             <div className="side"></div>
@@ -13,8 +11,8 @@ function Comparacao1v1(){
                 <section className="x-exemplo">
                         <h1>COMPARACAO 1X1</h1>
                         <div className='tables-x'>
-                            <Tabela1v1 players = {player} isMirrored = {false}/>
-                            <Tabela1v1 players = {player} isMirrored = {true}/>
+                            <Tabela1v1 isMirrored = {false}/>
+                            <Tabela1v1 isMirrored = {true}/>
                         </div>
                         
                 </section>
@@ -33,7 +31,7 @@ function Comparacao1v1(){
                         </Link> 
                     </span>
                 </section>
-                <div className='espaco'>&nbsp;</div>
+                <div className='buraco'>&nbsp;</div>
             </div>
             <div className="side"></div>
     </div>

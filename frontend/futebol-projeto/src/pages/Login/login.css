@@ -1,20 +1,3 @@
-.Main{
-    height: 100%;
-    /* align-content: center; */
-    display: flex;
-    width: 100%;
-}
-.conteudo{
-    flex:8;
-    background-color: #FFFFFF;
-    padding-top: 1%;
-  }
-.conteudo h1{
-    font-size: xx-large;
-    text-align: center;
-    font-weight: 900;
-    text-transform: none;
-}
 .Formulario_Login{
     margin: auto;
     width: 25%;
@@ -57,14 +40,12 @@ form button{
 .Verde{
     color: #90cf54;;
 }
-
-.side{
-    flex:1;
-    background-color: #F5F5F5;
+.Formulario_Login input{
+    margin: 8px 0;
 }
 
-.espaco{
-    font-size: xxx-large;
-    padding-top:7%;
+p.falha {
+    font-size: medium;
+    margin:auto;
+    color: red;
 }
-

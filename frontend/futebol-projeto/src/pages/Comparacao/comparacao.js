@@ -57,7 +57,9 @@ function Comparacao(){
                         </Link>
                     </div>
                 </div>
-                <div className='espaco'>espaço</div>
+                <div className="buraco">
+                    &nbsp;
+                </div>
             </div>
             <div className="side"></div>
         </div>

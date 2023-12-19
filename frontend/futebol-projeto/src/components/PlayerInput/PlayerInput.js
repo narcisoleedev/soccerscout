@@ -1,31 +1,46 @@
 import "./PlayerInput.css"
 import lupa from "../../imagens/lupa.png"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import info from '../../info.js'
+import { AuthenticationContext } from "../../context/Authentication.js"
+import api from "../../api.js"
+import fetch from '../../fetch.js'
+
+let nomes = []
 
 
 const PlayerInput = (props) => {
-    const [player, setPlayer] = useState({})
+    const {BuscarNomes} = fetch
+    const [player, setPlayer] = useState("")
     const [textInput, setTextInput] = useState("")
     const [playersVisible, setPlayersVisible] = useState(false)
+    const [names, setnames] = useState([])
+    const [loading,setloading] = useState(true)
 
-    const {players} = info
-
-
+    useEffect(() => {
+        const fetchNames = async () => {
+            const players = await BuscarNomes()
+            setnames(players)
+            setloading(false)
+        }
+        fetchNames()
+        return () => {}
+    }, [])
+   
     const changeInput = (event) => {
         event.preventDefault()
-        setTextInput( event.target.value)
+        setTextInput(event.target.value)
     }
 
-    const choosePlayer = (event) =>{       
-        const player = players.filter(player => player.rank === event.target.value)[0]
+    const choosePlayer = (event) => {
+        const player = names.filter(player => player === event.target.innerHTML)[0]
         setPlayer(player)
         setPlayersVisible(false)
-        setTextInput(player.jogador)
+        setTextInput(player)
     }
 
-    useEffect (() => {
-        if(player.jogador !== undefined){
+    useEffect(() => {
+        if (player !== undefined) {
             setPlayersVisible(false)
             props.func(player)
 
@@ -34,30 +49,34 @@ const PlayerInput = (props) => {
 
     useEffect(() => {
         setPlayersVisible(textInput !== "")
-    },[textInput])
-
-    return(
+    }, [textInput])
+     if(loading){
+         return (
+             <h2>Carregando nomes...</h2>
+         )
+    }
+    return (
         <div>
-            <div className="input-group">   
-                <input value={textInput} onChange={changeInput} type="text" placeholder="Escreva o nome do jogador desejado"/>
-                <img src={lupa} className="input-icon"/>
+            <div className="input-group">
+                <input value={textInput} onChange={changeInput} type="text" placeholder="Escreva o nome do jogador desejado" />
+                <img src={lupa} className="input-icon" />
             </div>
 
             {
-                playersVisible && (textInput != player.jogador)&&
+                playersVisible && (textInput != player) &&
                 <div className="player-list">
                     <ul>
-                    {players.filter(players => players.jogador.toUpperCase().includes(textInput.toUpperCase())).map( player =>
-                        <li value={player.rank} onClick={choosePlayer}>{player.jogador}</li>
-                    )}
+                        {names.filter(players => players.toUpperCase().includes(textInput.toUpperCase())).map(player =>
+                            <li value={player} onClick={choosePlayer}>{player}</li>
+                        )}
                     </ul>
                 </div>
 
             }
 
-           
+
         </div>
-        
+
     )
 }
 
