@@ -18,7 +18,7 @@ const Profile = () => {
         const {sub} = payload
         setname(sub.name)
         setemail(sub.email)
-        console.log(payload)
+        
     }
     }, [])
     const [oldPass, setOldPass] = useState("")
@@ -56,7 +56,7 @@ const Profile = () => {
         const json = {
             "password" : newPass
         }
-        console.log(json)
+        
     }
 
     return(

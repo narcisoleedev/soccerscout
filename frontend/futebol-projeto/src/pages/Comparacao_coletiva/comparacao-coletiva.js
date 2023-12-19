@@ -28,7 +28,7 @@ function ComparacaoColetiva(){
             const {result} = data
             const dataTabela = MudarDataTabelaColetiva(result)
             await setdataTabela(dataTabela)
-            console.log("data tabela:",dataTabela)
+
             const dataGrafico = MudarDataGrafico(result)
             await setdataGraph(dataGrafico)
             return false
@@ -68,7 +68,7 @@ function ComparacaoColetiva(){
             setHide(true)
             return        
         }
-        console.log(atualizarFiltro(filter));
+
       }, [filter]);
     
 
@@ -79,7 +79,6 @@ function ComparacaoColetiva(){
       useEffect(() => {
             setdataGraph(dataG)
             setdataTabela(players)
-            console.log("dados carregados", dataTabela)
 
       },[])
     const dataG = [

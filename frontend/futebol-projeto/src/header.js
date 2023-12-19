@@ -12,11 +12,9 @@ function Header(){
     const fecharBarra = () => {
         // setBarraAberta(prevState => !prevState);
         setBarraAberta(false)
-        console.log(`Estado atual: ${barraAberta}`)
       };
       const abrirBarra= () => {
         setBarraAberta(true);
-        console.log(`Estado atual: ${barraAberta}`)
       }
     return (
         <div className="header">

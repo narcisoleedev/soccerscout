@@ -16,8 +16,6 @@ const Authentication = ({ children }) => {
 
   useEffect( () => {
     if(token){
-      console.log("TOKEN:",token)
-      //axios.defaults.headers.common["Authorization"] = "Bearer " + token
       localStorage.setItem("token",token)
     
         
@@ -33,11 +31,9 @@ const Authentication = ({ children }) => {
     // setBarraAberta(prevState => !prevState);
     setLogin(false)
     localStorage.removeItem("token")
-    console.log(`Estado atual login: ${login}`)
   };
   const abrirLogin= () => {
     setLogin(true);
-    console.log(`Estado atual login: ${login}`) 
   }
 
   return (
@@ -49,5 +45,3 @@ const Authentication = ({ children }) => {
 
 export { Authentication, AuthenticationContext }; // Exportando o contexto
 
-
-//NAO TO USANDO ISSO PRA NADA ATUALMENTE

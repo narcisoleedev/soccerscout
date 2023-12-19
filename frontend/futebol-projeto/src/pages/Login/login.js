@@ -29,9 +29,8 @@ function Login(){
         
         const checkLogin = async () => {
             try{
-                console.log("Request:",formDataLogin)
                 const response = await api.post("/access/login",formDataLogin,{ headers: { "ngrok-skip-browser-warning": "any" }})
-                console.log("response",response)
+
                 const {data} = response
                 return data.accessToken
             }catch(error){
