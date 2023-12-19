@@ -6,30 +6,30 @@ import Grafico from '../../components/Graficos/grafico'
 import info from '../../info.js'
 import { Link } from 'react-router-dom'
 import fetch from '../../fetch.js'
+import tratamento from "../../TratarDados.js"
 
 function ComparacaoColetiva(){
     const [filter, setFilter] = useState({})
     const [hide, setHide] = useState(true)
     const {BuscarColetivo} = fetch
+    const {MudarDataTabelaColetiva, MudarDataGrafico} = tratamento 
+    const [loading, setloading] = useState(false)
 
-    const MudarDataGrafico = (data) => {
-        const saida = data.map(
-            (player) => {
-                const { name, actions_value_avg, actions_avg, ...rest } = player;
-                const x = actions_value_avg;
-                const y = actions_avg;
-                return { name, x, y };
-            }
-        )
-        return saida
+    const atualizarFiltro = (filtro) => {
+        if(filtro["league"] == undefined) filtro["league"] = null 
+        if(filtro["position"] == undefined) filtro["position"] = null 
+        if(filtro["country"] == undefined) filtro["country"] = null 
+        return filtro
     }
 
     const FetchTabela = async (filter) => {
         try{
             const data = await BuscarColetivo(filter)
-            console.log("resposta da API:",data)
-            await setdataTabela(data)
-            const dataGrafico = MudarDataGrafico(data)
+            const {result} = data
+            const dataTabela = MudarDataTabelaColetiva(result)
+            await setdataTabela(dataTabela)
+            console.log("data tabela:",dataTabela)
+            const dataGrafico = MudarDataGrafico(result)
             await setdataGraph(dataGrafico)
             return false
         }catch(error){
@@ -38,15 +38,6 @@ function ComparacaoColetiva(){
         }
     }
 
-    const MostrarConteudo = async() => {
-        try{
-            const resposta = await FetchTabela(filter)
-            setHide(true)
-        }
-        catch(error){
-            setHide(false)
-        }
-    }
     const applyFilter = (filterApplied) => {
         setFilter(filterApplied);
     };
@@ -55,8 +46,8 @@ function ComparacaoColetiva(){
         setFilter({})
     }
 
-    const checkFilter = ({ligas, pais, posicao, idadeMax, idadeMin}) => {
-        if(ligas.length === 0 && pais.length === 0 && posicao.length === 0 && idadeMin === 0 && idadeMax === 2000){
+    const checkFilter = ({league, country, position}) => {
+        if(league === undefined && country === undefined && position === undefined){
             setFilter({})
             return false
         }
@@ -65,23 +56,19 @@ function ComparacaoColetiva(){
            
     useEffect(() => {       
         if(Object.keys(filter).length !== 0 && checkFilter(filter)){
-            (async () => {
-                    try {
-                        const busca = await FetchTabela(filter)
-                        setHide(busca)
-                        console.log("EU ESTOU AQUI ")
-                    }catch(error){
-                        console.error("ERRO:",error)
-                    }
-                })()
-            
-            return
+                const Buscar = async (filter) => {
+                    const resposta = await FetchTabela(filter)
+                    setHide(resposta)
+                    setloading(false)
+                }
+                setloading(true)
+                Buscar(filter)
         }
          else{
             setHide(true)
             return        
         }
-        console.log(filter);
+        console.log(atualizarFiltro(filter));
       }, [filter]);
     
 
@@ -128,7 +115,9 @@ function ComparacaoColetiva(){
                         </h1>
                      </div>
                 }
-               
+               {loading &&
+                <h1>Loading...</h1>
+               }
             </section>
 
 
