@@ -34,7 +34,7 @@ function ComparacaoColetiva(){
             await setdataGraph(dataGrafico)
             if(result.length==9){
                 setNoneFound(true)
-                returntrue
+                return true
             }
             setNoneFound(false)
             return false
