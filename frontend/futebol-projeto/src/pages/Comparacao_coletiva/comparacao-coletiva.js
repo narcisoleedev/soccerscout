@@ -27,15 +27,14 @@ function ComparacaoColetiva(){
         try{
             const data = await BuscarColetivo(filter)
             const {result} = data
-            const dataTabela = MudarDataTabelaColetiva(result)
-            await setdataTabela(dataTabela)
-
-            const dataGrafico = MudarDataGrafico(result)
-            await setdataGraph(dataGrafico)
-            if(result.length==9){
+            if(result.length==0){
                 setNoneFound(true)
                 return true
             }
+            const dataTabela = MudarDataTabelaColetiva(result)
+            await setdataTabela(dataTabela)
+            const dataGrafico = MudarDataGrafico(result)
+            await setdataGraph(dataGrafico)   
             setNoneFound(false)
             return false
         }catch(error){
