@@ -15,7 +15,13 @@ class AnalyzeController:
 
     @classmethod
     def _is_valid_player(
-        cls, player: dict, position: str, age_min: int, age_max: int, country: str
+        cls,
+        player: dict,
+        position: str,
+        age_min: int,
+        age_max: int,
+        country: str,
+        league: str,
     ):
         date_nasc = datetime.strptime(player.get("date_nasc", "01/01/2000"), "%d/%m/%Y")
         today = datetime.now()
@@ -25,20 +31,33 @@ class AnalyzeController:
             - ((today.month, today.day) < (date_nasc.month, date_nasc.day))
         )
 
+        is_position = player.get("position", "") == position if position else True
+        is_country = player.get("nationality", "") == country if country else True
+        if league:
+            valid_clubs = cls._get_valid_club(league)
+            is_club = player.get("id_club", 0) in valid_clubs
+        else:
+            is_club = True
+        age_min = age_min or 0
+        age_max = age_max or 1000
+        actions_avg = player.get("actions_avg", 0) > 0.001
+        actions_value_avg = player.get("actions_value_avg", 0) > 0.001
+
         return (
-            player.get("position", "") == position
+            is_position
+            and is_country
+            and is_club
             and age >= age_min
             and age <= age_max
-            and player.get("nationality") == country
+            and actions_avg
+            and actions_value_avg
         )
 
     @classmethod
     def _get_valid_club(cls, league: str):
         query = select(cls.club_dao.id).where(cls.club_dao.id_league == league)
         result = DatabaseManager.session_execute_query(query)
-        result = [item[0] for item in result]
-        players = [cls._format_player_dao(player_dao) for player_dao in result]
-        return
+        return [item[0] for item in result]
 
     @classmethod
     def analyze(
@@ -48,5 +67,5 @@ class AnalyzeController:
         return [
             player
             for player in players
-            if cls._is_valid_player(player, position, age_min, age_max, country)
+            if cls._is_valid_player(player, position, age_min, age_max, country, league)
         ]

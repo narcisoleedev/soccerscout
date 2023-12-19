@@ -2,7 +2,7 @@ import pandas as pd
 from services.database.connector import DATABASE_URI
 
 club = pd.read_csv("./csvs/club.csv", sep="|")
-jogadores = pd.read_csv("./csvs/jogadores.csv", sep="|")
+jogadores = pd.read_csv("./csvs/teste.csv", sep="|")
 ligas = pd.read_csv("./csvs/ligas.csv", sep="|")
 
 club.to_sql("club", con=DATABASE_URI)
