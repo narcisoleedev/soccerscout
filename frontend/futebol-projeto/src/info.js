@@ -1,6 +1,3 @@
-import api from "./api"
-import { useState } from "react"
-
 const clubs = [
     {"id": 212, "name": "Atlético Madrid"},
     {"id": 220, "name": "Real Madrid"},
@@ -261,11 +258,26 @@ const league = [
     {"value": 12, "Label": "FIFA World Cup"},
     {"value": 13, "Label": "Women's World Cup"}
   ]
-const pais = ["França", "Brasil", "Italia", "Espanha"]
+const pais = ['Croatia', 'France', 'Portugal', 'Spain', 'Argentina', 'Brazil', 'Wales', 'Germany', 'Uruguay', 'Belgium', 'Mexico', 'Chile', 'Cameroon', 
+              'Turkey', 'Italy', 'Serbia', 'Morocco', 'Albania', 'Colombia', 'Paraguay', 'Poland', 'Netherlands', 'Algeria', 'Austria', 'Mozambique', 
+              'Greece', '1978', 'Costa Rica', '-', 'Gabon', 'Russia', 'Switzerland', 'Congo', 'Romania', 'Cape Verde', 'Ghana', 'Nigeria', 'Burkina Faso', 
+              'Slovenia', 'Guadeloupe', 'England', 'Ecuador', 'Korea, South', 'Mali', 'Haiti', 'Norway', "Cote d'Ivoire", 'Venezuela', 'Togo', 'Eritrea', 
+              'Peru', 'Equatorial Guinea', 'Israel', 'Japan', 'Czech Republic', 'Sweden', 'Indonesia', 'Hungary', 'Iran', 'Lithuania', 'Senegal', 'Denmark', 
+              'Australia', 'Ukraine', 'Finland', 'Ireland', 'Bulgaria', 'Iceland', 'Canada', 'Fiji', 'India', 'Martinique', 'Mauritania', 'Scotland', 'Malaysia', 
+              'Montenegro', 'Kyrgyzstan', 'Bosnia-Herzegovina', 'Bhutan', 'Jamaica', 'Sri Lanka', 'Nepal', 'North Macedonia', 'Guinea', 'Tunisia', 'South Africa', 
+              'Angola', 'DR Congo', 'China', 'United States', 'Central African Republic', 'Georgia', 'Slovakia', 'Dominican Republic', 'The Gambia', 'Honduras', 
+              'Egypt', 'Kenya', 'Panama', 'United Arab Emirates', 'Guinea-Bissau', 'Qatar', 'Trinidad and Tobago', 'Northern Ireland', 'Gibraltar', 'Guyana', 
+              'Grenada', 'Latvia', 'Bolivia', 'Suriname', 'Moldova', 'Liechtenstein', 'Kazakhstan', 'Madagascar', 'Monaco', 'Chad', 'Burundi', 'Benin', 
+              'French Guiana', 'Laos', 'Neukaledonien', 'Comoros', 'Mauritius', 'Sierra Leone', 'Zimbabwe', 'Curacao', 'New Zealand', 'Kosovo', 'Belarus', 'Armenia', 
+              'Estonia', 'Iraq']
 
-const posicao = ["Zagueiro", "Volante","Atacante"]
+const posicao = ['Right Center Midfield', 'Center Forward', 'Left Wing', 'Right Midfield', 'Left Center Midfield', 'Left Center Back', 
+                 'Right Back', 'Left Back', 'Right Wing', 'Right Center Back', 'Center Defensive Midfield', 'Left Center Forward', 
+                 'Right Defensive Midfield', 'Right Center Forward', 'Left Defensive Midfield', 'Left Midfield', 'Goalkeeper', 
+                 'Center Attacking Midfield', 'Substitute', 'Right Wing Back', 'Left Wing Back', 'Center Back', 'Center Midfield', 
+                 'Secondary Striker', 'Right Attacking Midfield', 'Left Attacking Midfield']
 
-const idades = [16,18,21,24,27,30,32,35]
+const idades = [16,18,21,24,27,30,32,35,50]
 
 const names = ["Jorge Verdade","Mauricio da Serra","José da Silve","João Pé de Feijão"]
 

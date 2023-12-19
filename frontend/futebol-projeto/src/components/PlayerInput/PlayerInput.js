@@ -4,28 +4,25 @@ import { useState, useEffect, useContext } from "react"
 import info from '../../info.js'
 import { AuthenticationContext } from "../../context/Authentication.js"
 import api from "../../api.js"
+import fetch from '../../fetch.js'
 
 let nomes = []
 
 
 const PlayerInput = (props) => {
+    const {BuscarNomes} = fetch
     const [player, setPlayer] = useState("")
     const [textInput, setTextInput] = useState("")
     const [playersVisible, setPlayersVisible] = useState(false)
     const [names, setnames] = useState([])
+    const [loading,setloading] = useState(true)
 
     useEffect(() => {
         const fetchNames = async () => {
-            const { data } = await api.get('/player', { headers: { "ngrok-skip-browser-warning": "any" } })
-            const dataPlayers = data.players
-            let players = []
-            dataPlayers.map((player) => {
-                players.push(player.name)
-            })
+            const players = await BuscarNomes()
             setnames(players)
+            setloading(false)
         }
-        //setnames(info.names)
-
         fetchNames()
         return () => {}
     }, [])
@@ -53,7 +50,11 @@ const PlayerInput = (props) => {
     useEffect(() => {
         setPlayersVisible(textInput !== "")
     }, [textInput])
-
+     if(loading){
+         return (
+             <h2>Carregando nomes...</h2>
+         )
+    }
     return (
         <div>
             <div className="input-group">

@@ -31,10 +31,10 @@ const TabelaColetiva = (props) => {
                         <td>{player.País}</td>
                         <td>{player.Valor}</td>
                         <td>{player.Idade}</td>
-                        <td>{player.Assist}</td>
-                        <td>{player.Gols}</td>
-                        <td>{player.Acoes}</td>
-                        <td>{player.ValorAcao}</td>
+                        <td>{player["Assist./90min"]}</td>
+                        <td>{player["Gols/90 min."]}</td>
+                        <td>{player["Ações/90min"]}</td>
+                        <td>{player["Val. Médio/ Ação"]}</td>
                         <td>{player.Rating}</td>
                        
                     </tr>

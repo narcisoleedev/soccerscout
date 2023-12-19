@@ -17,8 +17,6 @@ const Filters = (props) => {
     const [selectedMax, setSelectedMax] = useState("")
     const [selectedMin, setSelectedMin] = useState("")
     
-   
-
     const ligasFilterAdd = (liga) => {
         
         setLigas([...ligasSelecionadas, liga])
@@ -55,11 +53,11 @@ const Filters = (props) => {
 
     const applyFilter = () => {
         props.applyFilter({
-            "ligas": changeLigas(ligasSelecionadas),
-            "pais": paisSelecionadas,
-            "posicao": posicaoSelecionadas,
-            "idadeMin": idadeMinSelecionada,
-            "idadeMax": idadeMaxSelecionada 
+            "league": changeLigas(ligasSelecionadas),
+            "country": paisSelecionadas,
+            "position": posicaoSelecionadas,
+            "age_min": idadeMinSelecionada,
+            "age_max": idadeMaxSelecionada 
         })
     }
 

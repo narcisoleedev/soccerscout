@@ -6,8 +6,8 @@ const MudarDataGrafico = (data) => {
     const saida = data.map(
         (player) => {
             const { name, actions_value_avg, actions_avg, ...rest } = player;
-            const x = actions_value_avg;
-            const y = actions_avg;
+            const x = parseFloat(actions_value_avg).toFixed(4);
+            const y = parseFloat(actions_avg).toFixed(3);
             return { name, x, y };
         }
     )
@@ -31,8 +31,8 @@ const MudarDataTabela = (data) => {
             const { name, position, id_club, date_nasc, nationality, market_value, actions_value_avg, actions_avg, assist_avg,goals_avg,...rest } = player;
             return { 
                 "Jogador": name, "Posição": position, "Time": ConverterCLube(id_club), "País": nationality, "Valor": market_value,
-                "Idade": ConverterIdade(date_nasc), "Assist./90min":parseFloat(assist_avg).toFixed(2), "Gols/90 min.": parseFloat(goals_avg).toFixed(2), 
-                "Ações/90min": parseFloat(actions_avg).toFixed(2),  "Val. Médio/ Ação": parseFloat(actions_value_avg).toFixed(2), 
+                "Idade": ConverterIdade(date_nasc), "Assist./90min":parseFloat(assist_avg).toFixed(4), "Gols/90 min.": parseFloat(goals_avg).toFixed(2), 
+                "Ações/90min": parseFloat(actions_avg).toFixed(2),  "Val. Médio/ Ação": parseFloat(actions_value_avg).toFixed(4), 
                 "Rating":parseFloat(actions_value_avg*actions_avg).toFixed(2)
             };
         }
@@ -40,20 +40,18 @@ const MudarDataTabela = (data) => {
     return saida
 }
 
-const playerTeste = [{
-    id: 5463,
-    name: "Luka Modrić",
-    position: "Right Center Midfield",
-    id_club: 220,
-    date_nasc: "01/01/2000",
-    nationality: "None",
-    market_value: "None",
-    assist_avg: 0.14925373134328357,
-    goals_avg: 0.13432835820895522,
-    actions_avg: 131.955223880597,
-    actions_value_avg: 0.0034747291143370183,
-    rating_avg: 0.45850865820676984
-  }];
-  console.log("Assim ficou a data atualizada:",MudarDataTabela(playerTeste))
+const OrdenarRating = (array) => {
+    let saida = array.sort((a,b) => b["Rating"] - a["Rating"])
+    return saida
+}
 
-  export default {MudarDataTabela}
+const MudarDataTabelaColetiva = (data) => {
+    const dataAtualizada = MudarDataTabela(data)
+    const dataOrdenado = OrdenarRating(dataAtualizada)
+    for(let i=0; i<dataOrdenado.length; i++){
+        dataOrdenado[i]["Rank"] = (i+1)
+    }
+    return dataOrdenado
+}
+
+  export default {MudarDataTabela,MudarDataTabelaColetiva,MudarDataGrafico}
