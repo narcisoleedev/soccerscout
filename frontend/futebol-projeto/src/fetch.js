@@ -21,7 +21,6 @@ const Buscar1v1 = async (jogador) => {
         const { data } = response
         return data
     }catch(error){
-        console.log(jogador)
         console.error("Erro ao obter resultados",error)
     }
 }

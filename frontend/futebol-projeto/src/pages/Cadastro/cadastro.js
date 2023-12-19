@@ -32,13 +32,11 @@ function Cadastro(){
                 const response = await api.post('/access/create', formData, {  headers: { "ngrok-skip-browser-warning": "any" } })
                 return response
             }catch(error){
-                console.log("Erro singUp",error)
                 return undefined
             }
         }
         const x = signUp()
         if(x!= undefined){
-            console.log("Conta registrada:",formData)
             navigate('/')
         }
       };
