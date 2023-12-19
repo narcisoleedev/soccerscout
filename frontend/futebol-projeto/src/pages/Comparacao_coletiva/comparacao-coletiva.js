@@ -14,6 +14,7 @@ function ComparacaoColetiva(){
     const {BuscarColetivo} = fetch
     const {MudarDataTabelaColetiva, MudarDataGrafico} = tratamento 
     const [loading, setloading] = useState(false)
+    const [NoneFound, setNoneFound] = useState(false)
 
     const atualizarFiltro = (filtro) => {
         if(filtro["league"] == undefined) filtro["league"] = null 
@@ -31,6 +32,11 @@ function ComparacaoColetiva(){
             console.log("data tabela:",dataTabela)
             const dataGrafico = MudarDataGrafico(result)
             await setdataGraph(dataGrafico)
+            if(result.length==9){
+                setNoneFound(true)
+                returntrue
+            }
+            setNoneFound(false)
             return false
         }catch(error){
             console.error("Erro",error)
@@ -117,6 +123,9 @@ function ComparacaoColetiva(){
                 }
                {loading &&
                 <h1>Loading...</h1>
+               }
+               {NoneFound &&
+                <h1>Nenhum jogador encontrado</h1>
                }
             </section>
 
