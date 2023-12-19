@@ -2,12 +2,11 @@ from flask import request, jsonify
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from api.app import app, basic_auth
+from api.app import app
 from services.controllers.user import UserController
 
 
 @app.route("/access/create", methods=["POST"])
-@basic_auth.required
 def create_route():
     payload = request.get_json()
     assert isinstance(payload, dict)
@@ -31,9 +30,8 @@ def login_route():
     except KeyError:
         return jsonify({"msg": "Sending Object Error"}), 400
 
-    is_login = UserController(email=email).login(password)
-    if is_login:
-        identity = {"email": email}
+    if is_login := UserController(email=email).login(password):
+        identity = {"email": is_login.email,  "name": is_login.name}
         access_token = create_access_token(
             identity=identity, additional_headers=identity, fresh=True
         )
