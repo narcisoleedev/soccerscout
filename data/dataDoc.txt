@@ -1,0 +1,14 @@
+Here how it works:
+    In src folder, run these files in this order:
+    matchSep.py (Completed)
+        Transform all the JSON files from open-data folder into csv files on a folder called org-data.
+    treatEvents.py (Under review)
+        It treats the games in the org-data folder and discard some attributes, organizing these games. The files are going to be on the proc-data folder.
+    modelParse.py<-(add_features.py, add_labels.py)<-(modelParse/features.py, modelParse/labels.py) (Ongoing)
+        It literally make the games model readable, it means the files are going to be made up by features and two labels (scores, and concedes)
+    catboostModel.py (Ongoing)
+        Train the model, using grid search and accurate evaluation metrics.
+    estimatingProbabilities.py (Ongoing)
+        Runs the model on all files and estimate the probabilities of scores and concedes for all actions.
+    vaep.py (TBD)
+        Shape all the files into more organized and readable files, with the VAEP metric calculated. By these files, some attributes are going to be sent to the SQL database.

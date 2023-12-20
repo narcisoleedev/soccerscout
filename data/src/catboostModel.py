@@ -5,10 +5,8 @@ import numpy as np
 import pandas as pd
 
 from catboost import CatBoostClassifier, Pool
-
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
-
 import matplotlib.pyplot as plt
 import seaborn as sb
 
@@ -25,14 +23,9 @@ def trainModel():
     for file in training_files:
         df = pd.read_csv(file, sep='|')
         training_data = pd.concat([training_data, df], ignore_index=True)
-        
-    #I am going to split the features and labels in the training_data:
 
+    #I am going to split the features and labels in the training_data:
     training_labels = training_data[["Scores",'Concedes']]
-    
-    ## DESCOMENTE ESSA LINHA E COMENTE A PRÓXIMA para remover o result ID
-    # training_features = training_data.drop(columns=['Scores', 'Concedes', "Result_id"])
-    
     training_features = training_data.drop(columns=['Scores', 'Concedes'])
     for c in training_features.columns:
         if(training_features[c].dtypes==bool):
@@ -72,29 +65,22 @@ def trainModel():
         print(f"Model Accuracy for 20% of all matches: {accuracy}")
         #Consufion matrix
         Y_pred = {}
-        #prob = {}
         Y_pred[c] = models[c].predict(X_test)
-        #matrix = confusion_matrix(Y_test[c].astype(str), Y_pred[c].astype(str))
         
         #Save model
         #if os.path.exists(os.path.abspath('./')+'models/'):
-        
         models[c].save_model(f'./models/model-{c}.cbm', format="cbm")
-        
         #else:
         #    os.mkdir('./models/')
         #    models[c].save_model(f'./models/model-{c}.csv', format="cbm", pool=train_pools[c])
    
 def listFeatureData(path)->None:
     #List all itens in the proc-data dir
-    
     for item in os.listdir(path):
         #If the item on listdir is not a csv file it will recursively go to the next dir.
-
         if os.path.isdir(path+'/'+item):
             subPath = path+'/'+item
             listFeatureData(subPath)
-
         #If it is it will insert the features
         else:
             files.append(path+'/'+item)

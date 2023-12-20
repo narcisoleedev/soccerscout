@@ -194,8 +194,16 @@ data/open-data/
 data/org-data/
 data/proc-data/
 data/feature-data/
+data/prob-data/
+data/last-data/
 data/venv
+data/src/catboost_info/
+data/src/*.txt
+data/src/*.TXT
+data/src/catboostModel.ipynb
+data/src/creating_csvs/*.csv
 bash.sh
 src/erros.txt
 src/log.txt
+
 

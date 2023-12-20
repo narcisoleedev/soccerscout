@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 #Paths
-path = os.path.abspath('../') + '/open-data-master/data/'
+path = os.path.abspath('../') + '/open-data/data/'
 eventsPath = path + 'events/'
 lineupsPath = path + 'lineups/'
 matchesPath = path + 'matches/'
@@ -28,7 +28,7 @@ def events_to_csv(x):
     path = pathOrg+sn+'/'+x['home_team.home_team_gender']+'/"'+x['competition.country_name']+'"/"'+x['competition.competition_name']+'"/"'+x['home_team.home_team_name']+'-'+x['away_team.away_team_name']+'('+x['match_date']+')".csv'
     path = pathOrg+sn+'/'+x['home_team.home_team_gender']+'/'+x['competition.country_name']+'/'+x['competition.competition_name']+'/'+x['home_team.home_team_name']+'-'+x['away_team.away_team_name']+'('+x['match_date']+').csv'
     try:
-        eventsDF.to_csv(path, sep='|')
+        eventsDF.to_csv(path, sep='|', index=False)
     except:
         print('There is no match with this id!')
 
@@ -70,7 +70,6 @@ def matches_json():
             matchesDict = pd.json_normalize(json.load(matchesFile))
             matchesDF = pd.DataFrame(matchesDict)
             matchesDF.apply(events_to_csv, axis=1)
-            
             #eventsDF = pd.json_normalize(json.load(open(eventsPath + e, 'r')))
             #matchesDict.to_csv(path, sep='|')
 

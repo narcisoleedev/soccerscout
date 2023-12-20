@@ -446,7 +446,7 @@ def _parse_events(caminho):
     _fix_loc(df2)
 
     # Altera direção do Jogo
-    #_fix_direction(df2)
+    _fix_direction(df2)
     
     #_add_dribbles(df2)
 
@@ -503,5 +503,4 @@ def copy_erros():
         shutil.copy(line, os.path.abspath("erros"))
 
 if __name__ == "__main__":
-    
     teste(os.path.abspath('../org-data/'))

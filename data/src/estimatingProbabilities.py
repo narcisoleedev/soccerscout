@@ -4,7 +4,7 @@ import pandas as pd
 from catboost import CatBoostClassifier, Pool
 
 #Path
-path = os.path.abspath('../')+'/feature-data'
+path = os.path.abspath('../')+'/proc-data'
 
 #Labels
 labels = ['Scores', 'Concedes']
@@ -29,23 +29,16 @@ def loadModel():
 def calculateProbabilities(filePath, models):
     
     df = pd.read_csv(filePath, sep='|')
+    df.loc[(df['Type_id']==11) & (df['Result_id']==1), 'Result_id'] = 0
     df.fillna(False)
     string_features = []
     for c in df.columns:
         if(df[c].dtypes=='bool'):
-            """df[c] = df[c]*100
-            df[c] = df[c].astype(int)"""
-            #print('ze da manga')
             df[c] = df[c].astype(int)
-        elif(df[c].dtypes=='object'):
-            #string_features.append(df.columns.get_loc(c))
+        elif(df[c].dtypes=='object'):            
             string_features.append(df.columns.get_loc(c))
             #print((c))
-    #print(df.dtypes)
-    #print(string_features)
     pools = {}
-    #df['sP'] = ""
-    #df['cP'] = ""
     predicts = {}
     probabilities = {}
     for l in labels:
@@ -54,32 +47,19 @@ def calculateProbabilities(filePath, models):
         pools[l] = pool
         predicts[l]=models[l].predict(pools[l])
         probabilities[l]=models[l].predict_proba(pools[l])
-
-    #print((probabilities['Scores']).shape)
     
     for l in labels:
         df[f'predicts{l}'] = predicts[l]
         df[f'probabilities{l}'] = (probabilities[l])[:, 1]
-    
-<<<<<<< HEAD
-#     column_names = [
-#     'id', 'Period', 'Time', 'Start_x', 'Start_y', 'End_x', 'End_y', 'Player', 'Team', 'Type_name',
-#     'BodyPart_name', 'Result_name','Scores', 'Concedes', 'predictsScores', 'probabilitiesScores', 'predictsConcedes', 'probabilitiesConcedes'
-# ]
-        column_names = [
-        'Type_id','BodyPart_id', 'Result_id', 'Period', 'Time', 'Start_x', 'Start_y', 'End_x', 'End_y', 'Player', 'Team','Scores', 'Concedes', 'predictsScores', 'probabilitiesScores', 'predictsConcedes', 'probabilitiesConcedes'
-    ]
+    column_names = ['Type_id','BodyPart_id', 'Result_id', 'Period', 'Time', 'Start_x', 'Start_y', 'End_x', 'End_y', 'Player', 'Team','Scores', 'Concedes', 'predictsScores', 'probabilitiesScores', 'predictsConcedes', 'probabilitiesConcedes']
     df = df[column_names]
     return df   
-=======
-    df.to_csv(filePath, sep='|')
->>>>>>> 07cc764ba723d79bf510b53e55707ff0ee4dad45
 
 def listProcData(path)->None:
     #List all itens in the proc-data dir
     models = loadModel()
 
-    new_name_dir = path.replace("feature-data", "prob-data")
+    new_name_dir = path.replace("proc-data", "prob-data")
 
     if not os.path.exists(new_name_dir) and os.path.isdir(path):
         os.mkdir(new_name_dir)   
@@ -94,16 +74,13 @@ def listProcData(path)->None:
         else:
 
             path_temp = path
-            path_temp = path_temp.replace("feature-data", "prob-data")
+            path_temp = path_temp.replace("proc-data", "prob-data")
             
             if os.path.exists(path_temp+"/"+item):
                 print("Já existe")
             
             else:
                 df = calculateProbabilities(path+'/'+item, models)
-<<<<<<< HEAD
                 df.to_csv(path_temp+'/'+item, sep='|')
-=======
->>>>>>> 07cc764ba723d79bf510b53e55707ff0ee4dad45
 
 listProcData(path)
